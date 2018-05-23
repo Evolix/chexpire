@@ -1,0 +1,73 @@
+AllCops:
+  TargetRubyVersion: 2.5
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'lib/tasks/auto_annotate_models.rake'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+    - !ruby/regexp /old_and_unused\.rb$/
+    - 'app/admin/*'
+    - 'tmp/*'
+    - Gemfile
+
+Documentation:
+  Enabled: false
+
+FrozenStringLiteralComment:
+  Enabled: false
+
+ClassAndModuleChildren:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - lib/tasks/**/*
+
+
+AsciiComments:
+  Enabled: false
+
+AlignParameters:
+  Enabled: false
+
+Layout/EndAlignment:
+  Enabled: true
+  EnforcedStyleAlignWith: variable
+
+Metrics/LineLength:
+  Max: 100
+
+Style/BlockDelimiters:
+  EnforcedStyle: semantic
+
+Style/Lambda:
+  Enabled: false
+
+Style/SignalException:
+  EnforcedStyle: semantic
+
+Style/NumericLiteralPrefix:
+  Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma

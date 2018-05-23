@@ -45,6 +45,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'capistrano-rails'
+  gem 'rubocop', '~> 0.56'
 end
 
 group :test do
