@@ -1,0 +1,3 @@
+test:
+  mailer_default_from: "contact@chexpire.org"
+  host: "localhost"

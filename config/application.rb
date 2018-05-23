@@ -31,5 +31,7 @@ module Chexpire
     end
 
     config.time_zone = "Europe/Paris"
+
+    config.chexpire = config_for(:chexpire)
   end
 end
