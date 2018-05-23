@@ -1,0 +1,40 @@
+<%= devise_form_container do %>
+  <h2><%= t('.title', resource: resource_name.to_s.humanize) %></h2>
+
+
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= f.input :email, autofocus: true, autocomplete: "email" %>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div class="alert alert-info">
+        <%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %>
+      </div>
+    <% end %>
+
+    <%= f.input :current_password,
+        autocomplete: "off",
+        hint: t('.we_need_your_current_password_to_confirm_your_changes') %>
+
+    <div class="alert border">
+      <h3>Want to change your password ?</h3>
+      <%= f.input :password,
+          autocomplete: "off",
+          hint: (t('devise.shared.minimum_password_length', count: @minimum_password_length)
+            + " " + t('.leave_blank_if_you_don_t_want_to_change_it'))%>
+
+      <%= f.input :password_confirmation, autocomplete: "off" %>
+    </div>
+
+
+    <%= f.button :submit, t('.update'), class: "btn-primary" %>
+  <% end %>
+
+  <h3 class="mt-5"><%= t('.cancel_my_account') %></h3>
+
+  <p><%= t('.unhappy') %> <%=
+    button_to t('.cancel_my_account'), registration_path(resource_name),
+    class: "btn btn-danger",
+    data: { confirm: t('.are_you_sure') }, method: :delete %></p>
+
+  <%= link_to t('devise.shared.links.back'), :back %>
+<% end %>
