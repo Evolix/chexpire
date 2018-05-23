@@ -1,9 +1,9 @@
 AllCops:
   TargetRubyVersion: 2.5
-  Include:
-    - '**/Rakefile'
-    - '**/config.ru'
   Exclude:
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - '.git/**/*'
     - 'lib/tasks/auto_annotate_models.rake'
     - 'db/**/*'
     - 'config/**/*'

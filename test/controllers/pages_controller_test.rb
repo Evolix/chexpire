@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class PagesControllerTest < ActionDispatch::IntegrationTest
   test "home loads without error" do
