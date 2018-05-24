@@ -10,6 +10,11 @@ gem 'rails-i18n', '~> 5.1'
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
+
+gem 'devise', '~> 4.4'
+gem 'devise-i18n', '~> 1.6'
+gem 'simple_form', '~> 4.0'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -35,7 +40,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'binding_of_caller'
+  gem 'pry-byebug'
+  gem 'pry-rails'
 end
 
 group :development do
@@ -48,6 +55,7 @@ group :development do
 
   gem 'rubocop', '~> 0.56.0', require: false
   gem 'annotate', require: false
+  gem 'letter_opener_web'
 
   gem 'capistrano-rails'
   gem "capistrano", "~> 3.10", require: false
@@ -61,6 +69,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem 'launchy'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

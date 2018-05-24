@@ -1,0 +1,18 @@
+<%= devise_form_container do %>
+  <h2><%= t('.sign_up') %></h2>
+
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= f.input :email, autofocus: true, autocomplete: "email" %>
+
+    <%= f.input :password, autocomplete: "off",
+                hint: t('devise.shared.minimum_password_length', count: @minimum_password_length) %>
+
+    <%= f.input :password_confirmation, autocomplete: "off" %>
+
+    <%= f.input :tos_accepted, label: t('.tos_acceptance_html') %>
+
+    <%= f.button :submit, t('.sign_up'), class: "btn-primary" %>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+<% end %>
