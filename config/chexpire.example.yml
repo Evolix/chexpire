@@ -1,14 +1,6 @@
 default: &default
   mailer_default_from: "from@example.org"
 
-production:
-  <<: *default
-  host: "example.org"
-
-staging:
-  <<: *default
-  host: "staging.example.org"
-
 development:
   <<: *default
   host: "chexpire.local"
