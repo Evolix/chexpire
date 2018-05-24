@@ -15,6 +15,7 @@ addons:
 before_install:
   - cp config/database.example.yml config/database.yml
   - cp config/chexpire.test.yml config/chexpire.yml
+  - cp config/secrets.example.yml config/secrets.yml
 
 install:
   - bundle install
