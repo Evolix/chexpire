@@ -5,6 +5,10 @@ production:
   <<: *default
   host: "example.org"
 
+staging:
+  <<: *default
+  host: "staging.example.org"
+
 development:
   <<: *default
   host: "chexpire.local"

@@ -67,6 +67,13 @@ GEM
     capistrano-rails (1.3.1)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-rbenv (2.1.3)
+      capistrano (~> 3.1)
+      sshkit (~> 1.3)
+    capistrano3-puma (3.1.1)
+      capistrano (~> 3.7)
+      capistrano-bundler
+      puma (~> 3.4)
     capybara (3.1.0)
       addressable
       mini_mime (>= 0.1.3)
@@ -232,7 +239,10 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.1.0)
   byebug
+  capistrano (~> 3.10)
   capistrano-rails
+  capistrano-rbenv
+  capistrano3-puma
   capybara (>= 2.15, < 4.0)
   chromedriver-helper
   jbuilder (~> 2.5)

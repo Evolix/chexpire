@@ -13,6 +13,7 @@ AllCops:
     - 'app/admin/*'
     - 'tmp/*'
     - Gemfile
+    - Capfile
 
 Documentation:
   Enabled: false
