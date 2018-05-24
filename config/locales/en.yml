@@ -1,4 +1,15 @@
 en:
+  activerecord:
+    attributes:
+      user:
+        tos_accepted: "Terms of service"
+        notifications_enabled: "Notifications enabled"
+
+  devise:
+    registrations:
+      new:
+        tos_acceptance_html: "You must accept our Terms of service"
+
   shared:
     navbar:
       sign_up: "Sign up"

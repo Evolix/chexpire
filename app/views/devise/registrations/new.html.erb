@@ -9,6 +9,8 @@
 
     <%= f.input :password_confirmation, autocomplete: "off" %>
 
+    <%= f.input :tos_accepted, label: t('.tos_acceptance_html') %>
+
     <%= f.button :submit, t('.sign_up'), class: "btn-primary" %>
   <% end %>
 
