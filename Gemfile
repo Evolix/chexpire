@@ -54,6 +54,7 @@ group :development do
 
   gem 'rubocop', '~> 0.56.0', require: false
   gem 'annotate', require: false
+  gem 'letter_opener_web'
 
   gem 'capistrano-rails'
   gem "capistrano", "~> 3.10", require: false
