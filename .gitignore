@@ -24,3 +24,14 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/config/credentials.yml.enc
+/config/secrets.yml
+/config/database.yml
+/config/chexpire.yml
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity
+
+/config/deploy/config.yml

@@ -1,0 +1,9 @@
+default: &default
+  mailer_default_from: "from@example.org"
+
+development:
+  <<: *default
+  host: "chexpire.local"
+
+# test configuration included in file used by CI services
+<%= IO.read Rails.root.join("config", "chexpire.test.yml") %>

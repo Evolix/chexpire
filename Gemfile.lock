@@ -46,6 +46,9 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     airbrussh (1.3.0)
       sshkit (>= 1.6.1, != 1.7.0)
+    annotate (2.7.3)
+      activerecord (>= 3.2, < 6.0)
+      rake (>= 10.4, < 13.0)
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
@@ -67,6 +70,13 @@ GEM
     capistrano-rails (1.3.1)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-rbenv (2.1.3)
+      capistrano (~> 3.1)
+      sshkit (~> 1.3)
+    capistrano3-puma (3.1.1)
+      capistrano (~> 3.7)
+      capistrano-bundler
+      puma (~> 3.4)
     capybara (3.1.0)
       addressable
       mini_mime (>= 0.1.3)
@@ -124,6 +134,8 @@ GEM
     public_suffix (3.0.2)
     puma (3.11.4)
     rack (2.0.5)
+    rack-proxy (0.6.4)
+      rack
     rack-test (1.0.0)
       rack (>= 1.0, < 3)
     rails (5.2.0)
@@ -144,6 +156,9 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
+    rails-i18n (5.1.1)
+      i18n (>= 0.7, < 2)
+      railties (>= 5.0, < 6)
     railties (5.2.0)
       actionpack (= 5.2.0)
       activesupport (= 5.2.0)
@@ -210,6 +225,10 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
+    webpacker (3.5.3)
+      activesupport (>= 4.2)
+      rack-proxy (>= 0.6.1)
+      railties (>= 4.2)
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
@@ -220,10 +239,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.1.0)
   byebug
+  capistrano (~> 3.10)
   capistrano-rails
+  capistrano-rbenv
+  capistrano3-puma
   capybara (>= 2.15, < 4.0)
   chromedriver-helper
   jbuilder (~> 2.5)
@@ -231,7 +254,8 @@ DEPENDENCIES
   mysql2 (>= 0.4.4, < 0.6.0)
   puma (~> 3.11)
   rails (~> 5.2.0)
-  rubocop (~> 0.56)
+  rails-i18n (~> 5.1)
+  rubocop (~> 0.56.0)
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
@@ -240,6 +264,7 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
+  webpacker (~> 3.5)
 
 RUBY VERSION
    ruby 2.5.1p57

@@ -1,0 +1,21 @@
+staging:
+  deploy_to: /var/www/my_app_name
+  servers:
+    -
+      host: staging.example.com
+      user: deploy
+      roles:
+        - app
+        - db
+        - web
+
+production:
+  deploy_to: /var/www/my_app_name
+  servers:
+    -
+      host: www.example.com
+      user: deploy
+      roles:
+        - app
+        - db
+        - web

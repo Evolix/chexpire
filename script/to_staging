@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+[ -n "$DEBUG" ] && set -x
+
+git branch -f staging
+git push --force origin staging
+
+bundle exec cap staging deploy
