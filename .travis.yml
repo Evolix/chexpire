@@ -7,8 +7,7 @@ cache:
 
 node_js: 9
 
-sudo: false
-
+sudo: required # required with chrome addon
 addons:
   chrome: stable
 
