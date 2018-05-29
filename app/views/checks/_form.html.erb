@@ -1,0 +1,17 @@
+<%= simple_form_for(check) do |f| %>
+  <%= f.input :domain, autofocus: true, input_html: { autocapitalize: :none, autocorrect: :off } %>
+
+  <% if check.new_record? %>
+    <%= f.input :kind, as: :radio_buttons, collection: Check.kinds.keys if check.new_record? %>
+  <% end %>
+
+  <%= f.input :domain_created_at, as: :date, start_year: 1990, end_year: Date.today.year %>
+  <%= f.input :comment %>
+  <%= f.input :vendor %>
+
+  <% if check.persisted? %>
+    <%= f.input :active %>
+  <% end %>
+
+  <%= f.button :submit, "Validate", class: "btn-primary" %>
+<% end %>

@@ -1,7 +1,9 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12 col-lg-10">
-      <%= yield :devise_form_content %>
+      <h1>Create a new check</h1>
+
+      <%= render "form", check: @check %>
     </div>
   </div>
 </div>

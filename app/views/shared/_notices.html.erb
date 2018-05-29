@@ -1,7 +1,13 @@
-<% if notice.present? %>
-  <div class="alert alert-success" role="alert"><%= notice %></div>
-<% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10">
+      <% if notice.present? %>
+        <div class="alert alert-success alert-layout" role="alert"><%= notice %></div>
+      <% end %>
 
-<% if alert.present? %>
-  <div class="alert alert-danger" role="alert"><%= alert %></div>
-<% end %>
+      <% if alert.present? %>
+        <div class="alert alert-danger alert-layout" role="alert"><%= alert %></div>
+      <% end %>
+    </div>
+  </div>
+</div>

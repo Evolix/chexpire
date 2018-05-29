@@ -39,5 +39,19 @@ class Check < ApplicationRecord
 
   validates :kind, presence: true
   validates :domain, presence: true
-  validates :active, presence: true
+  validates :domain_created_at, presence: true
+  validate :domain_created_at_past
+  validate :domain_updated_at_past
+  validates :comment, length: { maximum: 255 }
+  validates :vendor, length: { maximum: 255 }
+
+  protected
+
+  def domain_created_at_past
+    errors.add(:domain_created_at, :past) if domain_created_at.present? && domain_created_at.future?
+  end
+
+  def domain_updated_at_past
+    errors.add(:domain_updated_at, :past) if domain_updated_at.present? && domain_updated_at.future?
+  end
 end
