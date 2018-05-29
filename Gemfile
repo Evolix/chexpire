@@ -60,6 +60,10 @@ group :development do
   gem 'annotate', require: false
   gem 'letter_opener_web'
 
+
+  gem "guard"
+  gem "guard-minitest"
+
   gem 'capistrano-rails'
   gem "capistrano", "~> 3.10", require: false
   gem "capistrano-rbenv", require: false
