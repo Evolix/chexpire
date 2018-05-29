@@ -14,6 +14,7 @@ gem 'puma', '~> 3.11'
 gem 'devise', '~> 4.4'
 gem 'devise-i18n', '~> 1.6'
 gem 'simple_form', '~> 4.0'
+gem 'pundit', '~> 1.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
