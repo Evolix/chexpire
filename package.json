@@ -9,6 +9,7 @@
     "rails-ujs": "^5.2.0"
   },
   "devDependencies": {
+    "exports-loader": "^0.7.0",
     "webpack-dev-server": "2.11.2"
   }
 }

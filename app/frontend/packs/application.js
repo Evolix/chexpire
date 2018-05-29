@@ -7,8 +7,11 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-import 'bootstrap'
-import './src/application.scss'
 import Rails from 'rails-ujs';
+
+import 'bootstrap/js/dist/collapse';
+import 'bootstrap/js/dist/dropdown';
+
+import '../scss';
 
 Rails.start()
