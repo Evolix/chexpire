@@ -28,6 +28,7 @@
 
 class Check < ApplicationRecord
   belongs_to :user
+  has_many :logs, class_name: "CheckLog"
 
   enum kind: [:domain, :ssl]
 
