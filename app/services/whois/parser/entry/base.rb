@@ -24,6 +24,10 @@ module Whois
         def field?
           false
         end
+
+        def text?
+          false
+        end
       end
     end
   end

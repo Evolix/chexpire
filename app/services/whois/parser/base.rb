@@ -31,6 +31,7 @@ module Whois
         response
       rescue StandardError => ex
         logger.log :parser_error, ex
+        raise
       end
 
       protected
@@ -55,6 +56,16 @@ module Whois
         rescue ArgumentError
           raise InvalidDateError, "Date `#{str}` does not match format #{date_format}"
         end
+      end
+
+      def comment_include?(str)
+        entries.any? { |e|
+          e.comment? && e.text? && e.text.include?(str)
+        }
+      end
+
+      def raise_not_found
+        fail DomainNotFoundError, "Domain #{domain} not found in the registry database."
       end
 
       private

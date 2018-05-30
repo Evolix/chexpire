@@ -3,6 +3,7 @@ module Whois
 
   class WhoisCommandError < WhoisError; end
   class UnsupportedDomainError < WhoisError; end
+  class DomainNotFoundError < WhoisError; end
   class ParserError < WhoisError; end
 
   class FieldNotFoundError < ParserError; end

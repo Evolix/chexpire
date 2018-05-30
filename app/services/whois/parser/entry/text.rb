@@ -10,6 +10,10 @@ module Whois
           super index
           @text = text.strip
         end
+
+        def text?
+          true
+        end
       end
     end
   end
