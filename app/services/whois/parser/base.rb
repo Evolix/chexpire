@@ -47,7 +47,7 @@ module Whois
         fail MissingDateFormatError, "Date format not set" if date_format.nil?
 
         begin
-          Date.strptime(str, date_format)
+          Time.strptime(str, date_format)
         rescue ArgumentError
           raise InvalidDateError, "Date `#{str}` does not match format #{date_format}"
         end

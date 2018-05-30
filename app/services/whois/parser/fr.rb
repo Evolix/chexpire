@@ -19,21 +19,25 @@ module Whois::Parser
       domain_index = get_field!("domain", value: domain).index
 
       created_date = get_value!("created", after: domain_index)
-      response.created_on = parse_date(created_date)
+      response.created_at = parse_date(created_date)
 
       expire_date = get_value!("Expiry Date", after: domain_index)
-      response.expire_on = parse_date(expire_date)
+      response.expire_at = parse_date(expire_date)
 
       updated_date = get_value!("last-update", after: domain_index)
-      response.updated_on = parse_date(updated_date)
+      response.updated_at = parse_date(updated_date)
     end
 
     private
 
+    def parse_date(str)
+      super "#{str} UTC"
+    end
+
     def set_date_format
       afnic_format = get_field!("complete date format").value
 
-      @date_format = "%d/%m/%Y" if afnic_format == "DD/MM/YYYY"
+      @date_format = "%d/%m/%Y %Z" if afnic_format == "DD/MM/YYYY"
     end
   end
 end

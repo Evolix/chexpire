@@ -13,9 +13,11 @@ module Whois
       response = @parser.parse(@domain_fr)
       assert_kind_of Response, response
 
-      assert_equal Date.new(2004, 2, 18), response.created_on
-      assert_equal Date.new(2017, 1, 28), response.updated_on
-      assert_equal Date.new(2019, 2, 17), response.expire_on
+      assert_equal Time.new(2004, 2, 18, 0, 0, 0, 0), response.created_at
+      assert response.created_at.utc?
+
+      assert_equal Time.new(2017, 1, 28, 0, 0, 0, 0), response.updated_at
+      assert_equal Time.new(2019, 2, 17, 0, 0, 0, 0), response.expire_at
     end
   end
 end
