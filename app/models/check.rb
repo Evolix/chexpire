@@ -45,6 +45,8 @@ class Check < ApplicationRecord
   validates :comment, length: { maximum: 255 }
   validates :vendor, length: { maximum: 255 }
 
+  after_save :enqueue_sync
+
   protected
 
   def domain_created_at_past
@@ -53,5 +55,12 @@ class Check < ApplicationRecord
 
   def domain_updated_at_past
     errors.add(:domain_updated_at, :past) if domain_updated_at.present? && domain_updated_at.future?
+  end
+
+  def enqueue_sync
+    return unless active?
+    return unless saved_changes.key?("domain")
+
+    WhoisSyncJob.perform_later(id) if domain?
   end
 end

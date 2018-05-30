@@ -8,7 +8,7 @@ require_relative "whois/errors"
 module Whois
   class << self
     def ask(domain, system_klass: SystemCommand, logger: NullLogger.new)
-      Service.new(domain, system_klass, logger: logger).call
+      Service.new(domain, system_klass: system_klass, logger: logger).call
     end
   end
 
