@@ -7,5 +7,9 @@ module Whois
     def initialize(domain)
       @domain = domain
     end
+
+    def valid?
+      created_at.present?
+    end
   end
 end

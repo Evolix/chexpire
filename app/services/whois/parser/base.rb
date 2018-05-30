@@ -26,7 +26,11 @@ module Whois
 
         do_parse
 
+        logger.log :parsed_response, response
+
         response
+      rescue StandardError => ex
+        logger.log :parser_error, ex
       end
 
       protected

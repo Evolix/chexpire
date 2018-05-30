@@ -26,6 +26,9 @@ module Whois
     def call
       result = run_command
       parse(result)
+    rescue StandardError => ex
+      logger.log :service_error, ex
+      raise
     end
 
     def run_command
