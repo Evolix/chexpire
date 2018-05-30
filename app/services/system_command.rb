@@ -1,4 +1,7 @@
+require "open4"
 require "null_logger"
+
+SystemCommandResult = Struct.new(:command, :exit_status, :stdout, :stderr)
 
 class SystemCommand
   attr_reader :program
@@ -14,11 +17,11 @@ class SystemCommand
   def execute
     logger.log :before_command, syscmd
 
-    raw = `syscmd`
+    result = call(syscmd)
 
-    logger.log :after_command, raw
+    logger.log :after_command, result
 
-    raw
+    result
   end
 
   def syscmd
@@ -30,6 +33,18 @@ class SystemCommand
   end
 
   private
+
+  def call(cmd)
+    pid, _, stdout, stderr = Open4.popen4 cmd
+    _, status = Process.waitpid2 pid
+
+    SystemCommandResult.new(
+      syscmd,
+      status.exitstatus,
+      stdout.read.strip,
+      stderr.read.strip,
+    )
+  end
 
   def escape_arg(arg)
     arg.to_s.gsub('"') { '\"' }
