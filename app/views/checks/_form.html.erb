@@ -5,7 +5,6 @@
     <%= f.input :kind, as: :radio_buttons, collection: Check.kinds.keys if check.new_record? %>
   <% end %>
 
-  <%= f.input :domain_created_at, as: :date, start_year: 1990, end_year: Date.today.year %>
   <%= f.input :comment %>
   <%= f.input :vendor %>
 

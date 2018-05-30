@@ -40,7 +40,6 @@ class Check < ApplicationRecord
 
   validates :kind, presence: true
   validates :domain, presence: true
-  validates :domain_created_at, presence: true
   validate :domain_created_at_past
   validate :domain_updated_at_past
   validates :comment, length: { maximum: 255 }
