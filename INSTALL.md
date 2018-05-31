@@ -1,11 +1,25 @@
 # Installation
 
-## Configuration
+## Rails configuration
+
 After cloning this repository, you have to create and edit a few files from example files for your local development configuration :
 
 - `config/database.yml`
 - `config/chexpire.yml`
 - `config/secrets.yml`
+
+### Database
+
+You can customize `config/database.yml` for your needs, but by default, Rails is looking for a `chexpire_development` database on localhost.
+
+### Dependencies
+
+Execute `# bundle install` to install Ruby dependencies.
+Execute `# yarn install` to install Javascript dependencies.
+
+### Local execution
+
+If you want to start the Rails application manually, with a simple Puma configuration, you have to execute `# bundle exec rails server`.
 
 ## Deployment
 
