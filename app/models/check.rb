@@ -28,6 +28,7 @@
 
 class Check < ApplicationRecord
   belongs_to :user
+  has_many :logs, class_name: "CheckLog"
 
   enum kind: [:domain, :ssl]
 
@@ -39,11 +40,12 @@ class Check < ApplicationRecord
 
   validates :kind, presence: true
   validates :domain, presence: true
-  validates :domain_created_at, presence: true
   validate :domain_created_at_past
   validate :domain_updated_at_past
   validates :comment, length: { maximum: 255 }
   validates :vendor, length: { maximum: 255 }
+
+  after_save :enqueue_sync
 
   protected
 
@@ -53,5 +55,12 @@ class Check < ApplicationRecord
 
   def domain_updated_at_past
     errors.add(:domain_updated_at, :past) if domain_updated_at.present? && domain_updated_at.future?
+  end
+
+  def enqueue_sync
+    return unless active?
+    return unless saved_changes.key?("domain")
+
+    WhoisSyncJob.perform_later(id) if domain?
   end
 end

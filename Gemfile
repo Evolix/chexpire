@@ -36,6 +36,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
+gem 'open4'
+gem 'naught'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
@@ -57,6 +60,10 @@ group :development do
   gem 'rubocop', '~> 0.56.0', require: false
   gem 'annotate', require: false
   gem 'letter_opener_web'
+
+
+  gem "guard"
+  gem "guard-minitest"
 
   gem 'capistrano-rails'
   gem "capistrano", "~> 3.10", require: false
