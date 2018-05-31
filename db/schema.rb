@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_24_205809) do
+ActiveRecord::Schema.define(version: 2018_05_29_092950) do
+
+  create_table "checks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "kind", null: false
+    t.string "domain", null: false
+    t.datetime "domain_created_at"
+    t.datetime "domain_updated_at"
+    t.datetime "domain_expire_at"
+    t.datetime "last_run_at"
+    t.datetime "last_success_at"
+    t.string "vendor"
+    t.string "comment"
+    t.boolean "active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_checks_on_user_id"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -36,4 +53,5 @@ ActiveRecord::Schema.define(version: 2018_05_24_205809) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "checks", "users"
 end

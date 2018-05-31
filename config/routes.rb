@@ -1,6 +1,13 @@
 # == Route Map
 #
 #                    Prefix Verb   URI Pattern                                                                              Controller#Action
+#                    checks GET    /checks(.:format)                                                                        checks#index
+#                           POST   /checks(.:format)                                                                        checks#create
+#                 new_check GET    /checks/new(.:format)                                                                    checks#new
+#                edit_check GET    /checks/:id/edit(.:format)                                                               checks#edit
+#                     check PATCH  /checks/:id(.:format)                                                                    checks#update
+#                           PUT    /checks/:id(.:format)                                                                    checks#update
+#                           DELETE /checks/:id(.:format)                                                                    checks#destroy
 #          new_user_session GET    /users/sign_in(.:format)                                                                 devise/sessions#new
 #              user_session POST   /users/sign_in(.:format)                                                                 devise/sessions#create
 #      destroy_user_session DELETE /users/sign_out(.:format)                                                                devise/sessions#destroy
@@ -38,6 +45,9 @@
 # run `bundle exec annotate -r` after modifying this file
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :checks, except: [:show]
+
   devise_for :users
   root to: "pages#home"
 

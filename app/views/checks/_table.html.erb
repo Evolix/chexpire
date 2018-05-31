@@ -1,0 +1,18 @@
+<% checks.each do |check| %>
+  <div class="mb-4">
+    <div>Domain: <%= check.domain %></div>
+    <div>Kind: <%= check.kind %></div>
+    <div>Date de création: <%= check.domain_created_at.to_date %></div>
+
+    <% if check.comment? %>
+      <div>Comment: <%= check.comment %></div>
+    <% end %>
+
+    <% if check.vendor? %>
+      <div>Vendor: <%= check.vendor %></div>
+    <% end %>
+
+    <div>Active: <%= check.active %></div>
+    <%= link_to "Edit", edit_check_path(check) %>
+  </div>
+<% end %>
