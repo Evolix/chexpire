@@ -29,6 +29,7 @@
 class Check < ApplicationRecord
   belongs_to :user
   has_many :logs, class_name: "CheckLog"
+  has_many :notifications
 
   enum kind: [:domain, :ssl]
 
