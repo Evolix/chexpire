@@ -26,30 +26,28 @@
 #  fk_rails_...  (user_id => users.id)
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+FactoryBot.define do
+  factory :check do
+    user
+    kind :domain
+    domain "domain.fr"
+    domain_created_at Time.new(2016, 4, 1, 12, 0, 0, "+02:00")
+    domain_updated_at Time.new(2017, 3, 1, 12, 0, 0, "+02:00")
+    domain_expire_at Time.new(2019, 4, 1, 12, 0, 0, "+02:00")
+    active true
+    vendor nil
+    comment nil
+    last_run_at nil
+    last_success_at nil
 
-domain_example_org:
-  user: user1
-  kind: domain
-  domain: example.org
-  domain_created_at: 2017-03-01 17:29:50
-  domain_updated_at: 2018-02-15 12:10:00
-  domain_expire_at: 2019-03-01 17:29:49
-  last_run_at: 2018-05-24 17:29:50
-  last_success_at: 2018-05-24 17:29:50
-  vendor: ""
-  comment: ""
-  active: true
+    trait :domain do
+      kind :domain
+    end
 
-ssl_www_example_org:
-  user: user1
-  kind: ssl
-  domain: www.example.org
-  domain_created_at: 2018-05-24 17:29:50
-  domain_updated_at: 2018-05-24 17:29:50
-  domain_expire_at: 2019-05-24 17:29:49
-  last_run_at: 2018-05-24 17:29:50
-  last_success_at: 2018-05-24 17:29:50
-  vendor: ""
-  comment: "MyString"
-  active: true
+    trait :nil_dates do
+      domain_created_at nil
+      domain_updated_at nil
+      domain_expire_at nil
+    end
+  end
+end

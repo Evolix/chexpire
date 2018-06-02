@@ -21,20 +21,29 @@
 #  fk_rails_...  (check_id => checks.id)
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+FactoryBot.define do
+  factory :notification do
+    check
+    delay 30
+    channel :email
+    recipient "recipient@domain.fr"
+    status :pending
+    sent_at nil
 
-one:
-  check: domain_example_org
-  channel: email
-  recipient: myemail@example.org
-  delay: 30
-  sent_at: 2018-05-31 10:14:12
-  status: succeed
+    trait :email do
+      channel :email
+    end
 
-two:
-  check: domain_example_org
-  channel: email
-  recipient: myemail@example.org
-  delay: 10
-  sent_at: 2018-05-31 10:14:12
-  status: succeed
+    trait :ongoing do
+      status :ongoing
+    end
+
+    trait :succeed do
+      status :succeed
+    end
+
+    trait :failed do
+      status :failed
+    end
+  end
+end

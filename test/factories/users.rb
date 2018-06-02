@@ -28,15 +28,14 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
+require "securerandom"
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-user1:
-  email: user@chexpire.org
-  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
-  confirmed_at: <%= 1.minute.ago %>
-  tos_accepted: true
+FactoryBot.define do
+  factory :user do
+    email { "user-#{SecureRandom.random_number}@chexpire.org" }
+    password "password"
+    confirmed_at Time.new(2018, 4, 1, 12, 0, 0, "+02:00")
+    notifications_enabled true
+    tos_accepted true
+  end
+end

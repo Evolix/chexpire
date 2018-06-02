@@ -21,4 +21,12 @@
 #  fk_rails_...  (check_id => checks.id)
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+FactoryBot.define do
+  factory :check_log do
+    check
+    status :pending
+    exit_status nil
+    parsed_response nil
+    raw_response nil
+  end
+end
