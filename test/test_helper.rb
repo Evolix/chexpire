@@ -12,6 +12,7 @@ class ActiveSupport::TestCase
   Warden.test_mode!
 
   # Add more helper methods to be used by all tests here...
+  include FactoryBot::Syntax::Methods
 end
 
 Capybara.register_driver :headless_chrome do |app|

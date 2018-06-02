@@ -26,4 +26,5 @@ guard "minitest", spring: "bin/rails test" do
   watch(%r{^test/.+_test\.rb$})
   watch(%r{^test/test_helper\.rb$}) { "test" }
   watch(%r{^test/fixtures/.+\.yml$}) { "test" }
+  watch(%r{^test/factories/.+\.rb$}) { "test" }
 end

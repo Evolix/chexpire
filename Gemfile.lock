@@ -94,6 +94,7 @@ GEM
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
+    database_cleaner (1.7.0)
     debug_inspector (0.0.3)
     devise (4.4.3)
       bcrypt (~> 3.0)
@@ -105,6 +106,11 @@ GEM
       devise (>= 4.4)
     erubi (1.7.1)
     execjs (2.7.0)
+    factory_bot (4.10.0)
+      activesupport (>= 3.0.0)
+    factory_bot_rails (4.10.0)
+      factory_bot (~> 4.10.0)
+      railties (>= 3.0.0)
     ffi (1.9.23)
     formatador (0.2.5)
     globalid (0.4.1)
@@ -310,8 +316,10 @@ DEPENDENCIES
   capistrano3-puma
   capybara (>= 2.15, < 4.0)
   chromedriver-helper
+  database_cleaner
   devise (~> 4.4)
   devise-i18n (~> 1.6)
+  factory_bot_rails
   guard
   guard-minitest
   jbuilder (~> 2.5)
