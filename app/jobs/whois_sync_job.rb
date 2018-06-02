@@ -25,7 +25,7 @@ class WhoisSyncJob < ApplicationJob
   def update_from_response(response)
     check.domain_created_at = response.created_at
     check.domain_updated_at = response.updated_at
-    check.domain_expire_at = response.expire_at
+    check.domain_expires_at = response.expire_at
     check.last_success_at = Time.now
   end
 end

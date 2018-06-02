@@ -7,7 +7,7 @@
 #  comment           :string(255)
 #  domain            :string(255)      not null
 #  domain_created_at :datetime
-#  domain_expire_at  :datetime
+#  domain_expires_at :datetime
 #  domain_updated_at :datetime
 #  kind              :integer          not null
 #  last_run_at       :datetime

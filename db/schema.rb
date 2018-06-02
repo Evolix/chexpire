@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_31_101412) do
+ActiveRecord::Schema.define(version: 2018_06_02_154319) do
 
   create_table "check_logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "check_id"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2018_05_31_101412) do
     t.string "domain", null: false
     t.datetime "domain_created_at"
     t.datetime "domain_updated_at"
-    t.datetime "domain_expire_at"
+    t.datetime "domain_expires_at"
     t.datetime "last_run_at"
     t.datetime "last_success_at"
     t.string "vendor"

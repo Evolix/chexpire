@@ -7,7 +7,7 @@
 #  comment           :string(255)
 #  domain            :string(255)      not null
 #  domain_created_at :datetime
-#  domain_expire_at  :datetime
+#  domain_expires_at :datetime
 #  domain_updated_at :datetime
 #  kind              :integer          not null
 #  last_run_at       :datetime
@@ -36,7 +36,7 @@ class Check < ApplicationRecord
   self.skip_time_zone_conversion_for_attributes = [
     :domain_created_at,
     :domain_updated_at,
-    :domain_expire_at,
+    :domain_expires_at,
   ]
 
   validates :kind, presence: true

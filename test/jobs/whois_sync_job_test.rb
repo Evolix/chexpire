@@ -13,7 +13,7 @@ class WhoisSyncJobTest < ActiveJob::TestCase
 
     assert_just_now check.last_run_at
     assert_just_now check.last_success_at
-    assert_equal Time.new(2019, 2, 17, 0, 0, 0, 0), check.domain_expire_at
+    assert_equal Time.new(2019, 2, 17, 0, 0, 0, 0), check.domain_expires_at
     assert_equal Time.new(2017, 1, 28, 0, 0, 0, 0), check.domain_updated_at
     assert_equal Time.new(2004, 2, 18, 0, 0, 0, 0), check.domain_created_at
     assert check.active?

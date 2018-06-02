@@ -7,7 +7,7 @@
 #  comment           :string(255)
 #  domain            :string(255)      not null
 #  domain_created_at :datetime
-#  domain_expire_at  :datetime
+#  domain_expires_at :datetime
 #  domain_updated_at :datetime
 #  kind              :integer          not null
 #  last_run_at       :datetime
@@ -33,7 +33,7 @@ FactoryBot.define do
     domain "domain.fr"
     domain_created_at Time.new(2016, 4, 1, 12, 0, 0, "+02:00")
     domain_updated_at Time.new(2017, 3, 1, 12, 0, 0, "+02:00")
-    domain_expire_at Time.new(2019, 4, 1, 12, 0, 0, "+02:00")
+    domain_expires_at Time.new(2019, 4, 1, 12, 0, 0, "+02:00")
     active true
     vendor nil
     comment nil
@@ -47,7 +47,7 @@ FactoryBot.define do
     trait :nil_dates do
       domain_created_at nil
       domain_updated_at nil
-      domain_expire_at nil
+      domain_expires_at nil
     end
   end
 end
