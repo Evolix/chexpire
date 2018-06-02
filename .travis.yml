@@ -23,5 +23,5 @@ install:
 
 script:
   - bundle exec rubocop
-  - bundle exec rails test
-  - bundle exec rails test:system
+  - bundle exec rails test NO_COVERAGE=1
+  - bundle exec rails test:system NO_COVERAGE=1

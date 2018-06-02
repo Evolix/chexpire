@@ -1,4 +1,15 @@
 ENV["RAILS_ENV"] ||= "test"
+require "pry"
+
+if !ENV["NO_COVERAGE"] && (ARGV.empty? || ARGV.include?("test/test_helper.rb"))
+  require "simplecov"
+  SimpleCov.start "rails" do
+    add_group "Services", "app/services"
+    add_group "Notifier", "app/notifier"
+    add_group "Policies", "app/policies"
+  end
+end
+
 require_relative "../config/environment"
 require "rails/test_help"
 

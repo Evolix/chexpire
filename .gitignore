@@ -35,3 +35,9 @@ yarn-debug.log*
 .yarn-integrity
 
 /config/deploy/config.yml
+
+# SimpleCov coverage output
+/coverage
+
+# OS file
+.DS_Store
