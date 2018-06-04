@@ -15,6 +15,7 @@ require "rails/test_help"
 
 require "minitest/mock"
 require_relative "test_mocks_helper"
+require_relative "chexpire_assertions"
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
@@ -27,6 +28,7 @@ class ActiveSupport::TestCase
   include ActiveJob::TestHelper
   include FactoryBot::Syntax::Methods
   include TestMocksHelper
+  include ChexpireAssertions
 end
 
 # Capybara configuration

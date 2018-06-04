@@ -9,7 +9,7 @@ module TestMocksHelper
     mock = Minitest::Mock.new
     mock.expect :execute, result
 
-    fussy = lambda { |actual_program, actual_args, _logger|
+    assert_stub = lambda { |actual_program, actual_args, _logger|
       assert_equal program, actual_program,
        "SystemCommand was not initialized with the expected program name"
 
@@ -19,7 +19,7 @@ module TestMocksHelper
       mock
     }
 
-    SystemCommand.stub :new, fussy do
+    SystemCommand.stub :new, assert_stub do
       yield
     end
 

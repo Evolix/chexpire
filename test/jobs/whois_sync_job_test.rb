@@ -55,8 +55,4 @@ class WhoisSyncJobTest < ActiveJob::TestCase
   def whois_response(domain)
     file_fixture("whois/#{domain}.txt").read
   end
-
-  def assert_just_now(expected)
-    assert_in_delta expected.to_i, Time.now.to_i, 1.0
-  end
 end
