@@ -24,11 +24,21 @@
 class Notification < ApplicationRecord
   belongs_to :check
 
-  enum kind: [:email]
+  enum channel: [:email]
   enum status: [:pending, :ongoing, :succeed, :failed]
 
-  validates :kind, presence: true
   validates :channel, presence: true
-  validates :recipient, presence: true
   validates :delay, presence: true
+  validates :recipient, presence: true
+
+  def pending!
+    self.sent_at = nil
+    super
+  end
+  alias reset! pending!
+
+  def ongoing!
+    self.sent_at = Time.now
+    super
+  end
 end

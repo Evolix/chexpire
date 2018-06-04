@@ -37,4 +37,6 @@ class User < ApplicationRecord
 
   has_many :checks
   validates :tos_accepted, acceptance: true
+
+  scope :notifications_disabled, -> { where(notifications_enabled: false) }
 end

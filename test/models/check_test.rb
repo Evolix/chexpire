@@ -29,7 +29,24 @@
 require "test_helper"
 
 class CheckTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "notifications are resetted when domain expiration date has changed" do
+    check = create(:check)
+    notification = create(:notification, :succeed, check: check)
+
+    check.comment = "Will not reset because of this attribute"
+    check.save!
+
+    notification.reload
+
+    assert notification.succeed?
+    assert_not_nil notification.sent_at
+
+    check.domain_expires_at = 1.year.from_now
+    check.save!
+
+    notification.reload
+
+    assert notification.pending?
+    assert_nil notification.sent_at
+  end
 end

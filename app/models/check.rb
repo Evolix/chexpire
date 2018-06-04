@@ -46,9 +46,10 @@ class Check < ApplicationRecord
   validates :comment, length: { maximum: 255 }
   validates :vendor, length: { maximum: 255 }
 
+  after_update :reset_notifications
   after_save :enqueue_sync
 
-  protected
+  private
 
   def domain_created_at_past
     errors.add(:domain_created_at, :past) if domain_created_at.present? && domain_created_at.future?
@@ -63,5 +64,11 @@ class Check < ApplicationRecord
     return unless saved_changes.key?("domain")
 
     WhoisSyncJob.perform_later(id) if domain?
+  end
+
+  def reset_notifications
+    return unless (saved_changes.keys & %w[domain domain_expires_at]).present?
+
+    notifications.each(&:reset!)
   end
 end

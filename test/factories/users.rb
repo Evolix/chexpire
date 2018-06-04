@@ -32,7 +32,7 @@ require "securerandom"
 
 FactoryBot.define do
   factory :user do
-    email { "user-#{SecureRandom.random_number}@chexpire.org" }
+    sequence(:email) { |n| "user-#{n}@chexpire.org" }
     password "password"
     confirmed_at Time.new(2018, 4, 1, 12, 0, 0, "+02:00")
     notifications_enabled true

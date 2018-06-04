@@ -49,5 +49,23 @@ FactoryBot.define do
       domain_updated_at nil
       domain_expires_at nil
     end
+
+    trait :expires_next_week do
+      domain_expires_at 1.week.from_now
+    end
+
+    trait :last_runs_failed do
+      last_run_at Time.now - 90.minutes
+      last_success_at 1.week.ago - 2.hours
+    end
+
+    trait :last_run_succeed do
+      last_run_at 1.hour.ago
+      last_success_at 1.hour.ago
+    end
+
+    trait :inactive do
+      active false
+    end
   end
 end

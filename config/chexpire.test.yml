@@ -1,3 +1,6 @@
 test:
   mailer_default_from: "contact@chexpire.org"
   host: "localhost"
+  notifier:
+    interval: 0.00
+    failure_days: 3

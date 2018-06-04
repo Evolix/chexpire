@@ -2,3 +2,6 @@ inherit_from: ../../.rubocop.yml
 
 Style/BlockDelimiters:
   EnforcedStyle: line_count_based
+
+Metrics/BlockLength:
+  Enabled: false

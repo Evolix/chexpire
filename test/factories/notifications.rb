@@ -40,6 +40,7 @@ FactoryBot.define do
 
     trait :succeed do
       status :succeed
+      sent_at { 1.day.ago }
     end
 
     trait :failed do
