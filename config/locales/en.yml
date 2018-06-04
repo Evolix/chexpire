@@ -19,6 +19,18 @@ en:
 
   flashes:
     user_not_authorized: "You are not authorized to access to this resource."
+
+  notifications_mailer:
+    domain_expires_soon:
+      subject:
+        zero: "Domain %{domain} expires TODAY !"
+        one: "Domain %{domain} expires TOMORROW !"
+        other: "Domain %{domain} expires in %{count} days"
+
+    domain_recurrent_failures:
+      subject: "Recurrent failures in %{domain} domain expiry check"
+
+
   shared:
     navbar:
       sign_up: "Sign up"
