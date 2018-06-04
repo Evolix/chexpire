@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2018_06_02_154319) do
 
   create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "check_id"
-    t.integer "channel", null: false
+    t.integer "channel", default: 0, null: false
     t.string "recipient", null: false
     t.integer "delay", null: false
     t.integer "status", default: 0, null: false
