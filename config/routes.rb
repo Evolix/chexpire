@@ -1,6 +1,7 @@
 # == Route Map
 #
 #                    Prefix Verb   URI Pattern                                                                              Controller#Action
+#        check_notification DELETE /checks/:check_id/notifications/:id(.:format)                                            notifications#destroy
 #                    checks GET    /checks(.:format)                                                                        checks#index
 #                           POST   /checks(.:format)                                                                        checks#create
 #                 new_check GET    /checks/new(.:format)                                                                    checks#new
@@ -46,7 +47,9 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :checks, except: [:show]
+  resources :checks, except: [:show] do
+    resources :notifications, only: [:destroy]
+  end
 
   devise_for :users
   root to: "pages#home"

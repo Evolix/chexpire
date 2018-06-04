@@ -17,6 +17,11 @@ en:
       new:
         tos_acceptance_html: "You must accept our Terms of service"
 
+  simple_form:
+    placeholders:
+      notifications:
+        recipient: john@example.org
+
   flashes:
     user_not_authorized: "You are not authorized to access to this resource."
 
@@ -44,3 +49,7 @@ en:
           You have not set up a check yet.
           Please add a <a href="%{new_domain_path}">domain</a>
           or a <a href="%{new_ssl_path}">ssl</a> !
+    form:
+      notifications_hint: |
+        Receive notifications to warn you when our system detects that the
+        expiration date is coming. The delay is set in number of days.

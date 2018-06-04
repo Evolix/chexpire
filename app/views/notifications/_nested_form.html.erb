@@ -1,0 +1,29 @@
+<fieldset class="form-group">
+  <div class="form-row">
+    <%- if many_channels_available? %>
+      <div class="form-group col-md-2">
+        <%- if f.object.new_record? -%>
+          <%= f.input :channel, collection: Notification.channels.keys, label: false %>
+        <% else -%>
+          <%= f.input_field :channel, as: :string, readonly: true, class: "form-control-plaintext" %>
+        <%- end %>
+      </div>
+    <% end %>
+
+    <div class="form-group <%= recipient_col_class %>">
+      <%= f.input :recipient, as: :email, label: false %>
+    </div>
+
+    <div class="form-group col-md-2">
+      <%= f.input :delay, as: :integer, label: false %>
+    </div>
+
+    <div class="form-group col-md-1">
+      <% if f.object.persisted? %>
+        <%= link_to check_notification_path(check, f.object), method: :delete, remote: true, class: "btn btn-danger" do %>
+          <%== Octicons::Octicon.new("x", width: 15, height: 20).to_svg %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</fieldset>

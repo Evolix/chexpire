@@ -29,7 +29,10 @@
 class Check < ApplicationRecord
   belongs_to :user
   has_many :logs, class_name: "CheckLog"
-  has_many :notifications
+  has_many :notifications, validate: true, dependent: :destroy
+  accepts_nested_attributes_for :notifications,
+    allow_destroy: true,
+    reject_if: lambda { |at| at["recipient"].blank? && at["delay"].blank? }
 
   enum kind: [:domain, :ssl]
 

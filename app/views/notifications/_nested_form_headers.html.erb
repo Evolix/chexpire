@@ -1,0 +1,15 @@
+<div class="form-row">
+  <%- if many_channels_available? %>
+    <div class="col-md-2">
+      <%= f.label :channel %>
+    </div>
+  <% end %>
+
+  <div class="<%= recipient_col_class %>">
+    <%= f.label :recipient %>
+  </div>
+
+  <div class="col-md-2">
+    <%= f.label :delay %>
+  </div>
+</div>

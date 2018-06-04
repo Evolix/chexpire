@@ -3,7 +3,7 @@
 # Table name: notifications
 #
 #  id         :bigint(8)        not null, primary key
-#  channel    :integer          not null
+#  channel    :integer          default("email"), not null
 #  delay      :integer          not null
 #  recipient  :string(255)      not null
 #  sent_at    :datetime
@@ -28,7 +28,7 @@ class Notification < ApplicationRecord
   enum status: [:pending, :ongoing, :succeed, :failed]
 
   validates :channel, presence: true
-  validates :delay, presence: true
+  validates :delay, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validates :recipient, presence: true
 
   def pending!
