@@ -4,7 +4,7 @@
 #
 #  id         :bigint(8)        not null, primary key
 #  channel    :integer          default("email"), not null
-#  interval      :integer          not null
+#  interval   :integer          not null
 #  recipient  :string(255)      not null
 #  sent_at    :datetime
 #  status     :integer          default("pending"), not null
