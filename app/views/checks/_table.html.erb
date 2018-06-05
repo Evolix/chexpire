@@ -1,20 +1,32 @@
-<% checks.each do |check| %>
-  <div class="mb-4">
-    <div>Domain: <%= check.domain %></div>
-    <div>Kind: <%= check.kind %></div>
-    <div>Created date: <%= l(check.domain_created_at.to_date) if check.domain_created_at.present? %></div>
-    <div>Update date: <%= l(check.domain_updated_at.to_date) if check.domain_updated_at.present? %></div>
-    <div>Expire date: <%= l(check.domain_expires_at.to_date) if check.domain_expires_at.present? %></div>
-
-    <% if check.comment? %>
-      <div>Comment: <%= check.comment %></div>
-    <% end %>
-
-    <% if check.vendor? %>
-      <div>Vendor: <%= check.vendor %></div>
-    <% end %>
-
-    <div>Active: <%= check.active %></div>
-    <%= link_to "Edit", edit_check_path(check) %>
-  </div>
-<% end %>
+<div class="mb-4">
+  <table class="table table-checks">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Domain</th>
+        <th scope="col">Expiry date</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% checks.each do |check| %>
+        <tr class="check-row <%= check_row_class(check) %>">
+          <td>
+            <span class="badge badge-secondary"><%= check_kind_label(check) %></span>
+          </td>
+          <td>
+            <strong><%= check.domain %></strong>
+          </td>
+          <td>
+            <%= format_utc(check.domain_expires_at) if check.domain_expires_at.present? %>
+          </td>
+          <td class="action">
+            <%= link_to edit_check_path(check) do %>
+              <%== Octicons::Octicon.new("pencil").to_svg %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

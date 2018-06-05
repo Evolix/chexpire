@@ -58,7 +58,8 @@ class ChecksTest < ApplicationSystemTestCase
     assert_equal checks_path, page.current_path
 
     assert page.has_css?(".alert-success")
-    assert page.has_content?("My comment")
+    @check.reload
+    assert_equal "My comment", @check.comment
   end
 
   test "add a notification" do
