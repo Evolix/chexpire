@@ -7,6 +7,5 @@ module Whois
   class ParserError < Error; end
 
   class FieldNotFoundError < ParserError; end
-  class MissingDateFormatError < ParserError; end
   class InvalidDateError < ParserError; end
 end

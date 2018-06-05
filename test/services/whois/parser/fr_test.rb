@@ -26,5 +26,15 @@ module Whois
         parser.parse(not_found_fr)
       end
     end
+
+    test "should raises InvalidDateError when a date is not in the expected format" do
+      parser = Parser::Fr.new("domain.fr")
+      domain_fr = file_fixture("whois/domain.fr.txt").read
+      domain_fr.gsub!("17/02/2019", "17-02-2019")
+
+      assert_raises InvalidDateError do
+        parser.parse(domain_fr)
+      end
+    end
   end
 end
