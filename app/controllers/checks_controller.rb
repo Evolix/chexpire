@@ -10,6 +10,7 @@ class ChecksController < ApplicationController
 
   def new
     @check = Check.new
+    build_empty_notification
     authorize @check
   end
 
@@ -27,7 +28,9 @@ class ChecksController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    build_empty_notification
+  end
 
   def update
     if @check.update(update_check_params)
@@ -35,6 +38,7 @@ class ChecksController < ApplicationController
       redirect_to checks_path
     else
       flash.now[:alert] = "An error occured."
+      build_empty_notification
       render :edit
     end
   end
@@ -62,6 +66,11 @@ class ChecksController < ApplicationController
   end
 
   def check_params(*others)
-    params.require(:check).permit(:domain, :domain_created_at, :comment, :vendor, *others)
+    params.require(:check).permit(:domain, :domain_created_at, :comment, :vendor, *others,
+      notifications_attributes: [:id, :channel, :recipient, :delay])
+  end
+
+  def build_empty_notification
+    @check.notifications.build
   end
 end

@@ -39,6 +39,9 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'open4'
 gem 'naught'
 
+
+gem 'octicons'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
@@ -47,6 +50,8 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'pry-byebug'
   gem 'pry-rails'
+
+  gem "factory_bot_rails"
 end
 
 group :development do
@@ -60,7 +65,6 @@ group :development do
   gem 'rubocop', '~> 0.56.0', require: false
   gem 'annotate', require: false
   gem 'letter_opener_web'
-
 
   gem "guard"
   gem "guard-minitest"
@@ -78,6 +82,9 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
   gem 'launchy'
+
+  gem "database_cleaner"
+  gem "simplecov", require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,6 +1,10 @@
 require "application_system_test_case"
 
 class UsersTest < ApplicationSystemTestCase
+  setup do
+    @user = create(:user)
+  end
+
   test "an user can signup from the homepage and confirm its account" do
     visit root_path
 
@@ -31,28 +35,25 @@ class UsersTest < ApplicationSystemTestCase
   end
 
   test "an user can signin from the homepage" do
-    user = users(:user1)
     visit root_path
 
     click_on I18n.t("shared.navbar.sign_in")
 
-    fill_in "user[email]", with: user.email
+    fill_in "user[email]", with: @user.email
     fill_in "user[password]", with: "password"
 
     click_button I18n.t("devise.sessions.new.sign_in")
 
     assert_equal root_path, page.current_path
-    assert page.has_content?(user.email)
+    assert page.has_content?(@user.email)
   end
 
   test "an user can signout from the homepage" do
-    user = users(:user1)
-
-    login_as user
+    login_as @user
     visit root_path
 
     find ".navbar" do
-      click_on user.email
+      click_on @user.email
       click_on I18n.t("shared.navbar.sign_out")
     end
 
@@ -90,12 +91,11 @@ class UsersTest < ApplicationSystemTestCase
   end
 
   test "an user can globally disable its notifications" do
-    user = users(:user1)
-    login_as user
+    login_as @user
 
     visit edit_user_registration_path
 
-    assert_equal user.email, find_field("user[email]").value
+    assert_equal @user.email, find_field("user[email]").value
 
     assert find_field("user[notifications_enabled]").value
     uncheck "user[notifications_enabled]"
@@ -104,7 +104,7 @@ class UsersTest < ApplicationSystemTestCase
 
     click_button I18n.t("devise.registrations.edit.update")
 
-    user.reload
-    refute user.notifications_enabled
+    @user.reload
+    refute @user.notifications_enabled
   end
 end

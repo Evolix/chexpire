@@ -1,0 +1,1 @@
+class SystemCommandNotAllowedError < StandardError; end

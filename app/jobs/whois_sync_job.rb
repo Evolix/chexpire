@@ -7,8 +7,9 @@ class WhoisSyncJob < ApplicationJob
 
   def perform(check_id)
     @check = Check.find(check_id)
-    response = Whois.ask(check.domain)
+    check.update_attribute(:last_run_at, Time.now)
 
+    response = Whois.ask(check.domain)
     return unless response.valid?
 
     update_from_response(response)
@@ -17,11 +18,14 @@ class WhoisSyncJob < ApplicationJob
   rescue Whois::DomainNotFoundError
     check.active = false
     check.save!
+  rescue Whois::ParserError # rubocop:disable Lint/HandleExceptions
+    # already logged
   end
 
   def update_from_response(response)
     check.domain_created_at = response.created_at
     check.domain_updated_at = response.updated_at
-    check.domain_expire_at = response.expire_at
+    check.domain_expires_at = response.expire_at
+    check.last_success_at = Time.now
   end
 end

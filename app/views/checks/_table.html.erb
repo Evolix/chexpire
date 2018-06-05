@@ -4,7 +4,7 @@
     <div>Kind: <%= check.kind %></div>
     <div>Created date: <%= l(check.domain_created_at.to_date) if check.domain_created_at.present? %></div>
     <div>Update date: <%= l(check.domain_updated_at.to_date) if check.domain_updated_at.present? %></div>
-    <div>Expire date: <%= l(check.domain_expire_at.to_date) if check.domain_expire_at.present? %></div>
+    <div>Expire date: <%= l(check.domain_expires_at.to_date) if check.domain_expires_at.present? %></div>
 
     <% if check.comment? %>
       <div>Comment: <%= check.comment %></div>

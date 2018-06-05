@@ -12,5 +12,18 @@
     <%= f.input :active %>
   <% end %>
 
-  <%= f.button :submit, "Validate", class: "btn-primary" %>
+  <h2 class="mt-5"><%= t(".notifications") %></h2>
+  <p class="alert alert-light"><%= t(".notifications_hint") %></p>
+
+  <%- check.notifications.each_with_index do |notification, index| %>
+    <div data-notification-id="<%= notification.id %>">
+      <%= f.fields_for :notifications, notification do |nf| %>
+        <%= render "notifications/nested_form_headers", f: nf if index.zero? %>
+        <%= render "notifications/nested_form", f: nf, check: check %>
+      <% end %>
+    </div>
+  <% end %>
+
+
+  <%= f.button :submit, class: "btn-primary mt-5" %>
 <% end %>

@@ -1,5 +1,8 @@
 default: &default
   mailer_default_from: "from@example.org"
+  notifier:
+    interval: 0.00
+    failure_days: 3
 
 development:
   <<: *default

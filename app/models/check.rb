@@ -7,7 +7,7 @@
 #  comment           :string(255)
 #  domain            :string(255)      not null
 #  domain_created_at :datetime
-#  domain_expire_at  :datetime
+#  domain_expires_at :datetime
 #  domain_updated_at :datetime
 #  kind              :integer          not null
 #  last_run_at       :datetime
@@ -29,13 +29,17 @@
 class Check < ApplicationRecord
   belongs_to :user
   has_many :logs, class_name: "CheckLog"
+  has_many :notifications, validate: true, dependent: :destroy
+  accepts_nested_attributes_for :notifications,
+    allow_destroy: true,
+    reject_if: lambda { |at| at["recipient"].blank? && at["delay"].blank? }
 
   enum kind: [:domain, :ssl]
 
   self.skip_time_zone_conversion_for_attributes = [
     :domain_created_at,
     :domain_updated_at,
-    :domain_expire_at,
+    :domain_expires_at,
   ]
 
   validates :kind, presence: true
@@ -45,9 +49,10 @@ class Check < ApplicationRecord
   validates :comment, length: { maximum: 255 }
   validates :vendor, length: { maximum: 255 }
 
+  after_update :reset_notifications
   after_save :enqueue_sync
 
-  protected
+  private
 
   def domain_created_at_past
     errors.add(:domain_created_at, :past) if domain_created_at.present? && domain_created_at.future?
@@ -62,5 +67,11 @@ class Check < ApplicationRecord
     return unless saved_changes.key?("domain")
 
     WhoisSyncJob.perform_later(id) if domain?
+  end
+
+  def reset_notifications
+    return unless (saved_changes.keys & %w[domain domain_expires_at]).present?
+
+    notifications.each(&:reset!)
   end
 end

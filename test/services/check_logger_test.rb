@@ -4,7 +4,7 @@ require "system_command"
 
 class CheckLoggerTest < ActiveSupport::TestCase
   setup do
-    @check = checks(:domain_example_org)
+    @check = create(:check)
     @logger = CheckLogger.new(@check)
   end
 

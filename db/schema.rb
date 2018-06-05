@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_30_123611) do
+ActiveRecord::Schema.define(version: 2018_06_02_154319) do
 
   create_table "check_logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "check_id"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2018_05_30_123611) do
     t.string "domain", null: false
     t.datetime "domain_created_at"
     t.datetime "domain_updated_at"
-    t.datetime "domain_expire_at"
+    t.datetime "domain_expires_at"
     t.datetime "last_run_at"
     t.datetime "last_success_at"
     t.string "vendor"
@@ -39,6 +39,18 @@ ActiveRecord::Schema.define(version: 2018_05_30_123611) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_checks_on_user_id"
+  end
+
+  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "check_id"
+    t.integer "channel", default: 0, null: false
+    t.string "recipient", null: false
+    t.integer "delay", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "sent_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["check_id"], name: "index_notifications_on_check_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -67,4 +79,5 @@ ActiveRecord::Schema.define(version: 2018_05_30_123611) do
 
   add_foreign_key "check_logs", "checks"
   add_foreign_key "checks", "users"
+  add_foreign_key "notifications", "checks"
 end

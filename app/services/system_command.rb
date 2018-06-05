@@ -34,6 +34,7 @@ class SystemCommand
 
   private
 
+  # :nocov:
   def call(cmd)
     pid, _, stdout, stderr = Open4.popen4 cmd
     _, status = Process.waitpid2 pid
@@ -45,6 +46,7 @@ class SystemCommand
       stderr.read.strip,
     )
   end
+  # :nocov:
 
   def escape_arg(arg)
     arg.to_s.gsub('"') { '\"' }
