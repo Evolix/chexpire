@@ -4,3 +4,7 @@ test:
   notifier:
     interval: 0.00
     failure_days: 3
+  checks:
+    interval: 0.00
+    long_term: 60
+    long_term_frequency: 10

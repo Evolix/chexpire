@@ -52,6 +52,12 @@ class Check < ApplicationRecord
   after_update :reset_notifications
   after_save :enqueue_sync
 
+  scope :active, -> { where(active: true) }
+  scope :last_run_failed, -> {
+    where("(last_success_at IS NULL AND last_run_at IS NOT NULL)
+      OR (last_success_at <= DATE_SUB(last_run_at, INTERVAL 5 MINUTE))")
+  }
+
   private
 
   def domain_created_at_past
