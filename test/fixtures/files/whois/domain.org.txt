@@ -1,0 +1,138 @@
+% IANA WHOIS server
+% for more information on IANA, visit http://www.iana.org
+% This query returned 1 object
+
+refer:        whois.pir.org
+
+domain:       ORG
+
+organisation: Public Interest Registry (PIR)
+address:      1775 Wiehle Avenue
+address:      Suite 102A
+address:      Reston Virginia 20190
+address:      United States
+
+contact:      administrative
+name:         Director of Operations, Compliance and Customer Support
+organisation: Public Interest Registry (PIR)
+address:      1775 Wiehle Avenue
+address:      Reston Virginia 20190
+address:      United States
+phone:        +1 919 369 4161
+fax-no:       +1 703 889 5779
+e-mail:       ops@pir.org
+
+contact:      technical
+name:         Senior Director, DNS Infrastructure Group
+organisation: Afilias
+address:      Building 3, Suite 105
+address:      300 Welsh Road
+address:      Horsham, Pennsylvania 19044
+address:      United States
+phone:        +1 215.706.5700
+fax-no:       +1 215.706.5701
+e-mail:       tld-tech-poc@afilias.info
+
+nserver:      A0.ORG.AFILIAS-NST.INFO 199.19.56.1 2001:500:e:0:0:0:0:1
+nserver:      A2.ORG.AFILIAS-NST.INFO 199.249.112.1 2001:500:40:0:0:0:0:1
+nserver:      B0.ORG.AFILIAS-NST.ORG 199.19.54.1 2001:500:c:0:0:0:0:1
+nserver:      B2.ORG.AFILIAS-NST.ORG 199.249.120.1 2001:500:48:0:0:0:0:1
+nserver:      C0.ORG.AFILIAS-NST.INFO 199.19.53.1 2001:500:b:0:0:0:0:1
+nserver:      D0.ORG.AFILIAS-NST.ORG 199.19.57.1 2001:500:f:0:0:0:0:1
+ds-rdata:     9795 7 2 3922b31b6f3a4ea92b19eb7b52120f031fd8e05ff0b03bafcf9f891bfe7ff8e5
+ds-rdata:     9795 7 1 364dfab3daf254cab477b5675b10766ddaa24982
+
+whois:        whois.pir.org
+
+status:       ACTIVE
+remarks:      Registration information: http://www.pir.org
+
+created:      1985-01-01
+changed:      2016-05-10
+source:       IANA
+
+Domain Name: DOMAIN.ORG
+Registry Domain ID: D1511762-LROR
+Registrar WHOIS Server: whois.domain.com
+Registrar URL: www.domain.com
+Updated Date: 2018-04-02T03:47:23Z
+Creation Date: 1995-04-30T04:00:00Z
+Registry Expiry Date: 2019-05-01T04:00:00Z
+Registrar Registration Expiration Date:
+Registrar: Domain.com, LLC
+Registrar IANA ID: 886
+Registrar Abuse Contact Email: compliance@domain-inc.net
+Registrar Abuse Contact Phone: +1.6022262389
+Reseller:
+Domain Status: clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited
+Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited
+Domain Status: clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited
+Registrant Organization: Endurance International Group West, Inc
+Registrant State/Province: MA
+Registrant Country: US
+Name Server: DNS1.DOMAINBANK.COM
+Name Server: DNS2.DOMAINBANK.COM
+DNSSEC: unsigned
+URL of the ICANN Whois Inaccuracy Complaint Form: https://www.icann.org/wicf/
+>>> Last update of WHOIS database: 2018-06-05T14:44:20Z <<<
+
+Domain Name: DOMAIN.ORG
+Registry Domain ID: D1511762-LROR
+Registrar WHOIS Server: whois.domain.com
+Registrar URL: www.domain.com
+Updated Date: 2018-04-02T03:47:23
+Creation Date: 1995-04-29T04:00:00
+Registrar Registration Expiration Date: 2019-05-01T04:00:00
+Registrar: Domain.com, LLC
+Registrar IANA ID: 886
+Reseller: Domain Name Holding Company, Inc
+Domain Status: clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited
+Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited
+Domain Status: clientUpdateProhibited https://icann.org/epp#clientUpdateProhibited
+Registry Registrant ID: 
+Registrant Name: Data Protected Data Protected
+Registrant Organization: Data Protected
+Registrant Street: 123 Data Protected 
+Registrant City: Toronto
+Registrant State/Province: ON
+Registrant Postal Code: M6K 3M1
+Registrant Country: CA
+Registrant Phone: +1.0000000000
+Registrant Phone Ext: 
+Registrant Fax: +1.0000000000
+Registrant Fax Ext: 
+Registrant Email: noreply@data-protected.net
+Registry Admin ID: 
+Admin Name: Data Protected Data Protected
+Admin Organization: Data Protected
+Admin Street: 123 Data Protected 
+Admin City: Toronto
+Admin State/Province: ON
+Admin Postal Code: M6K 3M1
+Admin Country: CA
+Admin Phone: +1.0000000000
+Admin Phone Ext: 
+Admin Fax: +1.0000000000
+Admin Fax Ext: 
+Admin Email: noreply@data-protected.net
+Registry Tech ID: 
+Tech Name: Data Protected Data Protected
+Tech Organization: Data Protected
+Tech Street: 123 Data Protected 
+Tech City: Toronto
+Tech State/Province: ON
+Tech Postal Code: M6K 3M1
+Tech Country: CA
+Tech Phone: +1.0000000000
+Tech Phone Ext: 
+Tech Fax: +1.0000000000
+Tech Fax Ext: 
+Tech Email: noreply@data-protected.net
+Name Server: dns1.domainbank.com
+Name Server: dns2.domainbank.com
+
+Registrar Abuse Contact Email: compliance@domain-inc.net
+Registrar Abuse Contact Phone: +1.6027165396
+URL of the ICANN WHOIS Data Problem Reporting System: http://wdprs.internic.net/
+>>> Last update of WHOIS database: 2018-04-02T03:47:23 <<<
+

@@ -1,0 +1,56 @@
+% IANA WHOIS server
+% for more information on IANA, visit http://www.iana.org
+% This query returned 1 object
+
+refer:        whois.pir.org
+
+domain:       ORG
+
+organisation: Public Interest Registry (PIR)
+address:      1775 Wiehle Avenue
+address:      Suite 102A
+address:      Reston Virginia 20190
+address:      United States
+
+contact:      administrative
+name:         Director of Operations, Compliance and Customer Support
+organisation: Public Interest Registry (PIR)
+address:      1775 Wiehle Avenue
+address:      Reston Virginia 20190
+address:      United States
+phone:        +1 919 369 4161
+fax-no:       +1 703 889 5779
+e-mail:       ops@pir.org
+
+contact:      technical
+name:         Senior Director, DNS Infrastructure Group
+organisation: Afilias
+address:      Building 3, Suite 105
+address:      300 Welsh Road
+address:      Horsham, Pennsylvania 19044
+address:      United States
+phone:        +1 215.706.5700
+fax-no:       +1 215.706.5701
+e-mail:       tld-tech-poc@afilias.info
+
+nserver:      A0.ORG.AFILIAS-NST.INFO 199.19.56.1 2001:500:e:0:0:0:0:1
+nserver:      A2.ORG.AFILIAS-NST.INFO 199.249.112.1 2001:500:40:0:0:0:0:1
+nserver:      B0.ORG.AFILIAS-NST.ORG 199.19.54.1 2001:500:c:0:0:0:0:1
+nserver:      B2.ORG.AFILIAS-NST.ORG 199.249.120.1 2001:500:48:0:0:0:0:1
+nserver:      C0.ORG.AFILIAS-NST.INFO 199.19.53.1 2001:500:b:0:0:0:0:1
+nserver:      D0.ORG.AFILIAS-NST.ORG 199.19.57.1 2001:500:f:0:0:0:0:1
+ds-rdata:     9795 7 2 3922b31b6f3a4ea92b19eb7b52120f031fd8e05ff0b03bafcf9f891bfe7ff8e5
+ds-rdata:     9795 7 1 364dfab3daf254cab477b5675b10766ddaa24982
+
+whois:        whois.pir.org
+
+status:       ACTIVE
+remarks:      Registration information: http://www.pir.org
+
+created:      1985-01-01
+changed:      2016-05-10
+source:       IANA
+
+NOT FOUND
+>>> Last update of WHOIS database: 2018-06-05T14:44:34Z <<<
+
