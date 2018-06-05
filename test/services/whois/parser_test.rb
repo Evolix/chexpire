@@ -5,7 +5,7 @@ require "whois/errors"
 module Whois
   class ParserTest < ActiveSupport::TestCase
     test "should instanciate a parser class matching AFNIC tlds" do
-      assert_kind_of Parser::Fr, Parser.for("example.fr")
+      assert_kind_of Parser::AFNIC, Parser.for("example.fr")
     end
 
     test "should instanciate a parser class matching Verisign tlds" do
