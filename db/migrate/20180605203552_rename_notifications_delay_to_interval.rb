@@ -1,5 +1,5 @@
-class RenameNotificationsintervalToInterval < ActiveRecord::Migration[5.2]
+class RenameNotificationsDelayToInterval < ActiveRecord::Migration[5.2]
   def change
-    rename_column :notifications, :interval, :interval
+    rename_column :notifications, :delay, :interval
   end
 end
