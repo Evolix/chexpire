@@ -1,3 +1,5 @@
+require "notifier/processor"
+
 module Notifier
   class << self
     def process_all(configuration = nil)
