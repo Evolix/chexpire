@@ -17,7 +17,11 @@ class UsersTest < ApplicationSystemTestCase
     fill_in("user[password_confirmation]", with: password)
     check "user[tos_accepted]"
 
-    click_button I18n.t("devise.registrations.new.sign_up")
+    # confirmation email is sent in async
+    perform_enqueued_jobs do
+      click_button I18n.t("devise.registrations.new.sign_up")
+    end
+    assert_performed_jobs 1
 
     assert_equal root_path, page.current_path
     user = User.find_by!(email: email, confirmed_at: nil)

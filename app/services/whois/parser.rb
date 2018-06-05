@@ -1,11 +1,12 @@
 require "null_logger"
 require "whois/errors"
 require "whois/parser/afnic"
+require "whois/parser/pir"
 require "whois/parser/verisign"
 
 module Whois
   module Parser
-    PARSERS = [AFNIC, Verisign].freeze
+    PARSERS = [AFNIC, Verisign, PIR].freeze
 
     class << self
       def for(domain, logger: NullLogger.new)
