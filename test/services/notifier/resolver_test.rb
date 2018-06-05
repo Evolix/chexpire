@@ -27,9 +27,9 @@ module Notifier
       assert_includes notifications, n2
     end
 
-    test "#resolve_expires_soon gets only checks inside delay" do
-      n1 = create(:notification, check: build(:check, :expires_next_week), delay: 6)
-      n2 = create(:notification, check: build(:check, :expires_next_week), delay: 7)
+    test "#resolve_expires_soon gets only checks inside interval" do
+      n1 = create(:notification, check: build(:check, :expires_next_week), interval: 6)
+      n2 = create(:notification, check: build(:check, :expires_next_week), interval: 7)
 
       notifications = @resolver.resolve_expires_soon
 
@@ -39,9 +39,9 @@ module Notifier
 
     test "#resolve_expires_soon can gets several notifications for a same check" do
       check = create(:check, :expires_next_week)
-      n1 = create(:notification, check: check, delay: 3)
-      n2 = create(:notification, check: check, delay: 10)
-      n3 = create(:notification, check: check, delay: 30)
+      n1 = create(:notification, check: check, interval: 3)
+      n2 = create(:notification, check: check, interval: 10)
+      n3 = create(:notification, check: check, interval: 30)
 
       notifications = @resolver.resolve_expires_soon
 

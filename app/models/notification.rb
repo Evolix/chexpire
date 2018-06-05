@@ -4,7 +4,7 @@
 #
 #  id         :bigint(8)        not null, primary key
 #  channel    :integer          default("email"), not null
-#  delay      :integer          not null
+#  interval   :integer          not null
 #  recipient  :string(255)      not null
 #  sent_at    :datetime
 #  status     :integer          default("pending"), not null
@@ -28,7 +28,7 @@ class Notification < ApplicationRecord
   enum status: [:pending, :ongoing, :succeed, :failed]
 
   validates :channel, presence: true
-  validates :delay, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
+  validates :interval, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validates :recipient, presence: true
 
   scope :active_check, -> { Check.active }

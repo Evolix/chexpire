@@ -35,7 +35,7 @@ class NotificationsController < ApplicationController
   end
 
   def notification_params
-    params.require(:notification).permit(:channel, :recipient, :delay)
+    params.require(:notification).permit(:channel, :recipient, :interval)
   end
 
   def check_path

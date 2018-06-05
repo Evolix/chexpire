@@ -17,7 +17,7 @@ class ChecksTest < ApplicationSystemTestCase
 
     recipient = "recipient@example.org"
     fill_in("check[notifications_attributes][0][recipient]", with: recipient)
-    fill_in("check[notifications_attributes][0][delay]", with: 30)
+    fill_in("check[notifications_attributes][0][interval]", with: 30)
 
     click_button
 
@@ -28,7 +28,7 @@ class ChecksTest < ApplicationSystemTestCase
 
     notification = Notification.last
     assert_equal recipient, notification.recipient
-    assert_equal 30, notification.delay
+    assert_equal 30, notification.interval
     assert notification.email?
     assert notification.pending?
   end
@@ -67,7 +67,7 @@ class ChecksTest < ApplicationSystemTestCase
 
     recipient = "recipient2@example.org"
     fill_in("check[notifications_attributes][2][recipient]", with: recipient)
-    fill_in("check[notifications_attributes][2][delay]", with: 55)
+    fill_in("check[notifications_attributes][2][interval]", with: 55)
 
     assert_difference "Notification.where(check_id: #{@check.id}).count", +1 do
       click_button "Update Check"
@@ -79,7 +79,7 @@ class ChecksTest < ApplicationSystemTestCase
 
     notification = Notification.last
     assert_equal recipient, notification.recipient
-    assert_equal 55, notification.delay
+    assert_equal 55, notification.interval
     assert notification.email?
     assert notification.pending?
   end

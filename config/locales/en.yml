@@ -58,4 +58,4 @@ en:
     form:
       notifications_hint: |
         Receive notifications to warn you when our system detects that the
-        expiration date is coming. The delay is set in number of days.
+        expiration date is coming. The time is set in number of days.

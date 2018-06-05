@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2018_06_13_055303) do
     t.bigint "check_id"
     t.integer "channel", default: 0, null: false
     t.string "recipient", null: false
-    t.integer "delay", null: false
+    t.integer "interval", null: false
     t.integer "status", default: 0, null: false
     t.datetime "sent_at"
     t.datetime "created_at", null: false

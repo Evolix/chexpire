@@ -32,7 +32,7 @@ class Check < ApplicationRecord
   has_many :notifications, validate: true, dependent: :destroy
   accepts_nested_attributes_for :notifications,
     allow_destroy: true,
-    reject_if: lambda { |at| at["recipient"].blank? && at["delay"].blank? }
+    reject_if: lambda { |at| at["recipient"].blank? && at["interval"].blank? }
 
   enum kind: [:domain, :ssl]
 

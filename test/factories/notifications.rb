@@ -4,7 +4,7 @@
 #
 #  id         :bigint(8)        not null, primary key
 #  channel    :integer          default("email"), not null
-#  delay      :integer          not null
+#  interval      :integer          not null
 #  recipient  :string(255)      not null
 #  sent_at    :datetime
 #  status     :integer          default("pending"), not null
@@ -24,7 +24,7 @@
 FactoryBot.define do
   factory :notification do
     check
-    delay 30
+    interval 30
     channel :email
     recipient "recipient@domain.fr"
     status :pending

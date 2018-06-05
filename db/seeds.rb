@@ -35,7 +35,7 @@ check_chexpire_org_error = Check.create!(
 
 Notification.create!(
   check: check_chexpire_org,
-  delay: 15,
+  interval: 15,
   channel: :email,
   recipient: "colin@example.org",
   status: :pending,
@@ -43,7 +43,7 @@ Notification.create!(
 
 Notification.create!(
   check: check_chexpire_org_error,
-  delay: 15,
+  interval: 15,
   channel: :email,
   recipient: "colin@example.org",
   status: :pending,
