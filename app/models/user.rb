@@ -39,4 +39,9 @@ class User < ApplicationRecord
   validates :tos_accepted, acceptance: true
 
   scope :notifications_disabled, -> { where(notifications_enabled: false) }
+
+  # Devise ActiveJob integration
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
 end
