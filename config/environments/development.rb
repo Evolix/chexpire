@@ -44,6 +44,10 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: config.chexpire.fetch("host"), port: 3000 }
 
+  config.chexpire.fetch("action_mailer_config", {}).each_pair do |key, value|
+    config.action_mailer[key] = value
+  end
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
