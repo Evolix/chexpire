@@ -70,8 +70,8 @@ group :development do
   gem "guard"
   gem "guard-minitest"
 
-  gem 'capistrano-rails'
   gem "capistrano", "~> 3.10", require: false
+  gem "capistrano-rails", "~> 1.4", require: false
   gem "capistrano-rbenv", require: false
   gem 'capistrano3-puma', require: false
 end
