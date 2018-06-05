@@ -29,7 +29,7 @@ module Whois
         logger.log :parsed_response, response
 
         response
-      rescue StandardError => ex
+      rescue ParserError => ex
         logger.log :parser_error, ex
         raise
       end
