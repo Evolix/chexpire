@@ -11,7 +11,7 @@ class CheckLogger
       log_command_result(message)
     when :parsed_response
       log_parsed_response(message)
-    when :parser_error, :service_error
+    when :parser_error, :service_error, :standard_error
       log_error(message)
     end
   end

@@ -39,7 +39,7 @@ class CheckLoggerTest < ActiveSupport::TestCase
     assert @logger.check_log.failed?
   end
 
-  test "should log a successful parsed command" do
+  test "should log a successful parsed response" do
     response = OpenStruct.new(
       domain: "example.fr",
       extracted: "some data",
@@ -52,8 +52,27 @@ class CheckLoggerTest < ActiveSupport::TestCase
     assert @logger.check_log.succeed?
   end
 
+  test "should log as failed a empty/error parsed response" do
+    response = OpenStruct.new(
+      domain: "example.fr",
+      valid?: false,
+    )
+    @logger.log :parsed_response, response
+
+    assert_equal response.to_json, @logger.check_log.parsed_response
+    assert @logger.check_log.failed?
+  end
+
   test "should log parser error with a backtrace" do
     @logger.log :parser_error, mock_exception
+
+    assert_includes @logger.check_log.error, "my error occured"
+    assert_includes @logger.check_log.error, "minitest.rb"
+    assert @logger.check_log.failed?
+  end
+
+  test "should log standard error with a backtrace" do
+    @logger.log :standard_error, mock_exception
 
     assert_includes @logger.check_log.error, "my error occured"
     assert_includes @logger.check_log.error, "minitest.rb"

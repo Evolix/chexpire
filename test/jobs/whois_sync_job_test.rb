@@ -6,7 +6,7 @@ class WhoisSyncJobTest < ActiveJob::TestCase
     check = create(:check, :nil_dates, domain: domain)
 
     mock_system_command("whois", domain, stdout: whois_response(domain)) do
-      WhoisSyncJob.new.perform(check.id)
+      WhoisSyncJob.perform_now(check.id)
     end
 
     check.reload
@@ -24,7 +24,7 @@ class WhoisSyncJobTest < ActiveJob::TestCase
     original_updated_at = check.updated_at
 
     mock_system_command("whois", "domain.fr", stdout: "not a response") do
-      WhoisSyncJob.new.perform(check.id)
+      WhoisSyncJob.perform_now(check.id)
     end
 
     check.reload
@@ -35,12 +35,32 @@ class WhoisSyncJobTest < ActiveJob::TestCase
     assert check.active?
   end
 
-  test "Disable check when whois responds domain not found" do
+  test "should ignore not found (removed) checks" do
+    assert_nothing_raised do
+      WhoisSyncJob.perform_now("9999999")
+    end
+  end
+
+  test "should log and re-raise StandardError" do
+    check = create(:check)
+
+    assert_raise StandardError do
+      Whois.stub :ask, nil do
+        WhoisSyncJob.perform_now(check.id)
+      end
+    end
+
+    assert_equal 1, check.logs.count
+    assert_match(/undefined method \W+valid\?/, check.logs.last.error)
+    assert check.logs.last.failed?
+  end
+
+  test "disable check when whois responds domain not found" do
     domain = "willneverexist.fr"
     check = create(:check, :nil_dates, domain: domain)
 
     mock_system_command("whois", domain, stdout: whois_response(domain)) do
-      WhoisSyncJob.new.perform(check.id)
+      WhoisSyncJob.perform_now(check.id)
     end
 
     check.reload
@@ -48,6 +68,16 @@ class WhoisSyncJobTest < ActiveJob::TestCase
     refute check.active?
     assert_just_now check.last_run_at
     assert_nil check.last_success_at
+  end
+
+  test "default logger is CheckLogger" do
+    check = create(:check)
+
+    mock_system_command("whois", check.domain) do
+      WhoisSyncJob.perform_now(check.id)
+    end
+
+    assert_equal 1, check.logs.count
   end
 
   private

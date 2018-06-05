@@ -31,6 +31,9 @@ class Notification < ApplicationRecord
   validates :delay, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validates :recipient, presence: true
 
+  scope :active_check, -> { Check.active }
+  scope :check_last_run_failed, -> { Check.last_run_failed }
+
   def pending!
     self.sent_at = nil
     super

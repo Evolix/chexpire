@@ -12,7 +12,7 @@ module Notifier
       # Logical rules are in plain ruby inside processor
       scope
         .includes(check: :logs)
-        .where("checks.last_success_at <= DATE_SUB(checks.last_run_at, INTERVAL 5 MINUTE)")
+        .merge(Check.last_run_failed)
     end
 
     private
@@ -20,7 +20,8 @@ module Notifier
     def scope
       Notification
         .includes(:check)
-        .where(status: [:pending, :failed], checks: { active: true })
+        .where(status: [:pending, :failed])
+        .merge(Check.active)
         .where.not(checks: { user: ignore_users })
     end
 
