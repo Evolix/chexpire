@@ -49,18 +49,26 @@ module Whois
       end
 
       def parse_date(str)
-        fail MissingDateFormatError, "Date format not set" if date_format.nil?
-
-        begin
-          Time.strptime(str, date_format)
-        rescue ArgumentError
-          raise InvalidDateError, "Date `#{str}` does not match format #{date_format}"
+        date_format.nil? ? Time.parse(str) : Time.strptime(str, date_format)
+      rescue ArgumentError
+        msg = if date_format.nil?
+          "Date `#{str}` is not parsable without specifying a date format"
+        else
+          "Date `#{str}` does not match format #{date_format}"
         end
+
+        raise InvalidDateError, msg
       end
 
       def comment_include?(str)
         entries.any? { |e|
           e.comment? && e.text? && e.text.include?(str)
+        }
+      end
+
+      def text_include?(str)
+        entries.any? { |e|
+          e.text? && e.text.include?(str)
         }
       end
 

@@ -1,12 +1,12 @@
 require "test_helper"
-require "whois/parser/fr"
+require "whois/parser/afnic"
 require "whois/response"
 require "whois/errors"
 
 module Whois
-  class FrTest < ActiveSupport::TestCase
+  class AFNICTest < ActiveSupport::TestCase
     test "should parse a whois response" do
-      parser = Parser::Fr.new("domain.fr")
+      parser = Parser::AFNIC.new("domain.fr")
       domain_fr = file_fixture("whois/domain.fr.txt").read
       response = parser.parse(domain_fr)
       assert_kind_of Response, response
@@ -19,11 +19,21 @@ module Whois
     end
 
     test "should raises DomainNotFoundError when domain is not registered" do
-      parser = Parser::Fr.new("willneverexist.fr")
+      parser = Parser::AFNIC.new("willneverexist.fr")
       not_found_fr = file_fixture("whois/willneverexist.fr.txt").read
 
       assert_raises DomainNotFoundError do
         parser.parse(not_found_fr)
+      end
+    end
+
+    test "should raises InvalidDateError when a date is not in the expected format" do
+      parser = Parser::AFNIC.new("domain.fr")
+      domain_fr = file_fixture("whois/domain.fr.txt").read
+      domain_fr.gsub!("17/02/2019", "17-02-2019")
+
+      assert_raises InvalidDateError do
+        parser.parse(domain_fr)
       end
     end
   end

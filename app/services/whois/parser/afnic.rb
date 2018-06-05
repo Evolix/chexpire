@@ -4,8 +4,15 @@ require_relative "base"
 
 module Whois
   module Parser
-    class Fr < Base
-      SUPPORTED_TLD = %w[.fr].freeze
+    class AFNIC < Base
+      SUPPORTED_TLD = %w[
+        .fr
+        .re
+        .tf
+        .yt
+        .pm
+        .wf
+      ].freeze
       COMMENT_REGEX = /^%+ +(?<text>.+)$/
       FIELD_REGEX = /^(?<name>[^:]+)\s*:\s+(?<value>.+)$/
 
