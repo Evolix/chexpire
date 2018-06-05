@@ -17,6 +17,13 @@ You can customize `config/database.yml` for your needs, but by default, Rails is
 Execute `# bundle install` to install Ruby dependencies.
 Execute `# yarn install` to install Javascript dependencies.
 
+### Tests
+
+The test suite can be run with `# bundle exec rails test`.
+This will also generate a code coverage report in `coverage/index.html`.
+
+With `# bundle exec guard` your test suite is run once and then once for each file you change and save. Take a look at https://guardgem.org for more information.
+
 ### Local execution
 
 If you want to start the Rails application manually, with a simple Puma configuration, you have to execute `# bundle exec rails server`.
