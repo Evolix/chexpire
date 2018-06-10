@@ -60,6 +60,7 @@ Write a task in `lib/tasks/checks.rake` under the namespaces `checks:sync_dates`
 Finally, you have to write the way the checks will be notified to theirs users. For each notifier channel (email, …) you need to write the way you'll notify the users when theirs check expiry dates matches their Notifications records.
 
 
+
 First, add your checks kinds and these notifications definitions in the base class for notifier: `app/services/notifier/channels/base.rb` : in the notify method, for your new check kind, a specific method will be called in each notifier. For example, in the email channel, a specific mailer action is called for the check kind (domain, ssl…)
 Then, in each notifier class, implements the details of this method. If you want to ignore a notification for a given channel, simply write the method and do nothing, or use the `supports?` method and returns false.
 
@@ -75,3 +76,19 @@ When our execution system fails a given number of consecutive times, the user wi
 With a new check kind, you only need to tweek the mailer views to supports their new check kind. Follow `app/views/recurrent_failures.{fr,en}.{text.html}.erb` views and create similar partial of current kinds like `_ssl_recurrent_failures.*` for your new kind.
 
 To preview the email, you have to enhance the seeds with a few checks of your new kind, and open http://localhost:3000/rails/mailers/notifications_mailer/recurrent_failures .
+
+
+## LICENSE
+
+chexpire is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
