@@ -82,6 +82,6 @@ If you want to start the Rails application manually, with a simple Puma configur
 
 ### Capistrano
 
-If you want to use capistrano for deployment, yout need to create (on your server) `config/deploy/config.yml` from the example file, and use the `script/to_staging` and/or `script/to_production` scripts.
+If you want to use capistrano for deployment, yout need to create `config/deploy/config.yml` from the example file, and use the `script/to_staging` and/or `script/to_production` scripts.
 
 The same way you've created the config files for development, you'll have to do the same on the staging and production servers in the `shared/config/` directory,relative to your `deploy_to` path.
