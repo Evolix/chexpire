@@ -16,5 +16,9 @@ production:
   action_mailer_config:
     delivery_method: :sendmail
 
+staging:
+  action_mailer_config:
+    delivery_method: :sendmail
+
 # test configuration included in file used by CI services
 <%= IO.read Rails.root.join("config", "chexpire.test.yml") %>
