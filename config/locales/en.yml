@@ -16,6 +16,9 @@ en:
     registrations:
       new:
         tos_acceptance_html: "You must accept our Terms of service"
+      edit:
+        title: Update your profile
+        change_password_title: "Want to change your password?"
 
   simple_form:
     placeholders:

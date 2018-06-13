@@ -15,7 +15,7 @@
         hint: t('.we_need_your_current_password_to_confirm_your_changes') %>
 
     <div class="alert border">
-      <h3>Want to change your password ?</h3>
+      <h3><%= t('.change_password_title') %></h3>
       <%= f.input :password,
           autocomplete: "off",
           hint: (t('devise.shared.minimum_password_length', count: @minimum_password_length)
