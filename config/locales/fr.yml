@@ -16,6 +16,9 @@ fr:
     registrations:
       new:
         tos_acceptance_html: "Vous devez accepter les Conditions d'utilisation"
+      edit:
+        title: Modification de votre profil
+        change_password_title: "Vous voulez changer de mot de passe ?"
 
   simple_form:
     placeholders:
