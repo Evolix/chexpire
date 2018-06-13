@@ -24,7 +24,7 @@
       <%= f.input :password_confirmation, autocomplete: "off" %>
     </div>
 
-    <%= f.input :locale, label: t('.locale'), collection: I18n.available_locales, selected: resource.locale %>
+    <%= f.input :locale, label: t('.locale'), collection: available_locales_collection, selected: resource.locale %>
 
     <%= f.input :notifications_enabled %>
 

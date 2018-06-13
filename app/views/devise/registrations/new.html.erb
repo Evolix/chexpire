@@ -9,7 +9,7 @@
 
     <%= f.input :password_confirmation, autocomplete: "off" %>
 
-    <%= f.input :locale, label: t('.locale'), collection: I18n.available_locales, selected: I18n.default_locale %>
+    <%= f.input :locale, label: t('.locale'), collection: available_locales_collection, selected: I18n.default_locale %>
 
     <%= f.input :tos_accepted, label: t('.tos_acceptance_html') %>
 

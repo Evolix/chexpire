@@ -40,6 +40,9 @@ fr:
 
 
   shared:
+    locales:
+      en: Anglais
+      fr: Français
     navbar:
       sign_up: "Enregistrement"
       sign_in: "Connexion"

@@ -40,6 +40,9 @@ en:
 
 
   shared:
+    locales:
+      en: English
+      fr: French
     navbar:
       sign_up: "Sign up"
       sign_in: "Sign in"
