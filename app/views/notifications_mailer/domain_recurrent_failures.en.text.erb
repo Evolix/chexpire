@@ -11,18 +11,6 @@ or delete the check by following this link:
 
 <%= edit_check_url(@check) %>
 
-
-<%- if @check.comment.present? -%>
-You wrote the following comment with this domain:
-
-    <%= @check.comment -%>
-<%- end -%>
-
-
-
-<%- if @check.vendor.present? -%>
-Vendor: <%= @check.vendor %>
-<% end %>
-
+<%= render "check_comment_vendor" %>
 
 <%= render "footer_recurrent_failures", delay: @notification.delay, check: @check %>

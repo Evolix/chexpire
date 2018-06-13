@@ -1,0 +1,13 @@
+Salut,
+
+Nous avons rencontré de multiples erreurs pendant l'exécution des vérifications
+du domaine <strong><%= @check.domain %></strong>.
+Nous ne pouvons plus interroger la base Whois pour vérifier la date d'expiration.
+
+Si vous avez supprimé le domaine ou ne l'avez pas renouvellé,
+merci de désactiver la vérification associée, avec ce lien :
+<%= edit_check_url(@check) %>
+
+<%= render "check_comment_vendor" %>
+
+<%= render "footer_recurrent_failures", delay: @notification.delay, check: @check %>
