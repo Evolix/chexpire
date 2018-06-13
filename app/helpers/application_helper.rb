@@ -4,6 +4,6 @@ module ApplicationHelper
   end
 
   def available_locales_collection
-    I18n.available_locales.map { |k| [t("shared.locales.#{k}"), k]}
+    I18n.available_locales.map { |k| [t("shared.locales.#{k}"), k] }
   end
 end
