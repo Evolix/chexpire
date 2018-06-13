@@ -12,6 +12,7 @@
 #  encrypted_password     :string(255)      default(""), not null
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string(255)
+#  locale                 :string(5)        default("en"), not null
 #  notifications_enabled  :boolean          default(TRUE), not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
@@ -37,6 +38,7 @@ class User < ApplicationRecord
 
   has_many :checks
   validates :tos_accepted, acceptance: true
+  validates :locale, inclusion: { in: I18n.available_locales }
 
   scope :notifications_disabled, -> { where(notifications_enabled: false) }
 

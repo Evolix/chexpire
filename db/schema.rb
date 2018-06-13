@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_02_154319) do
+ActiveRecord::Schema.define(version: 2018_06_13_055303) do
 
   create_table "check_logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "check_id"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2018_06_02_154319) do
     t.datetime "updated_at", null: false
     t.boolean "tos_accepted", default: false, null: false
     t.boolean "notifications_enabled", default: true, null: false
+    t.string "locale", limit: 5, default: "en", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
