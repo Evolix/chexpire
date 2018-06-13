@@ -1,0 +1,55 @@
+fr:
+  activerecord:
+    attributes:
+      check:
+        domain_created_at: "Date de création"
+        domain_updated_at: "Date de modification"
+      user:
+        tos_accepted: "Conditions d'utilisation"
+        notifications_enabled: "Notifications activées"
+    errors:
+      models:
+        check:
+          past: "ne peut être dans le futur"
+
+  devise:
+    registrations:
+      new:
+        tos_acceptance_html: "Vous devez accepter les Conditions d'utilisation"
+
+  simple_form:
+    placeholders:
+      notifications:
+        recipient: john@example.org
+
+  flashes:
+    user_not_authorized: "Vous n'êtes pas autorisé•e à accéder à cette ressouce."
+
+  notifications_mailer:
+    domain_expires_soon:
+      subject:
+        zero: "Le domaine %{domain} expire AUJOURD'HUI !"
+        one: "Le domaine %{domain} expire DEMAIN !"
+        other: "Le domaine %{domain} expire dans %{count} jours"
+
+    domain_recurrent_failures:
+      subject: "Multiples erreur dans la vérification d'expiration du domaine %{domain}"
+
+
+  shared:
+    navbar:
+      sign_up: "Enregistrement"
+      sign_in: "Connexion"
+      sign_out: "Déconnexion"
+      profile: "Profile"
+
+  checks:
+    index:
+      no_check_yet_html: |
+          Vous n'avez pas encore créé de vérification.
+          Vous pouvez en ajouter pour un <a href="%{new_domain_path}">domaine</a>
+          ou un <a href="%{new_ssl_path}">SSL</a> !
+    form:
+      notifications_hint: |
+        Recevez des notifications pour vous avertir lorsque notre système détecte
+        que la date d'expiration approche. Le délais est indiqué ennombre de jours.
