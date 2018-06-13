@@ -12,6 +12,7 @@
 #  encrypted_password     :string(255)      default(""), not null
 #  last_sign_in_at        :datetime
 #  last_sign_in_ip        :string(255)
+#  locale                 :string(5)        default("en"), not null
 #  notifications_enabled  :boolean          default(TRUE), not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
@@ -28,6 +29,7 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
+
 require "securerandom"
 
 FactoryBot.define do
@@ -36,6 +38,7 @@ FactoryBot.define do
     password "password"
     confirmed_at Time.new(2018, 4, 1, 12, 0, 0, "+02:00")
     notifications_enabled true
+    locale "en"
     tos_accepted true
   end
 end
