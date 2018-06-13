@@ -38,7 +38,7 @@ class User < ApplicationRecord
 
   has_many :checks
   validates :tos_accepted, acceptance: true
-  validates :locale, inclusion: { in: I18n.available_locales }
+  validates :locale, inclusion: { in: I18n.available_locales.map(&:to_s) }
 
   scope :notifications_disabled, -> { where(notifications_enabled: false) }
 
