@@ -1,0 +1,11 @@
+<br />
+<br />
+--
+
+<p>
+  Vous avez reçu ce courriel à <%= pluralize(delay, "jour", "jours") %> avant la date d'expiration.</br>
+  Vous pouvez gérer les notifications pour cette vérification à ce adresse :
+  <%= link_to nil, edit_check_url(check) %>
+</p>
+
+<p>L'équipe Chexpire</p>

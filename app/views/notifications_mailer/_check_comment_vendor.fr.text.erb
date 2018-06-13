@@ -1,0 +1,11 @@
+<%- if @check.comment.present? -%>
+Vous avez saisi le commentaire suivant pour ce domaine :
+
+    <%= @check.comment -%>
+<%- end -%>
+
+
+
+<%- if @check.vendor.present? -%>
+Fournisseur : <%= @check.vendor %>
+<% end %>
