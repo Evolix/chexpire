@@ -47,7 +47,7 @@ fr:
       sign_up: "Enregistrement"
       sign_in: "Connexion"
       sign_out: "Déconnexion"
-      profile: "Profile"
+      profile: "Profil"
 
   checks:
     index:
