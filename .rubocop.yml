@@ -1,4 +1,7 @@
 AllCops:
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  ExtraDetails: false
   TargetRubyVersion: 2.5
   Exclude:
     - 'node_modules/**/*'
@@ -28,7 +31,6 @@ Metrics/BlockLength:
   Enabled: true
   Exclude:
     - lib/tasks/**/*
-
 
 AsciiComments:
   Enabled: false
