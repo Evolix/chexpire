@@ -72,6 +72,8 @@ This will also generate a code coverage report in `coverage/index.html`.
 
 With `# bundle exec guard` your test suite is run completely a first time, then once for each file you change and save. Take a look at https://guardgem.org for more information.
 
+To execute Rubocop (the style-guide linter for Ruby), run `# bundle exec rubocop`.
+
 ## Local execution
 
 If you want to start the Rails application manually, with a simple Puma configuration, you have to execute `# bundle exec rails server`. You will be able to open http://127.0.0.1:3000 in your browser and see Chexpire in action.
