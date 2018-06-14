@@ -1,0 +1,7 @@
+<%= t('.greeting', recipient: @email) %>
+
+<% if @resource.try(:unconfirmed_email?) %>
+  <%= t('.message', email: @resource.unconfirmed_email) %>
+<% else %>
+  <%= t('.message', email: @resource.email) %>
+<% end %>
