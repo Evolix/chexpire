@@ -74,6 +74,10 @@ group :development do
   gem "capistrano-rails", "~> 1.4", require: false
   gem "capistrano-rbenv", require: false
   gem 'capistrano3-puma', require: false
+
+  # Necessary for elliptic curve SSH keys
+  gem 'rbnacl', ">= 3.2", "<5.0"
+  gem 'bcrypt_pbkdf', ">= 1.0", "<2.0"
 end
 
 group :test do
