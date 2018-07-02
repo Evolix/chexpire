@@ -21,4 +21,4 @@ Si vous avez supprimé le domaine ou ne l'avez pas renouvellé, merci de désact
 <%= render "check_comment_vendor" %>
 
 
-<%= render "footer_recurrent_failures", delay: @notification.delay, check: @check %>
+<%= render "footer_recurrent_failures", interval: @notification.interval, check: @check %>

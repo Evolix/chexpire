@@ -2,7 +2,7 @@
 <br />
 --
 
-<p>Vous avez reçu ce courriel à <%= pluralize(delay, "jour", "jours") %> avant la dernière date d'expiration connue.<br />
+<p>Vous avez reçu ce courriel à <%= pluralize(interval, "jour", "jours") %> avant la dernière date d'expiration connue.<br />
 Vous pouvez gérer les notifications pour cette vérification à ce adresse :
 <%= link_to nil, edit_check_url(check) %>
 </p>
