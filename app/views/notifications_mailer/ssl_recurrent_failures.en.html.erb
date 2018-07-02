@@ -1,0 +1,31 @@
+<p>
+  Hi,
+  <br />
+  <br />
+
+  We had <strong>recurrent failures</strong> while checking the SSL certificate for
+  <strong><%= @check.domain %></strong>. As of today, we can no longer verify the certificate
+  expiry date.
+</p>
+
+<p>
+  <%- if @check.domain_expires_at.present? %>
+    Our last known expiry date is <%= format_utc(@check.domain_expires_at) %>.
+    <br />
+  <%- end %>
+
+  <%- if @check.last_success_at.present? %>
+    Our last successful check occured <%= format_utc(@check.last_success_at) %>.
+  <%- end %>
+</p>
+
+<p>
+  If there is no more SSL endpoint for this domain, please disable
+  or delete the check by following this link: <br /><br />
+  <%= link_to nil, edit_check_url(@check) %>
+</p>
+<br />
+<%= render "check_comment_vendor" %>
+
+
+<%= render "footer_recurrent_failures", interval: @notification.interval, check: @check %>

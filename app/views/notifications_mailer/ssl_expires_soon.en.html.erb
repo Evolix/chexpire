@@ -1,0 +1,12 @@
+<p>
+  Hi,
+  <br />
+  <br />
+  the SSL certificate for <strong><%= @check.domain %></strong> will expire
+  <strong><%= format_utc(@check.domain_expires_at) %></strong>.
+</p>
+<br />
+
+<%= render "check_comment_vendor" %>
+
+<%= render "footer_expires_soon", interval: @notification.interval, check: @check %>

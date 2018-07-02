@@ -12,6 +12,14 @@ fr:
         check:
           past: "ne peut être dans le futur"
 
+  time:
+    am: am
+    formats:
+      default: "%a %d %b %Y %H:%M:%S %z"
+      long: "%A %d %B %Y %H:%M"
+      short: "%d %b %H:%M"
+    pm: pm
+
   devise:
     registrations:
       new:
@@ -36,7 +44,16 @@ fr:
         other: "Le domaine %{domain} expire dans %{count} jours"
 
     domain_recurrent_failures:
-      subject: "Multiples erreur dans la vérification d'expiration du domaine %{domain}"
+      subject: "Erreurs dans la vérification d'expiration du domaine %{domain}"
+
+    ssl_expires_soon:
+      subject:
+        zero: "Le certificat SSL pour %{domain} expire AUJOURD'HUI !"
+        one: "Le certificat SSL pour %{domain} expire DEMAIN !"
+        other: "Le certificat SSL pour %{domain} expire dans %{count} jours"
+
+    ssl_recurrent_failures:
+      subject: "Erreurs dans la vérification d'expiration du certificat SSL %{domain}"
 
 
   shared:
