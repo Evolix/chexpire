@@ -8,9 +8,14 @@
 </p>
 
 <p>
-  Our last known expiry date is <%= format_utc(@check.domain_expires_at) %>.
-  <br />
-  Our last successful check occured <%= format_utc(@check.last_success_at) %>.
+  <%- if @check.domain_expires_at.present? %>
+    Our last known expiry date is <%= format_utc(@check.domain_expires_at) %>.
+    <br />
+  <% end %>
+
+  <%- if @check.last_success_at.present? %>
+    Our last successful check occured <%= format_utc(@check.last_success_at) %>.
+  <% end %>
 </p>
 
 <p>

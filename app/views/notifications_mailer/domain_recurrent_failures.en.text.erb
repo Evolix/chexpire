@@ -3,8 +3,12 @@ Hi,
 We had recurrent failures while checking the whois database for domain
 <%= @check.domain %>. As of today, we can't anymore verify the expiry date.
 
+<%- if @check.domain_expires_at.present? %>
 The last known expiry date is <%= format_utc(@check.domain_expires_at) %>.
+<% end %>
+<%- if @check.last_success_at.present? %>
 The last successful check occured <%= format_utc(@check.last_success_at) %>.
+<% end %>
 
 If you have deleted your domain or have not renewed it, please disable
 or delete the check by following this link:
