@@ -19,7 +19,7 @@ set :output, standard: "log/cron.log"
 # Learn more: http://github.com/javan/whenever
 
 every 1.day, at: '4:30 am', roles: [:app] do
-  rake "checks:sync_dates"
+  rake "checks:sync_dates:all"
 end
 
 every 1.day, at: '10:30 am', roles: [:app] do
