@@ -8,3 +8,6 @@ test:
     interval: 0.00
     long_term: 60
     long_term_frequency: 10
+  checks_ssl:
+    check_http_path: ""
+    check_http_args: ""

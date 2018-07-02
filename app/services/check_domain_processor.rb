@@ -1,5 +1,6 @@
 class CheckDomainProcessor
   include CheckProcessor
+
   protected
 
   def configuration_key

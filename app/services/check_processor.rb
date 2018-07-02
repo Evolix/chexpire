@@ -42,6 +42,10 @@ module CheckProcessor
     scope.where("domain_expires_at IS NULL")
   end
 
+  def resolve_all
+    scope
+  end
+
   protected
 
   def base_scope
@@ -55,7 +59,7 @@ module CheckProcessor
     fail NotImplementedError, "#{self.class.name} did not implemented method #{__callee__}"
   end
 
-  def process(check)
+  def process(_check)
     fail NotImplementedError, "#{self.class.name} did not implemented method #{__callee__}"
   end
 

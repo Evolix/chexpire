@@ -1,0 +1,1 @@
+check_http: Invalid hostname/address - ssl100.invalid.org

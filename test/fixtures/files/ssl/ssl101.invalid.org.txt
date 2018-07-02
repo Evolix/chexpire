@@ -1,0 +1,1 @@
+SSL OK - Certificate 'ssl101.invalid.org' will expire on unknown date.

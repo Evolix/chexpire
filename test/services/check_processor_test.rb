@@ -69,6 +69,14 @@ class CheckProcessorTest < ActiveSupport::TestCase
     assert_not_includes checks, c4
   end
 
+  test "resolve_all include all eligible checks" do
+    create(:check, :expires_next_week)
+    create(:check, :expires_next_week, last_run_at: 4.hours.ago)
+    create(:check, :last_runs_failed)
+
+    assert_equal @processor.send(:scope), @processor.resolve_all
+  end
+
   test "resolvers does not include checks recently executed" do
     c1 = create(:check, :expires_next_week)
     c2 = create(:check, :expires_next_week, last_run_at: 4.hours.ago)
