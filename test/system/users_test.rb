@@ -31,7 +31,8 @@ class UsersTest < ApplicationSystemTestCase
 
     confirmation_email = ActionMailer::Base.deliveries.last
 
-    assert confirmation_email.body.include?(confirmation_path)
+    assert confirmation_email.text_part.body.include?(confirmation_path)
+    assert confirmation_email.html_part.body.include?(confirmation_path)
 
     visit confirmation_path
     assert_equal new_user_session_path, page.current_path
