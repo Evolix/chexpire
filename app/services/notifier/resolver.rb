@@ -4,7 +4,7 @@ module Notifier
       scope
         .where("checks.domain_expires_at >= CURDATE()")
         .where("DATE(checks.domain_expires_at)
-          <= DATE_ADD(CURDATE(), INTERVAL notifications.delay DAY)")
+          <= DATE_ADD(CURDATE(), INTERVAL notifications.interval DAY)")
     end
 
     def resolve_check_failed

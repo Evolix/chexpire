@@ -6,4 +6,4 @@ the domain <%= @check.domain %> will expire <%= format_utc(@check.domain_expires
 <%= render "check_comment_vendor" %>
 
 
-<%= render "footer_expires_soon", delay: @notification.delay, check: @check %>
+<%= render "footer_expires_soon", interval: @notification.interval, check: @check %>

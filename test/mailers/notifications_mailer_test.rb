@@ -3,7 +3,7 @@ require "test_helper"
 class NotificationsMailerTest < ActionMailer::TestCase
   test "domain_expires_soon" do
     check = create(:check, domain_expires_at: Time.new(2018, 6, 10, 12, 0, 5, "+02:00"))
-    notification = build(:notification, delay: 10, check: check, recipient: "colin@example.org")
+    notification = build(:notification, interval: 10, check: check, recipient: "colin@example.org")
 
     Date.stub :today, Date.new(2018, 6, 2) do
       mail = NotificationsMailer.with(notification: notification).domain_expires_soon
