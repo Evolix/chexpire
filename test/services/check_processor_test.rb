@@ -1,31 +1,26 @@
 require "test_helper"
 
+class CheckDummyProcessor
+  include CheckProcessor
+  def scope
+    base_scope
+  end
+
+  def configuration_key
+    "checks_dummy"
+  end
+
+  def resolvers
+    %i[
+      resolve_expire_short_term
+      resolve_expire_long_term
+    ]
+  end
+end
+
 class CheckProcessorTest < ActiveSupport::TestCase
   setup do
-    @processor = CheckProcessor.new
-  end
-
-  test "process WhoisSyncJob for domain checks" do
-    domain = "domain.fr"
-    check = create(:check, :domain, :nil_dates, domain: domain)
-
-    mock_system_command("whois", domain, stdout: file_fixture("whois/domain.fr.txt").read) do
-      @processor.send(:process, check)
-    end
-
-    check.reload
-
-    assert_equal Time.new(2019, 2, 17, 0, 0, 0, 0), check.domain_expires_at
-  end
-
-  test "raises an error for an unsupported check kind" do
-    check = build(:check)
-
-    check.stub :kind, :unknown do
-      assert_raises ArgumentError do
-        @processor.send(:process, check)
-      end
-    end
+    @processor = CheckDummyProcessor.new
   end
 
   test "resolve_last_run_failed includes already and never succeeded" do
@@ -74,6 +69,14 @@ class CheckProcessorTest < ActiveSupport::TestCase
     assert_not_includes checks, c4
   end
 
+  test "resolve_all include all eligible checks" do
+    create(:check, :expires_next_week)
+    create(:check, :expires_next_week, last_run_at: 4.hours.ago)
+    create(:check, :last_runs_failed)
+
+    assert_equal @processor.send(:scope), @processor.resolve_all
+  end
+
   test "resolvers does not include checks recently executed" do
     c1 = create(:check, :expires_next_week)
     c2 = create(:check, :expires_next_week, last_run_at: 4.hours.ago)
@@ -113,7 +116,7 @@ class CheckProcessorTest < ActiveSupport::TestCase
       configuration.expect(:interval, 0.000001)
     end
 
-    processor = CheckProcessor.new(configuration)
+    processor = CheckDummyProcessor.new(configuration)
 
     mock = Minitest::Mock.new
     assert_stub = lambda { |actual_time|

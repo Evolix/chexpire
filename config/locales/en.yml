@@ -38,6 +38,15 @@ en:
     domain_recurrent_failures:
       subject: "Recurrent failures in %{domain} domain expiry check"
 
+    ssl_expires_soon:
+      subject:
+        zero: "SSL certificate for %{domain} expires TODAY!"
+        one: "SSL certificate for %{domain} expires TOMORROW!"
+        other: "SSL certificate for %{domain} expires in %{count} days"
+
+    ssl_recurrent_failures:
+      subject: "Recurrent failures in %{domain} SSL certificate expiry check"
+
 
   shared:
     locales:

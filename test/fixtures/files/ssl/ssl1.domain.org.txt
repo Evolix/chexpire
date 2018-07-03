@@ -1,0 +1,1 @@
+SSL OK - Certificate 'ssl1.domain.org' will expire on 2022-08-06 02:57 +0200/CEST.

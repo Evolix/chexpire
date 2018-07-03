@@ -11,6 +11,10 @@ module Notifier
           domain_notify_expires_soon(notification)
         when [:domain, :recurrent_failures]
           domain_notify_recurrent_failures(notification)
+        when [:ssl, :expires_soon]
+          ssl_notify_expires_soon(notification)
+        when [:ssl, :recurrent_failures]
+          ssl_notify_recurrent_failures(notification)
         else
           fail ArgumentError,
             "Invalid notification reason `#{reason}` for check kind `#{notification.check.kind}`."
@@ -25,15 +29,16 @@ module Notifier
           "#{self.class.name} channel did not implemented method #{__callee__}"
       end
 
-      # domain notifications
-      def domain_notify_expires_soon(_notification)
-        fail NotImplementedError,
-          "Channel #{self.class.name} does not implement #{__callee__}"
-      end
-
-      def domain_notify_recurrent_failures(_notification)
-        fail NotImplementedError,
-          "Channel #{self.class.name} does not implement #{__callee__}"
+      %i[
+        domain_notify_expires_soon
+        domain_notify_recurrent_failures
+        ssl_notify_expires_soon
+        ssl_notify_recurrent_failures
+      ].each do |method|
+        define_method(method) do
+          fail NotImplementedError,
+            "Channel #{self.class.name} does not implement method #{method}."
+        end
       end
       # :nocov:
     end

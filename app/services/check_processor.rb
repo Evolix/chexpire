@@ -1,17 +1,12 @@
-class CheckProcessor
+module CheckProcessor
   attr_reader :configuration
 
   def initialize(configuration = nil)
     @configuration = configuration || default_configuration
   end
 
-  def sync_dates # rubocop:disable Metrics/MethodLength
-    %i[
-      resolve_last_run_failed
-      resolve_expire_short_term
-      resolve_expire_long_term
-      resolve_unknown_expiry
-    ].each do |resolver|
+  def sync_dates
+    resolvers.each do |resolver|
       public_send(resolver).find_each(batch_size: 100).each do |check|
         process(check)
 
@@ -19,6 +14,12 @@ class CheckProcessor
       end
     end
   end
+
+  # :nocov:
+  def resolvers
+    fail NotImplementedError, "#{self.class.name} did not implemented method #{__callee__}"
+  end
+  # :nocov:
 
   def resolve_last_run_failed
     scope.last_run_failed
@@ -41,25 +42,36 @@ class CheckProcessor
     scope.where("domain_expires_at IS NULL")
   end
 
-  private
+  def resolve_all
+    scope
+  end
 
-  def scope
+  protected
+
+  def base_scope
     Check
       .active
       .where("last_run_at IS NULL OR last_run_at < DATE_SUB(NOW(), INTERVAL 12 HOUR)")
   end
 
-  def process(check)
-    case check.kind.to_sym
-    when :domain
-      WhoisSyncJob.perform_now(check.id)
-    else
-      fail ArgumentError, "Unsupported check kind `#{check.kind}`"
-    end
+  # :nocov:
+  def scope
+    fail NotImplementedError, "#{self.class.name} did not implemented method #{__callee__}"
   end
 
+  def process(_check)
+    fail NotImplementedError, "#{self.class.name} did not implemented method #{__callee__}"
+  end
+
+  def configuration_key
+    fail NotImplementedError, "#{self.class.name} did not implemented method #{__callee__}"
+  end
+  # :nocov:
+
+  private
+
   def default_configuration
-    config = Rails.configuration.chexpire.fetch("checks", {})
+    config = Rails.configuration.chexpire.fetch(configuration_key, {})
 
     OpenStruct.new(
       interval: config.fetch("interval") { 0.00 },

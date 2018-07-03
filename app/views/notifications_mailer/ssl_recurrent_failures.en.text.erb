@@ -1,16 +1,18 @@
 Hi,
 
-We had recurrent failures while checking the whois database for domain
-<%= @check.domain %>. As of today, we can't anymore verify the expiry date.
+We had recurrent failures while checking the SSL certificate for
+<%= @check.domain %>. As of today, we can no longer verify the certificate
+expiry date.
 
 <%- if @check.domain_expires_at.present? %>
 The last known expiry date is <%= format_utc(@check.domain_expires_at) %>.
-<% end %>
+<%- end %>
+
 <%- if @check.last_success_at.present? %>
 The last successful check occured <%= format_utc(@check.last_success_at) %>.
-<% end %>
+<%- end %>
 
-If you have deleted your domain or have not renewed it, please disable
+If there is no more SSL endpoint for this domain, please disable
 or delete the check by following this link:
 
 <%= edit_check_url(@check) %>

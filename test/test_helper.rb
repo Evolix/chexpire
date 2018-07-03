@@ -6,6 +6,7 @@ if !ENV["NO_COVERAGE"] && (ARGV.empty? || ARGV.include?("test/test_helper.rb"))
   SimpleCov.start "rails" do
     add_group "Notifier", "app/services/notifier"
     add_group "Whois", "app/services/whois"
+    add_group "SSL", "app/services/ssl"
     add_group "Services", "app/services"
     add_group "Policies", "app/policies"
   end

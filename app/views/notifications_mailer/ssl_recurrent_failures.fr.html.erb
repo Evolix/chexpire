@@ -3,8 +3,11 @@
   <br />
   <br />
 
-  Nous avons rencontré de <strong>multiples erreurs</strong> pendant l'exécution des vérifications du domaine <strong><%= @check.domain %></strong>.
-  Nous ne pouvons plus interroger la base Whois pour vérifier la date d'expiration.
+  Nous avons rencontré de <strong>multiples erreurs</strong>
+  pendant l'exécution des vérifications du certificat SSL
+  du site <strong><%= @check.domain %></strong>.
+  Nous ne pouvons plus vérifier la date d'expiration du certificat
+  en nous connectant au site.
 </p>
 
 <p>
@@ -19,8 +22,11 @@
 </p>
 
 <p>
-Si vous avez supprimé le domaine ou ne l'avez pas renouvellé, merci de désactiver la vérification associée, avec ce lien :<br /><br />
-<%= link_to nil, edit_check_url(@check) %>
+  S'il n'y a plus de terminaison SSL pour ce site ou s'il n'existe plus,
+  merci de désactiver la vérification associée, avec ce lien :
+  <br />
+  <br />
+  <%= link_to nil, edit_check_url(@check) %>
 </p>
 <br />
 <%= render "check_comment_vendor" %>

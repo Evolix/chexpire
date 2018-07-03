@@ -44,6 +44,10 @@ FactoryBot.define do
       kind :domain
     end
 
+    trait :ssl do
+      kind :ssl
+    end
+
     trait :nil_dates do
       domain_created_at nil
       domain_updated_at nil
