@@ -131,6 +131,9 @@ GEM
     guard-minitest (2.4.6)
       guard-compat (~> 1.2)
       minitest (>= 3.0)
+    has_scope (0.7.2)
+      actionpack (>= 4.1)
+      activesupport (>= 4.1)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
@@ -350,6 +353,7 @@ DEPENDENCIES
   factory_bot_rails
   guard
   guard-minitest
+  has_scope
   jbuilder (~> 2.5)
   kaminari
   launchy

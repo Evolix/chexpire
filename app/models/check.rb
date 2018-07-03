@@ -58,6 +58,13 @@ class Check < ApplicationRecord
       OR (last_success_at <= DATE_SUB(last_run_at, INTERVAL 5 MINUTE))")
   }
 
+  scope :kind, ->(kind) { where(kind: kind) }
+  scope :by_domain, ->(domain) { where("domain LIKE ?", "%#{domain}%") }
+
+  def self.default_sort
+    { domain_expires_at: :asc }
+  end
+
   private
 
   def domain_created_at_past

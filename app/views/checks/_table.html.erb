@@ -3,9 +3,15 @@
     <thead>
       <tr>
         <th scope="col"></th>
-        <th scope="col">Domain</th>
-        <th scope="col">Expiry date</th>
-        <th scope="col">Edit</th>
+        <th scope="col">
+          <%= t(".domain") %>
+          <%== checks_sort_links(:domain) %>
+        </th>
+        <th scope="col">
+          <%= t(".expiry_date") %>
+          <%== checks_sort_links(:domain_expires_at) %>
+        </th>
+        <th scope="col"><%= t(".edit") %></th>
       </tr>
     </thead>
     <tbody>
