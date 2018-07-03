@@ -5,7 +5,7 @@ class ChecksController < ApplicationController
   after_action :verify_policy_scoped, only: :index
 
   def index
-    @checks = policy_scope(Check).order(:domain_expires_at)
+    @checks = policy_scope(Check).order(:domain_expires_at).page(params[:page])
   end
 
   def new
