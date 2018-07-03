@@ -1,8 +1,11 @@
 <%= simple_form_for(check) do |f| %>
-  <%= f.input :domain, autofocus: true, input_html: { autocapitalize: :none, autocorrect: :off } %>
+  <%= f.input :domain,
+        autofocus: true,
+        input_html: { autocapitalize: :none, autocorrect: :off },
+        label: t(".#{check.kind || "generic" }.domain") %>
 
   <% if check.new_record? %>
-    <%= f.input :kind, as: :radio_buttons, collection: Check.kinds.keys if check.new_record? %>
+    <%= f.input :kind, as: check.kind.present? ? :hidden : :radio_buttons, collection: Check.kinds.keys %>
   <% end %>
 
   <%= f.input :comment %>

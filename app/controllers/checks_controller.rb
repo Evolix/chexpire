@@ -10,8 +10,14 @@ class ChecksController < ApplicationController
 
   def new
     @check = Check.new
-    build_empty_notification
     authorize @check
+
+    if params[:kind].present?
+      return not_found unless Check.kinds.key?(params[:kind])
+      @check.kind = params[:kind]
+    end
+
+    build_empty_notification
   end
 
   def create
@@ -20,10 +26,10 @@ class ChecksController < ApplicationController
     authorize @check
 
     if @check.save
-      flash[:notice] = "Your check has been saved."
+      flash[:notice] = t(".saved")
       redirect_to checks_path
     else
-      flash.now[:alert] = "An error occured."
+      flash.now[:alert] = t(".invalid")
       render :new
     end
   end

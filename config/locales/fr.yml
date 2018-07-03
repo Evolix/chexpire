@@ -2,8 +2,15 @@ fr:
   activerecord:
     attributes:
       check:
+        domain: "Domaine"
+        comment: "Commentaire"
+        vendor: "Fournisseur"
+        kind: Type
         domain_created_at: "Date de création"
         domain_updated_at: "Date de modification"
+      notification:
+        interval: Délai
+        recipient: Destinataire
       user:
         tos_accepted: "Conditions d'utilisation"
         notifications_enabled: "Notifications activées"
@@ -11,6 +18,11 @@ fr:
       models:
         check:
           past: "ne peut être dans le futur"
+  helpers:
+    submit:
+      check:
+        create: "Créer"
+        update: "Valider"
 
   time:
     am: am
@@ -61,6 +73,9 @@ fr:
       en: Anglais
       fr: Français
     navbar:
+      my_checks: "Mes vérifications"
+      new_domain_check: "Nouveau nom de domaine"
+      new_ssl_check: "Nouveau certificat SSL"
       sign_up: "Enregistrement"
       sign_in: "Connexion"
       sign_out: "Déconnexion"
@@ -68,11 +83,30 @@ fr:
 
   checks:
     index:
+      title: "Liste de vos vérifications"
       no_check_yet_html: |
           Vous n'avez pas encore créé de vérification.
           Vous pouvez en ajouter pour un <a href="%{new_domain_path}">domaine</a>
           ou un <a href="%{new_ssl_path}">SSL</a> !
+
+    new:
+      title: Nouvelle vérification
+      domain:
+        title: Nouvelle vérification d'un nom de domaine
+      ssl:
+        title: Nouvelle vérification d'un certificat SSL
+
+    create:
+      saved: La vérification est enregistrée.
+      invalid: Veuillez vérifier le formulaire.
+
     form:
+      generic:
+        domain: Domaine
+      domain:
+        domain: Nom de domaine
+      ssl:
+        domain: Nom d'hôte
       notifications_hint: |
         Recevez des notifications pour vous avertir lorsque notre système détecte
-        que la date d'expiration approche. Le délais est indiqué ennombre de jours.
+        que la date d'expiration approche. Le délai est indiqué ennombre de jours.

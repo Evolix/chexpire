@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12 col-lg-10">
-      <h1>Create a new check</h1>
+      <h1><%= t(".#{@check.kind}.title") %></h1>
 
       <%= render "form", check: @check %>
     </div>

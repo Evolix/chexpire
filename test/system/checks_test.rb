@@ -8,29 +8,28 @@ class ChecksTest < ApplicationSystemTestCase
     @check = create(:check, :with_notifications, user: @user)
   end
 
-  test "create a check and a notification" do
+  test "create a check and a notification without kind" do
     visit new_check_path
 
-    domain = "domain-test.fr"
-    fill_in("check[domain]", with: domain)
     choose "domain"
 
-    recipient = "recipient@example.org"
-    fill_in("check[notifications_attributes][0][recipient]", with: recipient)
-    fill_in("check[notifications_attributes][0][interval]", with: 30)
+    fill_and_valid_new_check
+  end
 
-    click_button
+  test "create a predefined domain check" do
+    visit new_check_path(kind: :domain)
 
-    assert_equal checks_path, page.current_path
+    refute page.has_css? "domain[kind]"
 
-    assert page.has_css?(".alert-success")
-    assert page.has_content?(domain)
+    fill_and_valid_new_check
+  end
 
-    notification = Notification.last
-    assert_equal recipient, notification.recipient
-    assert_equal 30, notification.interval
-    assert notification.email?
-    assert notification.pending?
+  test "create a predefined ssl check" do
+    visit new_check_path(kind: :ssl)
+
+    refute page.has_css? "domain[kind]"
+
+    fill_and_valid_new_check
   end
 
   test "remove a notification" do
@@ -83,4 +82,32 @@ class ChecksTest < ApplicationSystemTestCase
     assert notification.email?
     assert notification.pending?
   end
+
+  private
+
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/MethodLength
+  def fill_and_valid_new_check
+    domain = "domain-test.fr"
+    fill_in("check[domain]", with: domain)
+
+    recipient = "recipient@example.org"
+    fill_in("check[notifications_attributes][0][recipient]", with: recipient)
+    fill_in("check[notifications_attributes][0][interval]", with: 30)
+
+    click_button
+
+    assert_equal checks_path, page.current_path
+
+    assert page.has_css?(".alert-success")
+    assert page.has_content?(domain)
+
+    notification = Notification.last
+    assert_equal recipient, notification.recipient
+    assert_equal 30, notification.interval
+    assert notification.email?
+    assert notification.pending?
+  end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
 end
