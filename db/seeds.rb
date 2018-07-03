@@ -7,7 +7,16 @@ user1 = User.create!(
   email: "colin@example.org",
   password: "password",
   tos_accepted: true,
-  confirmed_at: Time.now
+  confirmed_at: Time.now,
+  locale: :fr,
+)
+
+user2 = User.create!(
+  email: "colin+en@example.org",
+  password: "password",
+  tos_accepted: true,
+  confirmed_at: Time.now,
+  locale: :en,
 )
 
 check_chexpire_org = Check.create!(
@@ -24,7 +33,7 @@ check_chexpire_org = Check.create!(
 check_chexpire_org_error = Check.create!(
   user: user1,
   kind: :domain,
-  domain: "chexpire.org",
+  domain: "chexpire-error.org",
   domain_expires_at: 1.week.from_now,
   domain_updated_at: 6.months.ago,
   domain_created_at: Time.new(2016, 8, 4, 12, 15, 1),
@@ -48,7 +57,7 @@ ssl_check_chexpire_org = Check.create!(
 ssl_check_chexpire_org_error = Check.create!(
   user: user1,
   kind: :ssl,
-  domain: "chexpire.org",
+  domain: "chexpire-error.org",
   domain_expires_at: 1.week.from_now,
   domain_updated_at: 6.months.ago,
   domain_created_at: Time.new(2016, 8, 4, 12, 15, 1),
@@ -58,6 +67,20 @@ ssl_check_chexpire_org_error = Check.create!(
   last_success_at: 4.days.ago,
 )
 
+
+100.times do |i|
+  ext = %w[com net org fr].sample
+  word = (0...rand(4..12)).map { (97 + rand(26)).chr }.join
+
+  Check.create!(
+    user: [user1, user2].sample,
+    kind: Check.kinds.keys.sample,
+    domain: "#{word}.#{ext}",
+    domain_expires_at: rand(1..300).days.from_now,
+    domain_updated_at: rand(1..300).days.ago,
+    domain_created_at: rand(301..3000).days.ago,
+  )
+end
 
 Notification.create!(
   check: check_chexpire_org,
