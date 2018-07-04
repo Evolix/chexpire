@@ -12,6 +12,11 @@ en:
         check:
           past: "can't be in the future"
 
+  date:
+    formats:
+      short: "%-d, %b %Y"
+      long: "%A, %B %d, %Y"
+
   devise:
     registrations:
       new:
@@ -64,6 +69,7 @@ en:
   checks:
     index:
       title: List of your checks
+      no_matching_check: "No checks match your filters."
       no_check_yet_html: |
           You have not set up a check yet.
           Please add a <a href="%{new_domain_path}">domain</a>
@@ -80,6 +86,11 @@ en:
       saved: "Your check has been saved."
       invalid: "Please check the form."
 
+    filters:
+      kind_domain: Domain
+      kind_ssl: SSL
+      with_error: Error
+
     form:
       generic:
         domain: Domain
@@ -90,3 +101,11 @@ en:
       notifications_hint: |
         Receive notifications to warn you when our system detects that the
         expiration date is coming. The time is set in number of days.
+
+    table:
+      domain: Name
+      expiry_date: Expiration
+      edit: Edit
+      kind_labels:
+        domain: Domain
+        ssl: SSL

@@ -76,7 +76,7 @@ ssl_check_chexpire_org_error = Check.create!(
     user: [user1, user2].sample,
     kind: Check.kinds.keys.sample,
     domain: "#{word}.#{ext}",
-    domain_expires_at: rand(1..300).days.from_now,
+    domain_expires_at: rand(8..300).days.from_now,
     domain_updated_at: rand(1..300).days.ago,
     domain_created_at: rand(301..3000).days.ago,
   )

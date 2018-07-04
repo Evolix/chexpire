@@ -61,8 +61,8 @@ class Check < ApplicationRecord
   scope :kind, ->(kind) { where(kind: kind) }
   scope :by_domain, ->(domain) { where("domain LIKE ?", "%#{domain}%") }
   scope :recurrent_failures, -> {
-    where("last_run_at IS NOT NULL").
-    where("last_success_at IS NULL OR last_success_at <= DATE_SUB(last_run_at, INTERVAL 72 HOUR)")
+    where("last_run_at IS NOT NULL")
+      .where("last_success_at IS NULL OR last_success_at <= DATE_SUB(last_run_at, INTERVAL 3 DAY)")
   }
 
   def self.default_sort

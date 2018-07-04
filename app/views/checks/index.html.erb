@@ -1,19 +1,14 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row justify-content-center">
-    <div class="col-12 col-lg-10">
+    <div class="col-12 col-lg-10 col-xl-8">
       <% if @checks.empty? && current_scopes.blank? %>
         <div class="alert alert-info">
           <%= t(".no_check_yet_html", new_domain_path: new_check_path(kind: :domain), new_ssl_path: new_check_path(kind: :ssl)) %>
         </div>
       <% else %>
-        <h1><%= t(".title") %></h1>
-        <%= link_to("Domains", checks_path(current_criterias.merge(kind: :domain))) %>
-        <%= link_to("SSL", checks_path(current_criterias.merge(kind: :ssl))) %>
-        <%= link_to("In error", checks_path(current_criterias.merge(recurrent_failures: true))) %>
-        <%= form_tag(checks_path(current_scopes), method: :get) do  %>
-          <%= search_field_tag :by_domain, current_scopes[:by_domain] %>
-          <%= button_tag t(".filter") %>
-        <% end %>
+        <h1 class="mb-3 mb-sm-5"><%= t(".title") %></h1>
+
+        <%= render "filters" %>
 
         <% if @checks.any? %>
           <%= render "table", checks: @checks %>

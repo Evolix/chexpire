@@ -1,0 +1,40 @@
+<div class="row justify-content-md-end">
+
+  <div class="col-md-6 mb-3 d-flex justify-content-between justify-content-md-start">
+    <div class="btn-group mr-2">
+      <% Check.kinds.keys.map(&:to_sym).each do |kind_name| %>
+        <%= link_to t(".kind_#{kind_name}"),
+            checks_path(check_button_criterias(kind: kind_name)),
+            class: check_button_scope_class(kind: kind_name) %>
+      <% end %>
+    </div>
+
+    <%= link_to t(".with_error"),
+        checks_path(check_button_criterias(recurrent_failures: true)),
+        class: check_button_scope_class(recurrent_failures: true) %>
+  </div>
+
+  <div class="col-md-6 mb-3">
+    <%= form_tag(checks_path, method: :get) do %>
+      <div class="form-row justify-content-around">
+        <div class="col">
+          <div class="input-group">
+            <%= search_field_tag :by_domain, current_scopes[:by_domain], class: "form-control form-control-sm", placeholder: ".com, example.org, …" %>
+            <div class="input-group-append">
+              <%= button_tag Octicons::Octicon.new("search").to_svg.html_safe, class: "btn btn-sm btn-outline-secondary" %>
+            </div>
+          </div>
+
+          <%- current_criterias.except(:by_domain).compact.each_pair do |name, value| %>
+            <%= hidden_field_tag name, value%>
+          <% end %>
+        </div>
+
+        <div class="col-auto">
+          <%= link_to Octicons::Octicon.new("x").to_svg.html_safe, checks_path, class: "btn btn-danger btn-sm btn-outline-danger" %>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</div>
