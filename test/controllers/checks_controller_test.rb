@@ -116,6 +116,14 @@ class ChecksControllerTest < ActionDispatch::IntegrationTest
     assert_empty current_checks
   end
 
+  test "checks in error are filtered" do
+    c1 = create(:check, :last_runs_failed, user: @user)
+    create(:check, user: @user)
+
+    get checks_path(recurrent_failures: true)
+    assert_equal [c1], current_checks
+  end
+
   test "checks are paginated" do
     create_list(:check, 40, user: @user)
 

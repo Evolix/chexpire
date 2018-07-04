@@ -6,6 +6,7 @@ class ChecksController < ApplicationController
 
   has_scope :kind
   has_scope :by_domain
+  has_scope :recurrent_failures, type: :boolean
 
   def index
     @checks = apply_scopes(policy_scope(Check)).order(current_sort).page(params[:page])

@@ -9,6 +9,7 @@
         <h1><%= t(".title") %></h1>
         <%= link_to("Domains", checks_path(current_criterias.merge(kind: :domain))) %>
         <%= link_to("SSL", checks_path(current_criterias.merge(kind: :ssl))) %>
+        <%= link_to("In error", checks_path(current_criterias.merge(recurrent_failures: true))) %>
         <%= form_tag(checks_path(current_scopes), method: :get) do  %>
           <%= search_field_tag :by_domain, current_scopes[:by_domain] %>
           <%= button_tag t(".filter") %>
