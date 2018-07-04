@@ -117,7 +117,7 @@ class ChecksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "checks in error are filtered" do
-    c1 = create(:check, :last_runs_failed, user: @user)
+    c1 = create(:check, :last_runs_failed, created_at: 1.week.ago, user: @user)
     create(:check, user: @user)
 
     get checks_path(recurrent_failures: true)

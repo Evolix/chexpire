@@ -144,3 +144,8 @@ fr:
       kind_labels:
         domain: Domaine
         ssl: SSL
+      never_succeeded: "Chexpire n'a jamais pu effectuer de vérification."
+      days_from_last_success:
+        zero: "Dernière vérification réussie : aujourd'hui"
+        one: "Dernière vérification réussie : hier"
+        other: "Dernière vérification réussie il y a %{count} jours"

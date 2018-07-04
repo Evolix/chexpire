@@ -49,4 +49,10 @@ module ChecksHelper
                        "btn-outline-info"
                      end
   end
+
+  def check_last_success_title(check)
+    return t(".never_succeeded") if check.last_success_at.nil?
+
+    t(".days_from_last_success", count: check.days_from_last_success)
+  end
 end

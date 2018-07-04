@@ -19,6 +19,8 @@ user2 = User.create!(
   locale: :en,
 )
 
+users = [user1, user2]
+
 check_chexpire_org = Check.create!(
   user: user1,
   kind: :domain,
@@ -40,7 +42,7 @@ check_chexpire_org_error = Check.create!(
   comment: "The date are fake, this is a seed !",
   vendor: "Some random registrar",
   last_run_at: 20.minutes.ago,
-  last_success_at: 4.days.ago,
+  created_at: 3.weeks.ago,
 )
 
 ssl_check_chexpire_org = Check.create!(
@@ -68,17 +70,30 @@ ssl_check_chexpire_org_error = Check.create!(
 )
 
 
-100.times do |i|
+def check_factory(users)
   ext = %w[com net org fr].sample
   word = (0...rand(4..12)).map { (97 + rand(26)).chr }.join
 
-  Check.create!(
-    user: [user1, user2].sample,
+  Check.new(
+    user: users.sample,
     kind: Check.kinds.keys.sample,
     domain: "#{word}.#{ext}",
     domain_expires_at: rand(8..300).days.from_now,
     domain_updated_at: rand(1..300).days.ago,
     domain_created_at: rand(301..3000).days.ago,
+  )
+end
+
+100.times do |i|
+  check_factory(users).save!
+end
+
+# checks with error
+10.times do |i|
+  check_factory(users).update_attributes(
+    created_at: rand(1..300).days.ago,
+    last_run_at: 4.hours.ago,
+    last_success_at: rand(10...100).days.ago,
   )
 end
 

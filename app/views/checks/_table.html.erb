@@ -21,8 +21,19 @@
     <tbody>
       <% checks.each do |check| %>
         <tr class="check-row <%= check_row_class(check) %>">
-          <td>
+          <td class="kind">
             <span class="badge badge-info"><%= t(".kind_labels.#{check.kind}") %></span>
+            <%- if check.in_error? %>
+              <%== content_tag(
+                :span,
+                Octicons::Octicon.new("alert", class: "ml-1").to_svg.html_safe,
+                class: "text-danger",
+                data: {
+                  toggle: "tooltip",
+                  placement: "right",
+                  title: check_last_success_title(check)
+                }) %>
+            <% end %>
           </td>
           <td>
             <strong><%= check.domain %></strong>

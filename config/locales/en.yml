@@ -109,3 +109,8 @@ en:
       kind_labels:
         domain: Domain
         ssl: SSL
+      never_succeeded: "Chexpire has never been able to perform a check."
+      days_from_last_success:
+        zero: "Last check successful: today"
+        one: "Last check successful: yesterday"
+        other: "Last check successful %{count} days ago"
