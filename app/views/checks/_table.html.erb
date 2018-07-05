@@ -36,7 +36,7 @@
             <% end %>
           </td>
           <td class="action text-right">
-            <%= link_to edit_check_path(check) do %>
+            <%= link_to edit_check_path(check), "data-turbolinks" => false do %>
               <%== Octicons::Octicon.new("pencil").to_svg %>
             <% end %>
           </td>

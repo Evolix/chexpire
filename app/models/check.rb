@@ -100,8 +100,7 @@ class Check < ApplicationRecord
     return unless active?
     return unless saved_changes.key?("domain")
 
-    WhoisSyncJob.perform_later(id) if domain?
-    SSLSyncJob.perform_later(id) if ssl?
+    ResyncJob.perform_later(id)
   end
 
   def reset_notifications
