@@ -52,7 +52,6 @@ en:
     ssl_recurrent_failures:
       subject: "Recurrent failures in %{domain} SSL certificate expiry check"
 
-
   shared:
     locales:
       en: English
@@ -65,6 +64,11 @@ en:
       sign_in: "Sign in"
       sign_out: "Sign out"
       profile: "Profile"
+
+  pages:
+    home:
+      welcome: "Welcome on Chexpire"
+      intro: "With Chexpire, you'll never forget to renew a domain name or SSL certificate Chexpire."
 
   checks:
     index:
