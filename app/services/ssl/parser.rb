@@ -33,8 +33,14 @@ module SSL
       raise
     end
 
-    def match_domain?(raw)
-      raw.match(/\b#{domain}\b/).present?
+    def match_domain?(raw, tested_domain = domain)
+      return true if raw.match(/\b#{tested_domain}\b/).present?
+      parts = tested_domain.split(".")
+
+      return false if parts.count <= 2
+
+      parts.shift
+      match_domain?(raw, parts.join("."))
     end
 
     def build_response(match)

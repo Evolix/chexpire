@@ -1,0 +1,1 @@
+OK - Certificate 'domain.org' will expire on Sat 10 Jun 2028 09:14:18 AM GMT +0000.
