@@ -101,6 +101,11 @@ fr:
       sign_out: "Déconnexion"
       profile: "Profil"
 
+  pages:
+    home:
+      welcome: "Bienvenue sur Chexpire"
+      intro: "Grâce à Chexpire, vous n'oublierez plus jamais de renouveler un nom de domaine ou un certificat SSL."
+
   checks:
     index:
       title: "Liste de vos vérifications"
