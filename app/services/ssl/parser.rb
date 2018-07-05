@@ -17,7 +17,7 @@ module SSL
     end
 
     def parse(raw)
-      fail DomainNotMatchError unless match_domain?(raw)
+      # fail DomainNotMatchError unless match_domain?(raw) # currently disabled
 
       match = raw.match(DATE_REGEX)
 
