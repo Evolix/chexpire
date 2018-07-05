@@ -8,10 +8,18 @@
 // layout file, like app/views/layouts/application.html.erb
 
 import Rails from 'rails-ujs';
+import Turbolinks from 'turbolinks';
 
 import 'bootstrap/js/dist/collapse';
 import 'bootstrap/js/dist/dropdown';
+import 'bootstrap/js/dist/button';
+import 'bootstrap/js/dist/tooltip';
 
 import '../scss';
 
 Rails.start()
+Turbolinks.start()
+
+document.addEventListener("turbolinks:load", () => {
+  $('[data-toggle="tooltip"]').tooltip();
+});

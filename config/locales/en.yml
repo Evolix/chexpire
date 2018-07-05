@@ -12,6 +12,11 @@ en:
         check:
           past: "can't be in the future"
 
+  date:
+    formats:
+      short: "%-d, %b %Y"
+      long: "%A, %B %-d, %Y"
+
   devise:
     registrations:
       new:
@@ -53,6 +58,9 @@ en:
       en: English
       fr: French
     navbar:
+      my_checks: "My checks"
+      new_domain_check: "New domain check"
+      new_ssl_check: "New SSL check"
       sign_up: "Sign up"
       sign_in: "Sign in"
       sign_out: "Sign out"
@@ -60,11 +68,51 @@ en:
 
   checks:
     index:
+      title: List of your checks
+      no_matching_check: "No checks match your filters."
       no_check_yet_html: |
           You have not set up a check yet.
           Please add a <a href="%{new_domain_path}">domain</a>
           or a <a href="%{new_ssl_path}">ssl</a> !
+
+    new:
+      title: New check
+      domain:
+        title: New domain check
+      ssl:
+        title: New SSL check
+
+    create:
+      saved: "Your check has been saved."
+      invalid: "Please check the form."
+
+    filters:
+      kind_domain: Domain
+      kind_ssl: SSL
+      with_error: With error
+
     form:
+      generic:
+        domain: Domain
+      domain:
+        domain: Domain name
+      ssl:
+        domain: Hostname
       notifications_hint: |
         Receive notifications to warn you when our system detects that the
         expiration date is coming. The time is set in number of days.
+
+    table:
+      th:
+        domain: Name
+        expiry_date: "Expiration date"
+        expiry_date_short: "Exp."
+        edit: Edit
+      kind_labels:
+        domain: Domain
+        ssl: SSL
+      never_succeeded: "Chexpire has never been able to perform a check."
+      days_from_last_success:
+        zero: "Last check successful: today"
+        one: "Last check successful: yesterday"
+        other: "Last check successful %{count} days ago"

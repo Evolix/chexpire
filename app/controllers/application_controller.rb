@@ -20,4 +20,14 @@ class ApplicationController < ActionController::Base
   def set_locale
     I18n.locale = current_user.try(:locale) || I18n.default_locale
   end
+
+  def not_found
+    fail ActionController::RoutingError, "Not Found"
+  rescue StandardError
+    render_404
+  end
+
+  def render_404
+    render file: "#{Rails.root}/public/404", status: :not_found
+  end
 end

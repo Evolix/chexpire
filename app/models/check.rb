@@ -27,6 +27,8 @@
 #
 
 class Check < ApplicationRecord
+  ERROR_DELAY_DAYS = 3
+
   belongs_to :user
   has_many :logs, class_name: "CheckLog"
   has_many :notifications, validate: true, dependent: :destroy
@@ -57,6 +59,32 @@ class Check < ApplicationRecord
     where("(last_success_at IS NULL AND last_run_at IS NOT NULL)
       OR (last_success_at <= DATE_SUB(last_run_at, INTERVAL 5 MINUTE))")
   }
+
+  scope :kind, ->(kind) { where(kind: kind) }
+  scope :by_domain, ->(domain) { where("domain LIKE ?", "%#{domain}%") }
+  scope :recurrent_failures, -> {
+    interval = "INTERVAL #{ERROR_DELAY_DAYS} DAY"
+    where("last_run_at IS NOT NULL AND created_at <= DATE_SUB(NOW(), #{interval})")
+      .where("last_success_at IS NULL OR last_success_at <= DATE_SUB(last_run_at, #{interval})")
+  }
+
+  def self.default_sort
+    [:domain_expires_at, :asc]
+  end
+
+  def in_error?
+    return false if created_at > ERROR_DELAY_DAYS.days.ago
+    return false if last_run_at.nil?
+    return true if last_success_at.nil?
+
+    last_success_at < ERROR_DELAY_DAYS.days.ago
+  end
+
+  def days_from_last_success
+    return unless last_success_at.present?
+
+    (Date.today - last_success_at.to_date).to_i
+  end
 
   private
 

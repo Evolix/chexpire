@@ -1,26 +1,41 @@
-<div class="mb-4">
-  <table class="table table-checks">
+<div class="mb-4 table-responsive">
+  <table class="table checks-table">
     <thead>
       <tr>
         <th scope="col"></th>
-        <th scope="col">Domain</th>
-        <th scope="col">Expiry date</th>
-        <th scope="col">Edit</th>
+        <th scope="col">
+          <%= t(".th.domain") %>
+          <span class="sort-links mx-sm-2 text-nowrap">
+            <%== checks_sort_links(:domain) %>
+          </span>
+        </th>
+        <th scope="col">
+          <span class="d-none d-sm-inline"><%= t(".th.expiry_date") %></span>
+          <span class="d-inline d-sm-none"><%= t(".th.expiry_date_short") %></span>
+          <span class="sort-links mx-sm-2 text-nowrap">
+            <%== checks_sort_links(:domain_expires_at) %>
+          </span>
+        </th>
+        <th scope="col" class="text-right"><%= t(".th.edit") %></th>
       </tr>
     </thead>
     <tbody>
       <% checks.each do |check| %>
         <tr class="check-row <%= check_row_class(check) %>">
-          <td>
-            <span class="badge badge-secondary"><%= check_kind_label(check) %></span>
+          <td class="kind">
+            <span class="badge badge-info"><%= t(".kind_labels.#{check.kind}") %></span>
           </td>
           <td>
+            <%= check_in_error(check) if check.in_error? %>
             <strong><%= check.domain %></strong>
           </td>
           <td>
-            <%= format_utc(check.domain_expires_at) if check.domain_expires_at.present? %>
+            <% if check.domain_expires_at.present? %>
+              <%= content_tag :span, format_date(check.domain_expires_at), class: "d-none d-md-inline" %>
+              <%= content_tag :span, format_date(check.domain_expires_at, format: :short), class: "d-inline d-md-none" %>
+            <% end %>
           </td>
-          <td class="action">
+          <td class="action text-right">
             <%= link_to edit_check_path(check) do %>
               <%== Octicons::Octicon.new("pencil").to_svg %>
             <% end %>
@@ -30,3 +45,5 @@
     </tbody>
   </table>
 </div>
+
+<%= paginate @checks %>

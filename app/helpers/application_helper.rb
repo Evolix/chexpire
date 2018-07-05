@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def format_date(time, format: :long)
+    l(time.utc.to_date, format: format)
+  end
+
   def format_utc(time, format: :default)
     l(time.utc, format: format)
   end

@@ -4,14 +4,24 @@ class ChecksController < ApplicationController
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
 
+  has_scope :kind
+  has_scope :by_domain
+  has_scope :recurrent_failures, type: :boolean
+
   def index
-    @checks = policy_scope(Check).order(:domain_expires_at)
+    @checks = apply_scopes(policy_scope(Check)).order(Hash[*current_sort]).page(params[:page])
   end
 
   def new
     @check = Check.new
-    build_empty_notification
     authorize @check
+
+    if params[:kind].present?
+      return not_found unless Check.kinds.key?(params[:kind])
+      @check.kind = params[:kind]
+    end
+
+    build_empty_notification
   end
 
   def create
@@ -20,10 +30,10 @@ class ChecksController < ApplicationController
     authorize @check
 
     if @check.save
-      flash[:notice] = "Your check has been saved."
+      flash[:notice] = t(".saved")
       redirect_to checks_path
     else
-      flash.now[:alert] = "An error occured."
+      flash.now[:alert] = t(".invalid")
       render :new
     end
   end
@@ -72,5 +82,23 @@ class ChecksController < ApplicationController
 
   def build_empty_notification
     @check.notifications.build
+  end
+
+  def current_sort
+    @current_sort ||= clean_sort || Check.default_sort
+  end
+  helper_method :current_sort
+
+  def clean_sort
+    return unless params[:sort].present?
+    field, _, direction = params[:sort].rpartition("_").map(&:to_sym)
+
+    valid_fields = [:domain, :domain_expires_at]
+    valid_directions = [:asc, :desc]
+
+    return unless valid_fields.include?(field)
+    return unless valid_directions.include?(direction)
+
+    [field, direction]
   end
 end

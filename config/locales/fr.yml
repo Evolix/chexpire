@@ -2,8 +2,15 @@ fr:
   activerecord:
     attributes:
       check:
+        domain: "Domaine"
+        comment: "Commentaire"
+        vendor: "Fournisseur"
+        kind: Type
         domain_created_at: "Date de création"
         domain_updated_at: "Date de modification"
+      notification:
+        interval: Délai
+        recipient: Destinataire
       user:
         tos_accepted: "Conditions d'utilisation"
         notifications_enabled: "Notifications activées"
@@ -11,6 +18,26 @@ fr:
       models:
         check:
           past: "ne peut être dans le futur"
+  helpers:
+    submit:
+      check:
+        create: "Créer"
+        update: "Valider"
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "Pas de %{entry_name} trouvé."
+          one: "Affiche <b>1</b> %{entry_name}"
+          other: "Affiche <b>les %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Affiche %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> de <b>%{total}</b> au total"
+  views:
+    pagination:
+      first: "&laquo; Début"
+      last: "Fin &raquo;"
+      previous: "&lsaquo; Préc"
+      next: "Suiv &rsaquo;"
+      truncate: "&hellip;"
 
   time:
     am: am
@@ -19,6 +46,11 @@ fr:
       long: "%A %d %B %Y %H:%M"
       short: "%d %b %H:%M"
     pm: pm
+
+  date:
+    formats:
+      short: "%d/%m/%Y"
+      long: "%A %d %B %Y"
 
   devise:
     registrations:
@@ -61,6 +93,9 @@ fr:
       en: Anglais
       fr: Français
     navbar:
+      my_checks: "Mes vérifications"
+      new_domain_check: "Nouveau nom de domaine"
+      new_ssl_check: "Nouveau certificat SSL"
       sign_up: "Enregistrement"
       sign_in: "Connexion"
       sign_out: "Déconnexion"
@@ -68,11 +103,51 @@ fr:
 
   checks:
     index:
+      title: "Liste de vos vérifications"
+      no_matching_check: "Aucune vérification ne correspond à vos critères."
       no_check_yet_html: |
           Vous n'avez pas encore créé de vérification.
           Vous pouvez en ajouter pour un <a href="%{new_domain_path}">domaine</a>
           ou un <a href="%{new_ssl_path}">SSL</a> !
+
+    new:
+      title: Nouvelle vérification
+      domain:
+        title: Nouvelle vérification d'un nom de domaine
+      ssl:
+        title: Nouvelle vérification d'un certificat SSL
+
+    create:
+      saved: La vérification est enregistrée.
+      invalid: Veuillez vérifier le formulaire.
+
+    filters:
+      kind_domain: Domaine
+      kind_ssl: SSL
+      with_error: En erreur
+
     form:
+      generic:
+        domain: Domaine
+      domain:
+        domain: Nom de domaine
+      ssl:
+        domain: Nom d'hôte
       notifications_hint: |
         Recevez des notifications pour vous avertir lorsque notre système détecte
-        que la date d'expiration approche. Le délais est indiqué ennombre de jours.
+        que la date d'expiration approche. Le délai est indiqué ennombre de jours.
+
+    table:
+      th:
+        domain: Nom
+        expiry_date: "Date d'expiration"
+        expiry_date_short: "Exp."
+        edit: Modifier
+      kind_labels:
+        domain: Domaine
+        ssl: SSL
+      never_succeeded: "Chexpire n'a jamais pu effectuer de vérification."
+      days_from_last_success:
+        zero: "Dernière vérification réussie : aujourd'hui"
+        one: "Dernière vérification réussie : hier"
+        other: "Dernière vérification réussie il y a %{count} jours"
