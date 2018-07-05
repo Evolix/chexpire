@@ -15,7 +15,7 @@ en:
   date:
     formats:
       short: "%-d, %b %Y"
-      long: "%A, %B %d, %Y"
+      long: "%A, %B %-d, %Y"
 
   devise:
     registrations:
@@ -89,7 +89,7 @@ en:
     filters:
       kind_domain: Domain
       kind_ssl: SSL
-      with_error: Error
+      with_error: With error
 
     form:
       generic:
