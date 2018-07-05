@@ -2,6 +2,7 @@ module SSL
   class Error < StandardError; end
 
   class SSLCommandError < Error; end
+  class SSLConfigurationError < Error; end
 
   class ParserError < Error; end
   class DomainNotMatchError < ParserError; end

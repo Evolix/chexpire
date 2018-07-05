@@ -63,6 +63,6 @@ class SSLSyncJobTest < ActiveJob::TestCase
   end
 
   def expected_command_arg(domain)
-    ["-H '#{domain}'"]
+    ["-C 0", "-H", domain]
   end
 end
