@@ -8,8 +8,8 @@ default: &default
     long_term: 60
     long_term_frequency: 10
   checks_ssl:
-    check_http_path: ""
-    check_http_args: ""
+    check_http_path: # default to check_http in $PATH)
+    check_http_args: # array of arguments appended to defaults: -C 0 -H $HOSTNAME.
 
 development:
   <<: *default

@@ -34,6 +34,7 @@ module SSL
 
     def run_command
       command = system_klass.new(check_http_path, check_http_args, logger: logger)
+
       result = command.execute
 
       unless result.exit_status.zero?
@@ -54,9 +55,20 @@ module SSL
 
     def check_http_args
       [
-        configuration.check_http_args.presence,
-        "-H '#{domain}'",
+        "-C 0", # enable SSL mode without any delay warning
+        "-H",   # check_http does not works with fully quoted arg (check_http "-H myhost.org")
+        domain,
+        *custom_check_http_args,
       ].compact
+    end
+
+    def custom_check_http_args
+      return nil unless configuration.check_http_args.present?
+
+      fail SSLConfigurationError, "check_http_args option must be an array of argument." \
+        unless configuration.check_http_args.is_a?(Array)
+
+      configuration.check_http_args
     end
 
     def default_configuration

@@ -24,14 +24,32 @@ module SSL
       assert response.expire_at.utc?
     end
 
-    test "should raises DomainNotMatchError when parsed text does not match the domain" do
-      parser = Parser.new("anotherdomain.fr")
-      output = file_fixture("ssl/ssl1.domain.org.txt").read
+    # test "should raises DomainNotMatchError when parsed text does not match the domain" do
+    #   parser = Parser.new("anotherdomain.fr")
+    #   output = file_fixture("ssl/ssl1.domain.org.txt").read
+    #
+    #   assert_raises DomainNotMatchError do
+    #     parser.parse(output)
+    #   end
+    # end
 
-      assert_raises DomainNotMatchError do
-        parser.parse(output)
-      end
+    test "should accept responses for wildcard certificates" do
+      parser = Parser.new("ssl1.domain.org")
+      output = file_fixture("ssl/wildcard.domain.org.txt").read
+
+      response = parser.parse(output)
+
+      assert_equal Time.new(2028, 6, 10, 9, 14, 18, 0), response.expire_at
+      assert response.expire_at.utc?
+
+      parser = Parser.new("deep.ssl1.domain.org")
+      output = file_fixture("ssl/wildcard.domain.org.txt").read
+
+      response = parser.parse(output)
+
+      assert_equal Time.new(2028, 6, 10, 9, 14, 18, 0), response.expire_at
     end
+
     test "should raises InvalidResponseError when check response is not matched" do
       parser = Parser.new("ssl100.invalid.org")
       output = file_fixture("ssl/ssl100.invalid.org.txt").read
