@@ -30,7 +30,7 @@ class Check < ApplicationRecord
   ERROR_DELAY_DAYS = 3
 
   belongs_to :user
-  has_many :logs, class_name: "CheckLog"
+  has_many :logs, class_name: "CheckLog", dependent: :destroy
   has_many :notifications, validate: true, dependent: :destroy
   accepts_nested_attributes_for :notifications,
     allow_destroy: true,
