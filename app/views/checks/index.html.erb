@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
-    <div class="col-12 col-lg-10 col-xl-8">
+    <div class="col-12 col-lg-10 col-xl-9">
       <% if @checks.empty? && current_scopes.blank? %>
         <div class="alert alert-info">
           <%= t(".no_check_yet_html", new_domain_path: new_check_path(kind: :domain), new_ssl_path: new_check_path(kind: :ssl)) %>

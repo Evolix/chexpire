@@ -9,17 +9,24 @@ module ChecksHelper
   end
 
   def checks_sort_links(field)
+    %i[asc desc].map { |direction|
+      checks_sort_link(field, direction)
+    }.join
+  end
+
+  def checks_sort_link(field, direction)
+    classes = "btn btn-light btn-sm mx-1 mx-1 px-1 py-0"
     current_sort_str = current_sort.to_a.join("_")
 
-    %i[asc desc].map { |direction|
-      sort = "#{field}_#{direction}"
+    sort = "#{field}_#{direction}"
 
-      icon = direction == :asc ? "chevron-up" : "chevron-down"
-      html = Octicons::Octicon.new(icon, class: "mx-1").to_svg.html_safe
+    icon = direction == :asc ? "chevron-up" : "chevron-down"
+    html = Octicons::Octicon.new(icon).to_svg.html_safe
 
-      filter_params = current_criterias.merge(sort: sort)
-      link_to_unless sort == current_sort_str, html, checks_path(filter_params)
-    }.join
+    filter_params = current_criterias.merge(sort: sort)
+    link_to_unless sort == current_sort_str, html, checks_path(filter_params), class: classes do
+      content_tag(:span, html, class: classes + " active")
+    end
   end
 
   def current_criterias

@@ -138,9 +138,11 @@ fr:
         que la date d'expiration approche. Le délai est indiqué ennombre de jours.
 
     table:
-      domain: Nom
-      expiry_date: "Expiration"
-      edit: Modifier
+      th:
+        domain: Nom
+        expiry_date: "Date d'expiration"
+        expiry_date_short: "Exp."
+        edit: Modifier
       kind_labels:
         domain: Domaine
         ssl: SSL

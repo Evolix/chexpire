@@ -103,9 +103,11 @@ en:
         expiration date is coming. The time is set in number of days.
 
     table:
-      domain: Name
-      expiry_date: Expiration
-      edit: Edit
+      th:
+        domain: Name
+        expiry_date: "Expiration date"
+        expiry_date_short: "Exp."
+        edit: Edit
       kind_labels:
         domain: Domain
         ssl: SSL

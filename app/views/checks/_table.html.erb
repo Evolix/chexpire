@@ -4,18 +4,19 @@
       <tr>
         <th scope="col"></th>
         <th scope="col">
-          <%= t(".domain") %>
-          <span class="sort-links mx-sm-3 text-nowrap">
+          <%= t(".th.domain") %>
+          <span class="sort-links mx-sm-2 text-nowrap">
             <%== checks_sort_links(:domain) %>
           </span>
         </th>
         <th scope="col">
-          <%= t(".expiry_date") %>
-          <span class="sort-links mx-sm-3 text-nowrap">
+          <span class="d-none d-sm-inline"><%= t(".th.expiry_date") %></span>
+          <span class="d-inline d-sm-none"><%= t(".th.expiry_date_short") %></span>
+          <span class="sort-links mx-sm-2 text-nowrap">
             <%== checks_sort_links(:domain_expires_at) %>
           </span>
         </th>
-        <th scope="col" class="text-center"><%= t(".edit") %></th>
+        <th scope="col" class="text-right"><%= t(".th.edit") %></th>
       </tr>
     </thead>
     <tbody>
@@ -23,19 +24,19 @@
         <tr class="check-row <%= check_row_class(check) %>">
           <td class="kind">
             <span class="badge badge-info"><%= t(".kind_labels.#{check.kind}") %></span>
+          </td>
+          <td>
             <%- if check.in_error? %>
               <%== content_tag(
                 :span,
                 Octicons::Octicon.new("alert", class: "ml-1").to_svg.html_safe,
-                class: "text-danger",
+                class: "in-error text-danger",
                 data: {
                   toggle: "tooltip",
-                  placement: "right",
+                  placement: "bottom",
                   title: check_last_success_title(check)
                 }) %>
             <% end %>
-          </td>
-          <td>
             <strong><%= check.domain %></strong>
           </td>
           <td>
@@ -44,7 +45,7 @@
               <%= content_tag :span, format_date(check.domain_expires_at, format: :short), class: "d-inline d-md-none" %>
             <% end %>
           </td>
-          <td class="action text-center">
+          <td class="action text-right">
             <%= link_to edit_check_path(check) do %>
               <%== Octicons::Octicon.new("pencil").to_svg %>
             <% end %>
