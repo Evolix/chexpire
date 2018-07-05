@@ -101,6 +101,7 @@ class Check < ApplicationRecord
     return unless saved_changes.key?("domain")
 
     WhoisSyncJob.perform_later(id) if domain?
+    SSLSyncJob.perform_later(id) if ssl?
   end
 
   def reset_notifications
