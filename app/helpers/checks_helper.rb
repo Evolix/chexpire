@@ -37,8 +37,9 @@ module ChecksHelper
       data: {
         toggle: "tooltip",
         placement: "bottom",
-        title: check_last_success_title(check)
-      })
+        title: check_last_success_title(check),
+      },
+    )
   end
 
   def current_criterias
