@@ -100,10 +100,7 @@ class Check < ApplicationRecord
     return unless active?
     return unless saved_changes.key?("domain")
 
-    # small delay before first sync, otherwise on fast system
-    # the db won't return the check immediately after insert
-    WhoisSyncJob.perform_later(id, delay: 1.second) if domain?
-    SSLSyncJob.perform_later(id, delay: 1.second) if ssl?
+    ResyncJob.perform_later(id)
   end
 
   def reset_notifications
