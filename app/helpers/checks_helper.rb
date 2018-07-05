@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ChecksHelper
   def check_row_class(check)
     expiry_date = check.domain_expires_at
@@ -50,7 +52,7 @@ module ChecksHelper
   end
 
   def check_button_scope_class(scope = nil)
-    "btn btn-sm " << if scope && scoped_with?(scope)
+    "btn btn-sm " + if scope && scoped_with?(scope)
                        "btn-info active"
                      else
                        "btn-outline-info"
