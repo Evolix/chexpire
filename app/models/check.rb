@@ -69,7 +69,7 @@ class Check < ApplicationRecord
   }
 
   def self.default_sort
-    { domain_expires_at: :asc }
+    [:domain_expires_at, :asc]
   end
 
   def in_error?

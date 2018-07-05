@@ -9,7 +9,7 @@ class ChecksController < ApplicationController
   has_scope :recurrent_failures, type: :boolean
 
   def index
-    @checks = apply_scopes(policy_scope(Check)).order(current_sort).page(params[:page])
+    @checks = apply_scopes(policy_scope(Check)).order(Hash[*current_sort]).page(params[:page])
   end
 
   def new
@@ -99,6 +99,6 @@ class ChecksController < ApplicationController
     return unless valid_fields.include?(field)
     return unless valid_directions.include?(direction)
 
-    { field => direction }
+    [field, direction]
   end
 end

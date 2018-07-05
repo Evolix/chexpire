@@ -26,17 +26,7 @@
             <span class="badge badge-info"><%= t(".kind_labels.#{check.kind}") %></span>
           </td>
           <td>
-            <%- if check.in_error? %>
-              <%== content_tag(
-                :span,
-                Octicons::Octicon.new("alert", class: "ml-1").to_svg.html_safe,
-                class: "in-error text-danger",
-                data: {
-                  toggle: "tooltip",
-                  placement: "bottom",
-                  title: check_last_success_title(check)
-                }) %>
-            <% end %>
+            <%= check_in_error(check) if check.in_error? %>
             <strong><%= check.domain %></strong>
           </td>
           <td>

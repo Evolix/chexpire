@@ -18,17 +18,27 @@ module ChecksHelper
 
   def checks_sort_link(field, direction)
     classes = "btn btn-light btn-sm mx-1 mx-1 px-1 py-0"
-    current_sort_str = current_sort.to_a.join("_")
-
-    sort = "#{field}_#{direction}"
+    sort = [field, direction]
 
     icon = direction == :asc ? "chevron-up" : "chevron-down"
     html = Octicons::Octicon.new(icon).to_svg.html_safe
 
-    filter_params = current_criterias.merge(sort: sort)
-    link_to_unless sort == current_sort_str, html, checks_path(filter_params), class: classes do
+    sort_path = checks_path(current_criterias.merge(sort: sort.join("_")))
+    link_to_unless sort == current_sort, html, sort_path, class: classes do
       content_tag(:span, html, class: classes + " active")
     end
+  end
+
+  def check_in_error(check)
+    content_tag(
+      :span,
+      Octicons::Octicon.new("alert", class: "ml-1").to_svg.html_safe,
+      class: "in-error text-danger",
+      data: {
+        toggle: "tooltip",
+        placement: "bottom",
+        title: check_last_success_title(check)
+      })
   end
 
   def current_criterias
@@ -53,10 +63,10 @@ module ChecksHelper
 
   def check_button_scope_class(scope = nil)
     "btn btn-sm " + if scope && scoped_with?(scope)
-                       "btn-info active"
-                     else
-                       "btn-outline-info"
-                     end
+                      "btn-info active"
+                    else
+                      "btn-outline-info"
+                    end
   end
 
   def check_last_success_title(check)
