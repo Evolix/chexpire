@@ -39,6 +39,16 @@ class CheckLoggerTest < ActiveSupport::TestCase
     assert @logger.check_log.failed?
   end
 
+  test "should log an error when there is not exit status" do
+    result = SystemCommandResult.new("command", nil, nil, "an error")
+    @logger.log :after_command, result
+
+    assert_nil @logger.check_log.raw_response
+    assert_equal "an error", @logger.check_log.error
+    assert_nil @logger.check_log.exit_status
+    assert @logger.check_log.failed?
+  end
+
   test "should log a successful parsed response" do
     response = OpenStruct.new(
       domain: "example.fr",

@@ -9,7 +9,7 @@ namespace :checks do
     end
 
     desc "Refresh SSL expiry dates"
-    task domain: :environment do
+    task ssl: :environment do
       process = CheckSSLProcessor.new
       process.sync_dates
     end
