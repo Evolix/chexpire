@@ -30,9 +30,18 @@ If you want to do manual installations, you can use our Wiki documentations for 
 
 ## Dependencies
 
-Execute `# bundle install` to install Ruby dependencies (including Rails itself).
+Execute `# bundle install` to install Ruby gems (including Rails itself).
 
-Execute `# yarn install` to install Javascript/NodeJS dependencies.
+Execute `# yarn install` to install Javascript/NodeJS packages.
+
+Depending on what is already installed on your OS or not, you might need to install a few system packages to be able to have everything working.
+
+### libsodium
+
+To use elliptic curve SSH keys, we need to have `libsodium` and its headers.
+* on Debian : `# apt install libsodium-dev`.
+* on macOS with Homebrew : `# brew install libsodium`.
+
 
 ## Rails configuration
 
