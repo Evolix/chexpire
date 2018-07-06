@@ -22,7 +22,7 @@ class CheckLogger
     check_log.exit_status = result.exit_status
     check_log.raw_response = result.stdout
 
-    if result.exit_status > 0 # rubocop:disable Style/NumericPredicate
+    if result.exit_status.nil? || result.exit_status > 0 # rubocop:disable Style/NumericPredicate
       check_log.error = result.stderr
       check_log.status = :failed
     end
