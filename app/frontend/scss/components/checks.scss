@@ -6,3 +6,41 @@
     color: black;
   }
 }
+
+.btn.btn-sm {
+  font-weight: bold;
+}
+
+.SSL, .ssl:hover, .btn.btn-sm.btn-info.active.ssl {
+  background-color: map-get($theme-colors, quaternary);
+  color: #ffffff; 
+}
+
+.btn.btn-sm.btn-outline-info.domain:hover, .btn.btn-sm.btn-outline-info.ssl:hover, .btn.btn-sm.btn-outline-info.with_error:hover {
+  color: #ffffff;
+}
+
+.btn.btn-sm.btn-info.ssl, .btn.btn-sm.btn-outline-info.ssl {
+  border-color: map-get($theme-colors, quaternary);
+  color: map-get($theme-colors, quaternary);
+}
+
+.Domaine, .Domain, .domain:hover, .btn.btn-sm.btn-info.active.domain {
+  background-color: map-get($theme-colors, primary);
+  color: #ffffff; 
+}
+
+.btn.btn-sm.btn-info.domain, .btn.btn-sm.btn-outline-info.domain {
+  border-color: map-get($theme-colors, primary);
+  color: map-get($theme-colors, primary);
+}
+
+.btn.btn-sm.btn-outline-info.with_error {
+  border-color: map-get($theme-colors, tertiary);
+  color: map-get($theme-colors, tertiary);
+}
+
+.btn.btn-sm.btn-outline-info.with_error:hover, .btn.btn-sm.btn-info.active.with_error {
+  background-color: map-get($theme-colors, tertiary);
+  border-color: map-get($theme-colors, tertiary);
+}

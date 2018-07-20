@@ -25,7 +25,7 @@
       <% checks.each do |check| %>
         <tr class="check-row <%= check_row_class(check) %>">
           <td class="kind">
-            <span class="badge badge-info"><%= t(".kind_labels.#{check.kind}") %></span>
+            <span class="badge badge-info <%= t(".kind_labels.#{check.kind}") %>"><%= t(".kind_labels.#{check.kind}") %></span>
           </td>
           <td>
             <%= check_error(check) if check_in_error?(check) %>
