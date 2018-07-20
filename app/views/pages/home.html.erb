@@ -1,11 +1,40 @@
 <% # Copyright (C) 2018 Colin Darie <colin@darie.eu>, 2018 Evolix <info@evolix.fr> %>
 <% # License: GNU AGPL-3+ (see full text in LICENSE file) %>
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 col-lg-10">
-      <h1><%= t(".welcome") %></h1>
+<section id="description">
 
-      <p><%= t(".intro") %></p>
+  <div class="container">
+
+    <div class="abstract">
+      <center>
+        <h2><%= t(".why") %></h2>
+        <p><%= t(".description") %></p>
+      </center>
     </div>
+
+    <div class="details row align-content-end justify-content-between">
+      <div class="col-md-6 details">
+        <div class="row flex-column justify-content-center">
+          <h2><%= t(".centralization") %></h2>
+          <p><%= t(".centralization-details") %></p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <%= image_tag 'dashboard.png', width: "100%", alt: 'Expirations list dashboard', class: "homepage-img" %>
+      </div>
+    </div>
+
+    <div class="details row align-content-end justify-content-between flex-md-row-reverse">
+      <div class="col-md-6 details">
+        <div class="row flex-column justify-content-center">
+          <h2><%= t(".customised") %></h2>
+          <p><%= t(".customised-details") %></p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <%= image_tag 'form_example.png', width: "100%", alt: 'Expirations list dashboard', class: "homepage-img" %>
+      </div>
+    </div>
+
   </div>
-</div>
+
+</section>

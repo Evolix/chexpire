@@ -13,6 +13,9 @@
 
   <body>
     <%= render "shared/navbar" %>
+    <% if params[:action] == 'home' %>
+      <%= render 'shared/home_header' %>
+    <%end%>
     <%= render "shared/notices" %>
 
     <%= yield %>

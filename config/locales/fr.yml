@@ -104,11 +104,19 @@ fr:
       sign_in: "Connexion"
       sign_out: "Déconnexion"
       profile: "Profil"
-
-  pages:
-    home:
+    home_header: 
       welcome: "Bienvenue sur Chexpire"
       intro: "Grâce à Chexpire, vous n'oublierez plus jamais de renouveler un nom de domaine ou un certificat SSL."
+
+  pages:
+    
+    home:
+      why: "Les avantages de Chexpire" 
+      description: "Chexpire est un Logiciel Libre qui vérifie les expirations des noms de domaines et des certificats SSL. Vous avez beaucoup de noms de domaines avec des Registrars différents ? Vous souhaitez une centralisation des dates d'expirations ? Vous avez besoin de notifications sur mesure ? Chexpire est fait pour vous !"
+      centralization: "Centralisez simplement les dates d'expiration"
+      centralization-details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Collige omnia, quae soletis: Praesidium amicorum. Duo Reges: constructio interrete. Bonum valitudo: miser morbus. Quae duo sunt, unum facit. Sic enim censent, oportunitatis esse beate vivere. Beatus sibi videtur esse moriens. Aliter homines, aliter philosophos loqui putas oportere?"
+      customised: "Paramétrez vos notifications"
+      customised-details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Collige omnia, quae soletis: Praesidium amicorum. Duo Reges: constructio interrete. Bonum valitudo: miser morbus. Quae duo sunt, unum facit. Sic enim censent, oportunitatis esse beate vivere. Beatus sibi videtur esse moriens. Aliter homines, aliter philosophos loqui putas oportere?"
 
   checks:
     index:

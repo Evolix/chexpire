@@ -5,14 +5,147 @@
 @import '~bootstrap/scss/_variables';
 @import '~bootstrap/scss/mixins/_breakpoints';
 
-.navbar {
-  margin-bottom: 30px;
+/*
+* === GENERAL ===
+*/
+body,
+html {
+  color: map-get($theme-colors, secondary);
+}
 
-  @include media-breakpoint-down(sm) {
-    margin-bottom: 20px;
+h1, h2 {
+  text-align: center;
+}
+
+
+/*
+* — Navbar —
+*/
+.navbar {
+  margin-bottom: 50px;
+  background-color: map-get($theme-colors, quaternary);
+}
+
+a.nav-link,
+a.navbar-item.navbar-link {
+  color: map-get($theme-colors, tertiary);
+  font-weight: bold;
+  padding: 20px;
+  box-sizing: border-box;
+
+  &:focus,
+  &:hover {
+    text-decoration: none;
+    color: #118b83;
   }
 }
 
+.navbar-dark .navbar-nav .nav-link {
+  color: #ffffff;
+
+  &:hover {
+    color: #118b83;
+  }
+}
+
+
+/*
+* — Alert —
+*/
 .alert-layout {
-  margin-bottom: 30px;
+  margin-bottom: 50px;
+
+  &.alert {
+    color: #ffffff;
+    font-weight: bold;
+
+    &.alert-success {
+      background-color: #118b83;
+    }
+
+    &.alert-danger {
+      background-color: #be0c04;
+    }
+  }
+}
+
+
+/*
+* — Forms —
+*/
+.form-control:focus {
+  color: map-get($theme-colors, secondary);
+  background-color: #fff;
+  border-color: map-get($theme-colors, primary);
+}
+
+
+
+
+/*
+* === UN-LOGGED HOME ===
+*/
+
+
+/*
+* — Header —
+*/
+.container-fluid.header {
+  margin: -50px 0 50px 0;
+  padding: 50px;
+  background-color: map-get($theme-colors, quaternary);
+  color: #ffffff;
+  font-weight: bold;
+
+  .btn {
+    font-weight: bold;
+  }
+}
+
+.dropdown-menu.show {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+
+  a:hover {
+    color: #ffffff;
+    background-color: #118b83;
+  }
+}
+
+
+/*
+* — Description —
+*/
+#description {
+  p {
+    font-weight: bold;
+  }
+
+  .abstract,
+  .details {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .abstract h2::after {
+    content: '';
+    display: block;
+    width: 40px;
+    margin: 40px auto;
+    border-top: 2px solid #013D3A;
+  }
+
+  .details {
+    padding: 40px;
+    box-sizing: border-box;
+  }
+
+  .row {
+    height: 100%;
+  }
+  
+  .homepage-img {
+    border: 1px solid  map-get($theme-colors, secondary);
+  }
 }
