@@ -76,6 +76,7 @@ class Check < ApplicationRecord
     return false if created_at > ERROR_DELAY_DAYS.days.ago
     return false if last_run_at.nil?
     return true if last_success_at.nil?
+    return false if last_run_at == last_success_at
 
     last_success_at < ERROR_DELAY_DAYS.days.ago
   end
