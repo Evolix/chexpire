@@ -51,46 +51,6 @@ class CheckTest < ActiveSupport::TestCase
     assert_nil notification.sent_at
   end
 
-  test "in_error? for recently added" do
-    check = build(:check, created_at: 1.day.ago)
-    refute check.in_error?
-
-    check = build(:check, created_at: 1.day.ago, last_run_at: 3.minutes.ago)
-    refute check.in_error?
-
-    check = build(:check, created_at: 1.day.ago, last_success_at: 1.hour.ago)
-    refute check.in_error?
-  end
-
-  test "in_error? for never success check, with at least 1 run" do
-    check = build(:check, created_at: 3.weeks.ago, last_run_at: 1.day.ago)
-    assert check.in_error?
-
-    check = build(:check, created_at: 3.weeks.ago, last_run_at: 4.days.ago)
-    assert check.in_error?
-  end
-
-  test "in_error? ignore check without run" do
-    check = build(:check, created_at: 3.weeks.ago)
-    refute check.in_error?
-  end
-
-  test "in_error? for last success a few days ago" do
-    check = build(:check, created_at: 3.weeks.ago,
-                          last_success_at: 10.days.ago, last_run_at: 1.day.ago)
-    assert check.in_error?
-
-    check = build(:check, created_at: 3.weeks.ago,
-                          last_success_at: 1.days.ago, last_run_at: 1.day.ago)
-    refute check.in_error?
-  end
-
-  test "in_error? when last check occured a few days ago without error" do
-    check = build(:check, created_at: 3.weeks.ago,
-                          last_success_at: 10.days.ago, last_run_at: 10.days.ago)
-    refute check.in_error?
-  end
-
   test "days_from_last_success without any success" do
     check = build(:check)
     assert_nil check.days_from_last_success

@@ -6,7 +6,9 @@ class ChecksController < ApplicationController
 
   has_scope :kind
   has_scope :by_domain
-  has_scope :recurrent_failures, type: :boolean
+  has_scope :recurrent_failures, type: :boolean do |_controller, scope, _value|
+    scope.consecutive_failures(Rails.configuration.chexpire.interface.consecutive_failures_as_error)
+  end
 
   def index
     @checks = apply_scopes(policy_scope(Check)).order(Hash[*current_sort]).page(params[:page])
