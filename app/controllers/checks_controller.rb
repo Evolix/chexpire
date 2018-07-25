@@ -81,8 +81,9 @@ class ChecksController < ApplicationController
   end
 
   def check_params(*others)
-    params.require(:check).permit(:domain, :domain_created_at, :comment, :vendor, *others,
-      notifications_attributes: [:id, :channel, :recipient, :interval])
+    params.require(:check)
+          .permit(:domain, :domain_created_at, :comment, :vendor, :round_robin, *others,
+                  notifications_attributes: [:id, :channel, :recipient, :interval])
   end
 
   def build_empty_notification
