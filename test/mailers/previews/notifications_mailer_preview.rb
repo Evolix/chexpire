@@ -1,3 +1,6 @@
+# Copyright (C) 2018 Colin Darie <colin@darie.eu>, 2018 Evolix <info@evolix.fr>
+# License: GNU AGPL-3+ (see full text in LICENSE file)
+
 # Preview all emails at http://localhost:3000/rails/mailers/notifications_mailer
 class NotificationsMailerPreview < ActionMailer::Preview
   # Preview this email at http://localhost:3000/rails/mailers/notifications_mailer/domain_expires_soon

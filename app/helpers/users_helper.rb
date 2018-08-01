@@ -1,3 +1,6 @@
+# Copyright (C) 2018 Colin Darie <colin@darie.eu>, 2018 Evolix <info@evolix.fr>
+# License: GNU AGPL-3+ (see full text in LICENSE file)
+
 module UsersHelper
   # Inject a devise template inside a same container
   # while translation form keys are still valid
