@@ -33,6 +33,7 @@ class WhoisSyncJobTest < ActiveJob::TestCase
     assert_nil check.last_success_at
     assert_equal original_updated_at, check.updated_at
     assert check.active?
+    assert_equal 1, check.consecutive_failures
   end
 
   test "should ignore not found (removed) checks" do
@@ -50,9 +51,12 @@ class WhoisSyncJobTest < ActiveJob::TestCase
       end
     end
 
+    check.reload
+
     assert_equal 1, check.logs.count
     assert_match(/undefined method \W+valid\?/, check.logs.last.error)
     assert check.logs.last.failed?
+    assert_equal 1, check.consecutive_failures
   end
 
   test "disable check when whois responds domain not found" do
@@ -68,6 +72,7 @@ class WhoisSyncJobTest < ActiveJob::TestCase
     refute check.active?
     assert_just_now check.last_run_at
     assert_nil check.last_success_at
+    assert_equal 1, check.consecutive_failures
   end
 
   test "default logger is CheckLogger" do
@@ -78,6 +83,19 @@ class WhoisSyncJobTest < ActiveJob::TestCase
     end
 
     assert_equal 1, check.logs.count
+  end
+
+  test "should reset consecutive failures with a valid response" do
+    domain = "domain.fr"
+    check = create(:check, :nil_dates, domain: domain, consecutive_failures: 1)
+
+    mock_system_command("whois", domain, stdout: whois_response(domain)) do
+      WhoisSyncJob.perform_now(check.id)
+    end
+
+    check.reload
+
+    assert_equal 0, check.consecutive_failures
   end
 
   private

@@ -38,6 +38,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'open4'
 gem 'naught'
+gem 'hashie'
 gem 'whenever', require: false
 
 

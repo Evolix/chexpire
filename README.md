@@ -62,5 +62,5 @@ Finally, you have to write the way the checks will be notified to theirs users. 
 - expires_soon
 - recurrent_failures
 
-First, add your checks kinds and these notifications definitions in the base class for notifier: `app/services/notifier/base.rb` : in the notify method, for your new check kind, a specific method will be called in each notifier. For example, in the email channel, a specific mailer action is called for each couple (check kin, notification kind).
+First, add your checks kinds and these notifications definitions in the base class for notifier: `app/services/notifier/channels/base.rb` : in the notify method, for your new check kind, a specific method will be called in each notifier. For example, in the email channel, a specific mailer action is called for each couple (check kin, notification kind).
 Then, in each notifier class, implements the details of this method. If you want to ignore a notification for a given channel, simply write the method and do nothing.

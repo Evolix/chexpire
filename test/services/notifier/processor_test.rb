@@ -22,8 +22,10 @@ module Notifier
     end
 
     test "#process_recurrent_failures respects the interval configuration between sends" do
-      create_list(:notification, 3, :email, check: build(:check, :last_runs_failed))
-      test_interval_respected(:process_recurrent_failures, 3)
+      create_list(:check, 3, :last_runs_failed)
+      test_interval_respected(:process_recurrent_failures, 3) do |configuration|
+        configuration.expect(:consecutive_failures, 4.2)
+      end
     end
 
     private
@@ -34,6 +36,9 @@ module Notifier
       count_expected.times do
         configuration.expect(:interval, 0.000001)
       end
+
+      yield configuration if block_given?
+
       processor = Processor.new(configuration)
 
       mock = Minitest::Mock.new

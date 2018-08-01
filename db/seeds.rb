@@ -43,6 +43,7 @@ check_chexpire_org_error = Check.create!(
   vendor: "Some random registrar",
   last_run_at: 20.minutes.ago,
   created_at: 3.weeks.ago,
+  consecutive_failures: 4,
 )
 
 ssl_check_chexpire_org = Check.create!(
@@ -67,6 +68,7 @@ ssl_check_chexpire_org_error = Check.create!(
   vendor: "Some random registrar",
   last_run_at: 20.minutes.ago,
   last_success_at: 4.days.ago,
+  consecutive_failures: 8,
 )
 
 

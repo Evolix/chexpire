@@ -28,14 +28,14 @@ module CheckProcessor
   def resolve_expire_long_term
     scope
       .where("DATE(domain_expires_at) >= DATE_ADD(CURDATE(), INTERVAL ? DAY)",
-            configuration.long_term)
+            configuration.long_term_interval)
       .where("DATEDIFF(domain_expires_at, CURDATE()) MOD ? = 0",
             configuration.long_term_frequency)
   end
 
   def resolve_expire_short_term
     scope.where("DATE(domain_expires_at) < DATE_ADD(CURDATE(), INTERVAL ? DAY)",
-               configuration.long_term)
+               configuration.long_term_interval)
   end
 
   def resolve_unknown_expiry
@@ -71,12 +71,6 @@ module CheckProcessor
   private
 
   def default_configuration
-    config = Rails.configuration.chexpire.fetch(configuration_key, {})
-
-    OpenStruct.new(
-      interval: config.fetch("interval") { 0.00 },
-      long_term: config.fetch("long_term") { 60 },
-      long_term_frequency: config.fetch("long_term_frequency") { 10 },
-    )
+    Rails.configuration.chexpire.fetch(configuration_key)
   end
 end

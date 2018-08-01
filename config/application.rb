@@ -32,6 +32,12 @@ module Chexpire
 
     config.time_zone = "Europe/Paris"
 
-    config.chexpire = config_for(:chexpire)
+    unless Rails.root.join("config", "chexpire.yml").readable?
+      fail "Missing Chexpire configuration file.
+            You have to create the config/chexpire.yml file and set at least the required values.
+            Look at config/chexpire.defaults.yml and INSTALL.md for more information"
+    end
+
+    config.chexpire = Hashie::Mash.new(config_for(:"chexpire.defaults").deep_merge(config_for(:chexpire)))
   end
 end

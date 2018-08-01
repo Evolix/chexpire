@@ -45,11 +45,13 @@ To use elliptic curve SSH keys, we need to have `libsodium` and its headers.
 
 ## Rails configuration
 
-After cloning this repository, you have to create and edit a few files from example files, for your local development configuration :
+After cloning this repository, you have to create and edit a few files from example or defaults files, for your local development configuration :
 
 - `config/database.yml`
-- `config/chexpire.yml`
 - `config/secrets.yml`
+- `config/chexpire.yml` : set at least the `mailer_default_from` and `host` variables. See other configuration overridable in `config/chexpire.defaults.yml`.
+
+Theses files will be ignored by git.
 
 ## Database
 

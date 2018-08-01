@@ -7,6 +7,6 @@
 </p>
 <br />
 
-<%= render "check_comment_vendor" %>
+<%= render "check_comment_vendor", check: @check %>
 
 <%= render "footer_expires_soon", interval: @notification.interval, check: @check %>

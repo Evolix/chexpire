@@ -2,20 +2,21 @@
 #
 # Table name: checks
 #
-#  id                :bigint(8)        not null, primary key
-#  active            :boolean          default(TRUE), not null
-#  comment           :string(255)
-#  domain            :string(255)      not null
-#  domain_created_at :datetime
-#  domain_expires_at :datetime
-#  domain_updated_at :datetime
-#  kind              :integer          not null
-#  last_run_at       :datetime
-#  last_success_at   :datetime
-#  vendor            :string(255)
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  user_id           :bigint(8)
+#  id                   :bigint(8)        not null, primary key
+#  active               :boolean          default(TRUE), not null
+#  comment              :string(255)
+#  consecutive_failures :integer          default(0), not null
+#  domain               :string(255)      not null
+#  domain_created_at    :datetime
+#  domain_expires_at    :datetime
+#  domain_updated_at    :datetime
+#  kind                 :integer          not null
+#  last_run_at          :datetime
+#  last_success_at      :datetime
+#  vendor               :string(255)
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  user_id              :bigint(8)
 #
 # Indexes
 #
@@ -27,8 +28,6 @@
 #
 
 class Check < ApplicationRecord
-  ERROR_DELAY_DAYS = 3
-
   belongs_to :user
   has_many :logs, class_name: "CheckLog", dependent: :destroy
   has_many :notifications, validate: true, dependent: :destroy
@@ -51,6 +50,7 @@ class Check < ApplicationRecord
   validates :comment, length: { maximum: 255 }
   validates :vendor, length: { maximum: 255 }
 
+  before_save :reset_consecutive_failures
   after_update :reset_notifications
   after_save :enqueue_sync
 
@@ -62,28 +62,23 @@ class Check < ApplicationRecord
 
   scope :kind, ->(kind) { where(kind: kind) }
   scope :by_domain, ->(domain) { where("domain LIKE ?", "%#{domain}%") }
-  scope :recurrent_failures, -> {
-    interval = "INTERVAL #{ERROR_DELAY_DAYS} DAY"
-    where("last_run_at IS NOT NULL AND created_at <= DATE_SUB(NOW(), #{interval})")
-      .where("last_success_at IS NULL OR last_success_at <= DATE_SUB(last_run_at, #{interval})")
+  scope :consecutive_failures, ->(consecutive) {
+    where("consecutive_failures >= ?", consecutive)
   }
 
   def self.default_sort
     [:domain_expires_at, :asc]
   end
 
-  def in_error?
-    return false if created_at > ERROR_DELAY_DAYS.days.ago
-    return false if last_run_at.nil?
-    return true if last_success_at.nil?
-
-    last_success_at < ERROR_DELAY_DAYS.days.ago
-  end
-
   def days_from_last_success
     return unless last_success_at.present?
 
     (Date.today - last_success_at.to_date).to_i
+  end
+
+  def increment_consecutive_failures!
+    self.consecutive_failures += 1
+    save!
   end
 
   private
@@ -107,5 +102,12 @@ class Check < ApplicationRecord
     return unless (saved_changes.keys & %w[domain domain_expires_at]).present?
 
     notifications.each(&:reset!)
+  end
+
+  def reset_consecutive_failures
+    return unless last_success_at_changed?
+    return if consecutive_failures_changed?
+
+    self.consecutive_failures = 0
   end
 end

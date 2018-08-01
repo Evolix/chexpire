@@ -40,5 +40,9 @@ FactoryBot.define do
     notifications_enabled true
     locale "en"
     tos_accepted true
+
+    trait :fr do
+      locale "fr"
+    end
   end
 end

@@ -29,7 +29,12 @@ module ChecksHelper
     end
   end
 
-  def check_in_error(check)
+  def check_in_error?(check)
+    check.consecutive_failures >=
+      Rails.configuration.chexpire.interface.consecutive_failures_as_error
+  end
+
+  def check_error(check)
     content_tag(
       :span,
       Octicons::Octicon.new("alert", class: "ml-1").to_svg.html_safe,

@@ -75,18 +75,19 @@ fr:
         one: "Le domaine %{domain} expire DEMAIN !"
         other: "Le domaine %{domain} expire dans %{count} jours"
 
-    domain_recurrent_failures:
-      subject: "Erreurs dans la vérification d'expiration du domaine %{domain}"
+    recurrent_failures:
+      subject:
+        one: "Erreurs de vérification d'expiration pour %{domain}"
+        other: "%{count} vérifications en erreur"
+      header:
+        one: "Nous avons rencontré des erreurs pendant l'exécution d'une de vos vérifications :"
+        other: "Nous avons rencontré des erreurs pendant l'exécution des %{count} vérifications suivantes :"
 
     ssl_expires_soon:
       subject:
         zero: "Le certificat SSL pour %{domain} expire AUJOURD'HUI !"
         one: "Le certificat SSL pour %{domain} expire DEMAIN !"
         other: "Le certificat SSL pour %{domain} expire dans %{count} jours"
-
-    ssl_recurrent_failures:
-      subject: "Erreurs dans la vérification d'expiration du certificat SSL %{domain}"
-
 
   shared:
     locales:

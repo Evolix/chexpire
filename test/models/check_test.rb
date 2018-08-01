@@ -2,20 +2,21 @@
 #
 # Table name: checks
 #
-#  id                :bigint(8)        not null, primary key
-#  active            :boolean          default(TRUE), not null
-#  comment           :string(255)
-#  domain            :string(255)      not null
-#  domain_created_at :datetime
-#  domain_expires_at :datetime
-#  domain_updated_at :datetime
-#  kind              :integer          not null
-#  last_run_at       :datetime
-#  last_success_at   :datetime
-#  vendor            :string(255)
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  user_id           :bigint(8)
+#  id                   :bigint(8)        not null, primary key
+#  active               :boolean          default(TRUE), not null
+#  comment              :string(255)
+#  consecutive_failures :integer          default(0), not null
+#  domain               :string(255)      not null
+#  domain_created_at    :datetime
+#  domain_expires_at    :datetime
+#  domain_updated_at    :datetime
+#  kind                 :integer          not null
+#  last_run_at          :datetime
+#  last_success_at      :datetime
+#  vendor               :string(255)
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  user_id              :bigint(8)
 #
 # Indexes
 #
@@ -48,40 +49,6 @@ class CheckTest < ActiveSupport::TestCase
 
     assert notification.pending?
     assert_nil notification.sent_at
-  end
-
-  test "in_error? for recently added" do
-    check = build(:check, created_at: 1.day.ago)
-    refute check.in_error?
-
-    check = build(:check, created_at: 1.day.ago, last_run_at: 3.minutes.ago)
-    refute check.in_error?
-
-    check = build(:check, created_at: 1.day.ago, last_success_at: 1.hour.ago)
-    refute check.in_error?
-  end
-
-  test "in_error? for never success check, with at least 1 run" do
-    check = build(:check, created_at: 3.weeks.ago, last_run_at: 1.day.ago)
-    assert check.in_error?
-
-    check = build(:check, created_at: 3.weeks.ago, last_run_at: 4.days.ago)
-    assert check.in_error?
-  end
-
-  test "in_error? ignore check without run" do
-    check = build(:check, created_at: 3.weeks.ago)
-    refute check.in_error?
-  end
-
-  test "in_error? for last success a few days ago" do
-    check = build(:check, created_at: 3.weeks.ago,
-                          last_success_at: 10.days.ago, last_run_at: 1.day.ago)
-    assert check.in_error?
-
-    check = build(:check, created_at: 3.weeks.ago,
-                          last_success_at: 1.days.ago, last_run_at: 1.day.ago)
-    refute check.in_error?
   end
 
   test "days_from_last_success without any success" do

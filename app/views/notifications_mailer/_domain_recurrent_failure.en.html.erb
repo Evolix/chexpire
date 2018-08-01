@@ -1,0 +1,23 @@
+<p>
+  <strong>Domain: <%= check.domain %></strong> (<%= check.consecutive_failures %> consecutive errors)
+
+  <br />
+
+  <%- if check.domain_expires_at.present? %>
+  Last known expiry date : <%= format_utc(check.domain_expires_at) %>.
+  <br />
+  <% end %>
+
+  <%- if check.last_success_at.present? %>
+  Last successful check occured : <%= format_utc(check.last_success_at) %>.
+  <br />
+  <% end %>
+</p>
+
+
+<p>If you have deleted your domain or have not renewed it, please disable
+or delete the check by following this link: <br />
+<%= edit_check_url(check) %>
+</p>
+
+<%= render "check_comment_vendor", check: check %>

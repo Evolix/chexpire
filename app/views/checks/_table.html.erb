@@ -26,7 +26,7 @@
             <span class="badge badge-info"><%= t(".kind_labels.#{check.kind}") %></span>
           </td>
           <td>
-            <%= check_in_error(check) if check.in_error? %>
+            <%= check_error(check) if check_in_error?(check) %>
             <strong><%= check.domain %></strong>
           </td>
           <td>
