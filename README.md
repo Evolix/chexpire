@@ -49,7 +49,7 @@ Looks into the `CheckProcessor` for available resolvers methods or write your ow
 
 ### Configuration
 
-Each check kind can have configuration. Looks for other checks configuration for examples, such as `checks_domain` configuration in `config/chexpire.example.yml` file.
+Each check kind can have configuration. Looks for other checks configuration for examples, such as `checks_domain` configuration in `config/chexpire.defaults.yml` file.
 
 ### Schedule a task
 
@@ -57,10 +57,21 @@ Write a task in `lib/tasks/checks.rake` under the namespaces `checks:sync_dates`
 
 ### Notifier
 
-Finally, you have to write the way the checks will be notified to theirs users. For each notifier channel (email, …) you need to write two notifications :
+Finally, you have to write the way the checks will be notified to theirs users. For each notifier channel (email, …) you need to write the way you'll notify the users when theirs check expiry dates matches their Notifications records.
 
-- expires_soon
-- recurrent_failures
 
-First, add your checks kinds and these notifications definitions in the base class for notifier: `app/services/notifier/channels/base.rb` : in the notify method, for your new check kind, a specific method will be called in each notifier. For example, in the email channel, a specific mailer action is called for each couple (check kin, notification kind).
-Then, in each notifier class, implements the details of this method. If you want to ignore a notification for a given channel, simply write the method and do nothing.
+First, add your checks kinds and these notifications definitions in the base class for notifier: `app/services/notifier/channels/base.rb` : in the notify method, for your new check kind, a specific method will be called in each notifier. For example, in the email channel, a specific mailer action is called for the check kind (domain, ssl…)
+Then, in each notifier class, implements the details of this method. If you want to ignore a notification for a given channel, simply write the method and do nothing, or use the `supports?` method and returns false.
+
+For the email channel you'll have to write a new mailer action with these views. Take the SSL  kind files as an example. Preview your mailer in a browser by editing `test/mailers/previews/notifications_mailer_preview.rb` file like other kinds and follow the comments in this file.
+
+#### Handle recurrent failures
+
+When our execution system fails a given number of consecutive times, the user will be notified. This is a different workflow from the expiration notifications :
+- this is independant from the notifications configured from the user
+- the user is notified to the owner of the check at the email address of the account (`User#email`)
+- all checks in error for a same user are sent in a single email
+
+With a new check kind, you only need to tweek the mailer views to supports their new check kind. Follow `app/views/recurrent_failures.{fr,en}.{text.html}.erb` views and create similar partial of current kinds like `_ssl_recurrent_failures.*` for your new kind.
+
+To preview the email, you have to enhance the seeds with a few checks of your new kind, and open http://localhost:3000/rails/mailers/notifications_mailer/recurrent_failures .
