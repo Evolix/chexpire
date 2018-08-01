@@ -44,6 +44,8 @@ Layout/EndAlignment:
 
 Metrics/LineLength:
   Max: 100
+  IgnoredPatterns:
+    - '# Copyright'
 
 Style/BlockDelimiters:
   EnforcedStyle: semantic
