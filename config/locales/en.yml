@@ -40,8 +40,13 @@ en:
         one: "Domain %{domain} expires TOMORROW!"
         other: "Domain %{domain} expires in %{count} days"
 
-    domain_recurrent_failures:
-      subject: "Recurrent failures in %{domain} domain expiry check"
+    recurrent_failures:
+      subject:
+        one: "Recurrent failures for %{domain} expiry check"
+        other: "%{count} checks in error"
+      header:
+        one: "We had recurrent failures during excution of the following check:"
+        other: "We had recurrent failures during excution of the %{count} following checks:"
 
     ssl_expires_soon:
       subject:

@@ -1,0 +1,22 @@
+<p>
+  Salut,
+  <br />
+  <br />
+
+  <%= t(".header", count: @checks.count) %>
+</p>
+
+
+<%- @checks.each_with_index do |check, index| %>
+  <%- if index > 0 -%>
+    <br />
+    <br />
+    <br />
+  <%- end -%>
+
+  <%= render "#{check.kind}_recurrent_failure", check: check %>
+<%- end -%>
+
+<br />
+<br />
+<%= render "footer_recurrent_failures" %>

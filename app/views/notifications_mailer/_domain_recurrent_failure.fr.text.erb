@@ -1,0 +1,15 @@
+Domaine: <%= check.domain %> (<%= check.consecutive_failures %> erreurs consécutives)
+<%= "-" * (check.domain.length + "Domaine: ".length) %>
+
+<%- if check.domain_expires_at.present? %>
+Dernière date d'expiration connue : <%= format_utc(check.domain_expires_at) %>.
+<% end %>
+<%- if check.last_success_at.present? %>
+Dernière vérification réussie : <%= format_utc(check.last_success_at) %>.
+<% end %>
+
+Si vous avez supprimé le domaine ou ne l'avez pas renouvellé,
+merci de désactiver la vérification associée, avec ce lien :
+<%= edit_check_url(check) %>
+
+<%= render "check_comment_vendor", check: check %>

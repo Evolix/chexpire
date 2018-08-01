@@ -1,0 +1,20 @@
+<p>
+  <strong>SSL: <%= check.domain %></strong> (<%= check.consecutive_failures %> erreurs consécutives)
+  <br />
+
+  <%- if check.domain_expires_at.present? %>
+    Dernière date d'expiration connue : <%= format_utc(check.domain_expires_at) %>.
+    <br />
+  <% end %>
+
+  <%- if check.last_success_at.present? %>
+    Dernière vérification réussie : <%= format_utc(check.last_success_at) %>.
+  <% end %>
+</p>
+
+<p>
+  S'il n'y a plus de terminaison SSL pour ce site ou s'il n'existe plus,
+  merci de désactiver la vérification associée, avec ce lien :<br />
+<%= link_to nil, edit_check_url(check) %>
+</p>
+<%= render "check_comment_vendor", check: check %>

@@ -1,11 +1,9 @@
-<%- if @check.comment.present? -%>
+<%- if check.comment.present? -%>
 You wrote the following comment with this domain:
 
-    <%= @check.comment -%>
+    <%= check.comment -%>
 <%- end -%>
 
-
-
-<%- if @check.vendor.present? -%>
-Vendor: <%= @check.vendor %>
+<%- if check.vendor.present? -%>
+Vendor: <%= check.vendor %>
 <% end %>

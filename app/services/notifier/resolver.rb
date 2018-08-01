@@ -1,18 +1,18 @@
 module Notifier
   class Resolver
-    def resolve_expires_soon
+    def notifications_expiring_soon
       scope
         .where("checks.domain_expires_at >= CURDATE()")
         .where("DATE(checks.domain_expires_at)
           <= DATE_ADD(CURDATE(), INTERVAL notifications.interval DAY)")
     end
 
-    def resolve_check_failed
-      # Only gets here the checks having its last run in error
-      # Logical rules are in plain ruby inside processor
-      scope
-        .includes(check: :logs)
-        .merge(Check.last_run_failed)
+    def checks_recurrent_failures(min_consecutive)
+      Check
+        .active
+        .consecutive_failures(min_consecutive)
+        .includes(:user)
+        .where.not(user: ignore_users)
     end
 
     private

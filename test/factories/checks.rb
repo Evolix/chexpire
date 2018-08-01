@@ -65,7 +65,7 @@ FactoryBot.define do
     end
 
     trait :last_runs_failed do
-      consecutive_failures 4
+      consecutive_failures 5
       last_run_at 3.days.ago - 90.minutes
       last_success_at 7.days.ago - 2.hours
     end

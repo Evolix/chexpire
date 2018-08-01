@@ -16,16 +16,19 @@ module Notifier
     end
 
     def process_expires_soon
-      resolver.resolve_expires_soon.find_each do |notification|
-        notifier_channel_for(notification).notify(:expires_soon, notification)
+      resolver.notifications_expiring_soon.find_each do |notification|
+        notifier_channel_for(notification).notify(notification)
 
         sleep configuration.interval
       end
     end
 
+    # Notify checks in error by email to the check owner adress email.
+    # A single email contains all checks for a same user.
     def process_recurrent_failures
-      resolver.resolve_check_failed(configuration.consecutive_failures).find_each do |notification|
-        notifier_channel_for(notification).notify(:recurrent_failures, notification)
+      failed_checks = resolver.checks_recurrent_failures(configuration.consecutive_failures)
+      failed_checks.group_by(&:user).each_pair do |user, checks|
+        channels[:email].notify_recurrent_failures(user, checks)
 
         sleep configuration.interval
       end
@@ -34,12 +37,7 @@ module Notifier
     private
 
     def default_configuration
-      config = Rails.configuration.chexpire.fetch("notifier", {})
-
-      Configuration.new(
-        config.fetch("interval") { 0.00 },
-        config.fetch("consecutive_failures") { 3 },
-      )
+      Rails.configuration.chexpire.fetch("notifier")
     end
 
     def notifier_channel_for(notification)

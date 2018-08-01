@@ -22,9 +22,9 @@ module Notifier
     end
 
     test "#process_recurrent_failures respects the interval configuration between sends" do
-      create_list(:notification, 3, :email, check: build(:check, :last_runs_failed))
+      create_list(:check, 3, :last_runs_failed)
       test_interval_respected(:process_recurrent_failures, 3) do |configuration|
-        configuration.expect(:consecutive_failures, 4)
+        configuration.expect(:consecutive_failures, 4.2)
       end
     end
 
