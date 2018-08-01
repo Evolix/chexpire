@@ -2,20 +2,21 @@
 #
 # Table name: checks
 #
-#  id                :bigint(8)        not null, primary key
-#  active            :boolean          default(TRUE), not null
-#  comment           :string(255)
-#  domain            :string(255)      not null
-#  domain_created_at :datetime
-#  domain_expires_at :datetime
-#  domain_updated_at :datetime
-#  kind              :integer          not null
-#  last_run_at       :datetime
-#  last_success_at   :datetime
-#  vendor            :string(255)
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  user_id           :bigint(8)
+#  id                   :bigint(8)        not null, primary key
+#  active               :boolean          default(TRUE), not null
+#  comment              :string(255)
+#  consecutive_failures :integer          default(0), not null
+#  domain               :string(255)      not null
+#  domain_created_at    :datetime
+#  domain_expires_at    :datetime
+#  domain_updated_at    :datetime
+#  kind                 :integer          not null
+#  last_run_at          :datetime
+#  last_success_at      :datetime
+#  vendor               :string(255)
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  user_id              :bigint(8)
 #
 # Indexes
 #
@@ -39,6 +40,7 @@ FactoryBot.define do
     comment nil
     last_run_at nil
     last_success_at nil
+    consecutive_failures 0
 
     trait :domain do
       kind :domain
@@ -63,6 +65,7 @@ FactoryBot.define do
     end
 
     trait :last_runs_failed do
+      consecutive_failures 4
       last_run_at 3.days.ago - 90.minutes
       last_success_at 7.days.ago - 2.hours
     end
