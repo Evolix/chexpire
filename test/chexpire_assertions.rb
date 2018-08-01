@@ -1,3 +1,6 @@
+# Copyright (C) 2018 Colin Darie <colin@darie.eu>, 2018 Evolix <info@evolix.fr>
+# License: GNU AGPL-3+ (see full text in LICENSE file)
+
 module ChexpireAssertions
   def assert_just_now(expected)
     assert_in_delta expected.to_i, Time.now.to_i, 1.0
