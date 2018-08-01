@@ -109,8 +109,8 @@ class CheckProcessorTest < ActiveSupport::TestCase
     create_list(:check, 3, :expires_next_week)
 
     configuration = Minitest::Mock.new
-    2.times do configuration.expect(:long_term, 60) end
-    configuration.expect(:long_term_frequency, 10)
+    2.times do configuration.expect(:long_term_interval, 300) end
+    configuration.expect(:long_term_frequency, 4)
 
     3.times do
       configuration.expect(:interval, 0.000001)

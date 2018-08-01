@@ -1,5 +1,5 @@
 module Notifier
-  Configuration = Struct.new(:interval, :failure_days)
+  Configuration = Struct.new(:interval, :consecutive_failures)
 
   class Processor
     attr_reader :configuration
@@ -24,9 +24,7 @@ module Notifier
     end
 
     def process_recurrent_failures
-      resolver.resolve_check_failed.find_each do |notification|
-        next unless should_notify_for_recurrent_failures?(notification)
-
+      resolver.resolve_check_failed(configuration.consecutive_failures).find_each do |notification|
         notifier_channel_for(notification).notify(:recurrent_failures, notification)
 
         sleep configuration.interval
@@ -40,17 +38,12 @@ module Notifier
 
       Configuration.new(
         config.fetch("interval") { 0.00 },
-        config.fetch("failures_days") { 3 },
+        config.fetch("consecutive_failures") { 3 },
       )
     end
 
     def notifier_channel_for(notification)
       channels.fetch(notification.channel.to_sym)
-    end
-
-    def should_notify_for_recurrent_failures?(_notification)
-      true
-      # TODO: dependent of logs consecutive failures
     end
   end
 end
