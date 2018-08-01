@@ -1,8 +1,11 @@
 class CheckLogger
+  attr_reader :check
   attr_reader :check_log
 
   def initialize(check)
+    @check = check
     @check_log = CheckLog.create!(check: check, status: :pending)
+    @error_logged = false
   end
 
   def log(event, message)
@@ -12,7 +15,13 @@ class CheckLogger
     when :parsed_response
       log_parsed_response(message)
     when :parser_error, :service_error, :standard_error
+      # avoid multiple logging & wrong incrementation of consecutive failures
+      # (because a Service exception could be re-raised from a Job)
+      return if error_logged?
+
       log_error(message)
+
+      @error_logged = true
     end
   end
 
@@ -41,7 +50,12 @@ class CheckLogger
   end
 
   def log_error(exception)
+    check.increment_consecutive_failures!
     check_log.error = [exception.message, exception.backtrace].join("\n")
     check_log.failed!
+  end
+
+  def error_logged?
+    @error_logged
   end
 end

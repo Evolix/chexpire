@@ -52,6 +52,7 @@ class Check < ApplicationRecord
   validates :comment, length: { maximum: 255 }
   validates :vendor, length: { maximum: 255 }
 
+  before_save :reset_consecutive_failures
   after_update :reset_notifications
   after_save :enqueue_sync
 
@@ -88,6 +89,11 @@ class Check < ApplicationRecord
     (Date.today - last_success_at.to_date).to_i
   end
 
+  def increment_consecutive_failures!
+    self.consecutive_failures += 1
+    save!
+  end
+
   private
 
   def domain_created_at_past
@@ -109,5 +115,12 @@ class Check < ApplicationRecord
     return unless (saved_changes.keys & %w[domain domain_expires_at]).present?
 
     notifications.each(&:reset!)
+  end
+
+  def reset_consecutive_failures
+    return unless last_success_at_changed?
+    return if consecutive_failures_changed?
+
+    self.consecutive_failures = 0
   end
 end

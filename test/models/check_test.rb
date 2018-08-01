@@ -87,7 +87,7 @@ class CheckTest < ActiveSupport::TestCase
 
   test "in_error? when last check occured a few days ago without error" do
     check = build(:check, created_at: 3.weeks.ago,
-      last_success_at: 10.days.ago, last_run_at: 10.days.ago)
+                          last_success_at: 10.days.ago, last_run_at: 10.days.ago)
     refute check.in_error?
   end
 
