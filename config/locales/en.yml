@@ -72,11 +72,20 @@ en:
       sign_in: "Sign in"
       sign_out: "Sign out"
       profile: "Profile"
+    home_header: 
+      welcome: "Welcome on Chexpire"
+      intro: "With Chexpire, you'll never forget to renew a domain name or SSL certificate."
+    
 
   pages:
+    
     home:
-      welcome: "Welcome on Chexpire"
-      intro: "With Chexpire, you'll never forget to renew a domain name or SSL certificate Chexpire."
+      why: "The benefits of Chexpire" 
+      description: "Chexpire is an Open Source Software that checks domain name and SSL Certificates expirations. You've got a lot of domain name with differents Domain Registrars? You want a centralization of all the expirations dates? You need customised notifications? Chexpire is for you!"
+      centralization: "Easy centralization of expiry dates"
+      centralization-details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Collige omnia, quae soletis: Praesidium amicorum. Duo Reges: constructio interrete. Bonum valitudo: miser morbus. Quae duo sunt, unum facit. Sic enim censent, oportunitatis esse beate vivere. Beatus sibi videtur esse moriens. Aliter homines, aliter philosophos loqui putas oportere?"
+      customised: "Custom notification"
+      customised-details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Collige omnia, quae soletis: Praesidium amicorum. Duo Reges: constructio interrete. Bonum valitudo: miser morbus. Quae duo sunt, unum facit. Sic enim censent, oportunitatis esse beate vivere. Beatus sibi videtur esse moriens. Aliter homines, aliter philosophos loqui putas oportere?"
 
   checks:
     index:

@@ -1,0 +1,14 @@
+<div class="container-fluid header">
+    <div class="d-flex justify-content-center">
+        <div class="d-flex flex-wrap justify-content-center flex-column align-items-center">
+            <div class="d-flex flex-wrap justify-content-center flex-column align-items-center">
+                <h1><%= t(".welcome") %></h1>
+                <p><%= t(".intro") %></p>
+            </div>
+            <div class="d-flex flex-wrap justify-content-around align-items-center">
+                <%= link_to "Learn More", root_path(@root, anchor: "description"), :class => "btn btn-primary" %>
+                <%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-tertiary" %>
+            </div>
+        </div>
+    </div>
+</div>

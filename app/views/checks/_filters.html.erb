@@ -7,13 +7,13 @@
       <% Check.kinds.keys.map(&:to_sym).each do |kind_name| %>
         <%= link_to t(".kind_#{kind_name}"),
             checks_path(check_button_criterias(kind: kind_name)),
-            class: check_button_scope_class(kind: kind_name) %>
+            class: check_button_scope_class(kind: kind_name) + " " + kind_name.to_s %>
       <% end %>
     </div>
 
     <%= link_to t(".with_error"),
         checks_path(check_button_criterias(recurrent_failures: true)),
-        class: check_button_scope_class(recurrent_failures: true) %>
+        class: check_button_scope_class(recurrent_failures: true) + " with_error" %>
   </div>
 
   <div class="col-md-6 mb-3">
