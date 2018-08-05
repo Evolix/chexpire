@@ -124,8 +124,8 @@ fr:
       no_matching_check: "Aucune vérification ne correspond à vos critères."
       no_check_yet_html: |
           Vous n'avez pas encore créé de vérification.
-          Vous pouvez en ajouter pour un <a href="%{new_domain_path}">domaine</a>
-          ou un <a href="%{new_ssl_path}">SSL</a> !
+          Vous pouvez en ajouter pour un <a href="%{new_domain_path}">nom de domaine</a>
+          ou un <a href="%{new_ssl_path}">certificat SSL</a>&nbsp;!
 
     new:
       title: Nouvelle vérification

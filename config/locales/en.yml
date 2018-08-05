@@ -93,8 +93,8 @@ en:
       no_matching_check: "No checks match your filters."
       no_check_yet_html: |
           You have not set up a check yet.
-          Please add a <a href="%{new_domain_path}">domain</a>
-          or a <a href="%{new_ssl_path}">ssl</a> !
+          Please add a <a href="%{new_domain_path}">domain name</a>
+          or a <a href="%{new_ssl_path}">SSL certificate</a>!
 
     new:
       title: New check
