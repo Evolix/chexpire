@@ -10,6 +10,12 @@ fr:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Merci de vérifier les erreurs ci-dessous :"
+    labels:
+      defaults:
+        interval: "Délai (en jours)"
+    placeholders:
+      defaults:
+        interval: 30
     # Examples
     # labels:
     #   defaults:
