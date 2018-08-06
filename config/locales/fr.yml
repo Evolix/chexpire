@@ -66,7 +66,7 @@ fr:
   simple_form:
     placeholders:
       notifications:
-        recipient: john@example.org
+        recipient: jean@example.com
 
   flashes:
     user_not_authorized: "Vous n'êtes pas autorisé•e à accéder à cette ressouce."
@@ -105,18 +105,18 @@ fr:
       sign_out: "Déconnexion"
       profile: "Profil"
     home_header: 
-      welcome: "Bienvenue sur Chexpire"
-      intro: "Grâce à Chexpire, vous n'oublierez plus jamais de renouveler un nom de domaine ou un certificat SSL."
+      welcome: "Chexpire"
+      intro: "vous n'oublierez plus jamais de renouveler un nom de domaine ou un certificat SSL."
 
   pages:
     
     home:
-      why: "Les avantages de Chexpire" 
-      description: "Chexpire est un Logiciel Libre qui vérifie les expirations des noms de domaines et des certificats SSL. Vous avez beaucoup de noms de domaines avec des Registrars différents ? Vous souhaitez une centralisation des dates d'expirations ? Vous avez besoin de notifications sur mesure ? Chexpire est fait pour vous !"
-      centralization: "Centralisez simplement les dates d'expiration"
-      centralization-details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Collige omnia, quae soletis: Praesidium amicorum. Duo Reges: constructio interrete. Bonum valitudo: miser morbus. Quae duo sunt, unum facit. Sic enim censent, oportunitatis esse beate vivere. Beatus sibi videtur esse moriens. Aliter homines, aliter philosophos loqui putas oportere?"
-      customised: "Paramétrez vos notifications"
-      customised-details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Collige omnia, quae soletis: Praesidium amicorum. Duo Reges: constructio interrete. Bonum valitudo: miser morbus. Quae duo sunt, unum facit. Sic enim censent, oportunitatis esse beate vivere. Beatus sibi videtur esse moriens. Aliter homines, aliter philosophos loqui putas oportere?"
+      why: "Pourquoi Chexpire ?" 
+      description: "Chexpire est un Logiciel Libre (licence AGPLv3) permettant de gérer l'expiration de noms de domaine et de certificats SSL. C'est avant tout une interface web ergonomique permettant d'ajouter simplement de nouveaux noms de domaine/certificats SSL à surveiller, et des notifications sur mesure et illimitées pour être averti·e avant expiration."
+      centralization: "Centralisez toutes vos dates d'expiration"
+      centralization-details: "Vous avez des noms de domaine chez différents registrars ? de nombreux certificats SSL Let's Encrypt en renouvellement automatique ? Vous allez apprécier de tout centraliser simplement dans une interface web : ajout d'un nom de domaine/certificat SSL en deux clics, liste récapitulative triée, barre de recherche etc."
+      customised: "Notifications sur mesure et illimitées"
+      customised-details: "Vous souhaitez envoyer un email 42 jours avant expiration ? à plusieurs adresses email ? recevoir 10 jours avant expiration sur une adresse d'urgence ? Chexpire vous permet de définir un nombre illimité de notifications et sur mesure (choix du nombre de jours et de l'adresse email) pour être averti·e de façon uniforme et adaptée à vos besoins."
 
   checks:
     index:
@@ -124,8 +124,8 @@ fr:
       no_matching_check: "Aucune vérification ne correspond à vos critères."
       no_check_yet_html: |
           Vous n'avez pas encore créé de vérification.
-          Vous pouvez en ajouter pour un <a href="%{new_domain_path}">domaine</a>
-          ou un <a href="%{new_ssl_path}">SSL</a> !
+          Vous pouvez en ajouter pour un <a href="%{new_domain_path}">nom de domaine</a>
+          ou un <a href="%{new_ssl_path}">certificat SSL</a>&nbsp;!
 
     new:
       title: Nouvelle vérification
