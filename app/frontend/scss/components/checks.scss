@@ -7,16 +7,22 @@
   }
 }
 
-.btn.btn-sm {
-  font-weight: bold;
+//badges' style
+
+.badge.badge-info.ssl {
+  background-color: map-get($theme-colors, quaternary);
+  color: #ffffff;   
 }
 
-.SSL, .ssl:hover, .btn.btn-sm.btn-info.active.ssl {
-  background-color: map-get($theme-colors, quaternary);
+.badge.badge-info.domain {
+  background-color: map-get($theme-colors, primary);
   color: #ffffff; 
 }
 
-.btn.btn-sm.btn-outline-info.domain:hover, .btn.btn-sm.btn-outline-info.ssl:hover, .btn.btn-sm.btn-outline-info.with_error:hover {
+// filter buttons' style
+
+.btn.btn-sm.btn-outline-info.ssl, .btn.btn-sm.btn-outline-info.ssl:hover, .btn.btn-sm.btn-outline-info.domain, .btn.btn-sm.btn-outline-info.domain:hover, .btn.btn-sm.btn-outline-info.with_error, .btn.btn-sm.btn-outline-info.with_error:hover, .btn.btn-sm.btn-info.active.ssl, .btn.btn-sm.btn-info.active.domain, .btn.btn-sm.btn-info.active.with_error {
+  font-weight: bold;
   color: #ffffff;
 }
 
@@ -25,22 +31,22 @@
   color: map-get($theme-colors, quaternary);
 }
 
-.Domaine, .Domain, .domain:hover, .btn.btn-sm.btn-info.active.domain {
-  background-color: map-get($theme-colors, primary);
-  color: #ffffff; 
-}
-
 .btn.btn-sm.btn-info.domain, .btn.btn-sm.btn-outline-info.domain {
   border-color: map-get($theme-colors, primary);
   color: map-get($theme-colors, primary);
 }
 
-.btn.btn-sm.btn-outline-info.with_error {
+.btn.btn-sm.btn-info.with_error, .btn.btn-sm.btn-outline-info.with_error {
   border-color: map-get($theme-colors, tertiary);
   color: map-get($theme-colors, tertiary);
 }
 
-.btn.btn-sm.btn-outline-info.with_error:hover, .btn.btn-sm.btn-info.active.with_error {
+.btn.btn-sm.btn-info.ssl:hover, .btn.btn-sm.btn-outline-info.ssl:hover, .btn.btn-sm.btn-info.active.ssl {
+  background-color: map-get($theme-colors, quaternary);
+}
+.btn.btn-sm.btn-info.domain:hover, .btn.btn-sm.btn-outline-info.domain:hover, .btn.btn-sm.btn-info.active.domain {
+  background-color: map-get($theme-colors, primary);
+}
+.btn.btn-sm.btn-info.with_error:hover, .btn.btn-sm.btn-outline-info.with_error:hover, .btn.btn-sm.btn-info.active.with_error {
   background-color: map-get($theme-colors, tertiary);
-  border-color: map-get($theme-colors, tertiary);
 }
