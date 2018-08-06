@@ -31,7 +31,7 @@ en:
   simple_form:
     placeholders:
       notifications:
-        recipient: john@example.org
+        recipient: john@example.com
 
   flashes:
     user_not_authorized: "You are not authorized to access to this resource."
