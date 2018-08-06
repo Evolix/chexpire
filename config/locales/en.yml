@@ -69,23 +69,23 @@ en:
       new_domain_check: "New domain check"
       new_ssl_check: "New SSL check"
       sign_up: "Sign up"
-      sign_in: "Sign in"
-      sign_out: "Sign out"
+      sign_in: "Log in"
+      sign_out: "Log out"
       profile: "Profile"
     home_header: 
-      welcome: "Welcome on Chexpire"
-      intro: "With Chexpire, you'll never forget to renew a domain name or SSL certificate."
+      welcome: "Chexpire"
+      intro: "Never forget to renew a domain name or SSL certificate."
     
 
   pages:
     
     home:
-      why: "The benefits of Chexpire" 
-      description: "Chexpire is an Open Source Software that checks domain name and SSL Certificates expirations. You've got a lot of domain name with differents Domain Registrars? You want a centralization of all the expirations dates? You need customised notifications? Chexpire is for you!"
-      centralization: "Easy centralization of expiry dates"
-      centralization-details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Collige omnia, quae soletis: Praesidium amicorum. Duo Reges: constructio interrete. Bonum valitudo: miser morbus. Quae duo sunt, unum facit. Sic enim censent, oportunitatis esse beate vivere. Beatus sibi videtur esse moriens. Aliter homines, aliter philosophos loqui putas oportere?"
-      customised: "Custom notification"
-      customised-details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Collige omnia, quae soletis: Praesidium amicorum. Duo Reges: constructio interrete. Bonum valitudo: miser morbus. Quae duo sunt, unum facit. Sic enim censent, oportunitatis esse beate vivere. Beatus sibi videtur esse moriens. Aliter homines, aliter philosophos loqui putas oportere?"
+      why: "Why Chexpire?" 
+      description: "Chexpire is a Free Software (AGPLv3 license) to manage the expiration of domain names and SSL certificates. It is primarily an ergonomic web interface that allows you easily to add new domain names/SSL certificates to monitor, and custom/unlimited notifications to be notified before expiration."
+      centralization: "Centralize all your expiry dates"
+      centralization-details: "Do you have domain names at different registrars? many Let's Encrypt SSL certificates with automatic renewal? You will enjoy everything centralized in a web interface: adding a domain name/SSL certificate in two clicks, sorted list, search bar etc."
+      customised: "Custom and unlimited notifications"
+      customised-details: "Want to send an email 42 days before expiration? to multiple email addresses? receive 10 days before expiration on an emergency address? Chexpire allows you to define an unlimited number of personalized notifications (choice of the number of days and the email address) to be warned in a uniform way and adapted to your needs."
 
   checks:
     index:
@@ -93,8 +93,8 @@ en:
       no_matching_check: "No checks match your filters."
       no_check_yet_html: |
           You have not set up a check yet.
-          Please add a <a href="%{new_domain_path}">domain</a>
-          or a <a href="%{new_ssl_path}">ssl</a> !
+          Please add a <a href="%{new_domain_path}">domain name</a>
+          or a <a href="%{new_ssl_path}">SSL certificate</a>!
 
     new:
       title: New check
