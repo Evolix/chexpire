@@ -10,6 +10,12 @@ en:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Please review the problems below:"
+    labels:
+      defaults:
+        interval: "Interval (in days)"
+    placeholders:
+      defaults:
+        interval: 30
     # Examples
     # labels:
     #   defaults:
