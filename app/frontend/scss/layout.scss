@@ -149,3 +149,27 @@ a.navbar-item.navbar-link {
     border: 1px solid  map-get($theme-colors, secondary);
   }
 }
+
+/*
+* === BETA BANNER ===
+*/
+
+.beta-banner {
+  background-color: #be0c04;
+}
+
+.beta-banner P {
+  margin-bottom: 0;
+  padding: 5px 20px 5px 20px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 13px;
+}
+
+.beta-banner a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+.beta-banner a:hover {
+  color: #d6b20e;
+}
