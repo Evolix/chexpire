@@ -107,6 +107,9 @@ fr:
     home_header: 
       welcome: "Chexpire"
       intro: "vous n'oublierez plus jamais de renouveler un nom de domaine ou un certificat SSL."
+    beta_banner: 
+      beta_info: "Chexpire est en version \"beta\". Limitation : seul les TLD principaux (.com/.net/.org/.fr) sont supportés pour les vérifications de nom de domaine."
+      issue_link: "Merci de reporter les bugs et suggestions via "
 
   pages:
     
