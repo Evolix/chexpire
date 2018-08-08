@@ -3,7 +3,7 @@
 ## Requirements
 
 Chexpire requires :
-* Ruby 2.5.1 and Bundler
+* Ruby > 2.3.3 and Bundler
 * NodeJS and Yarn
 * MySQL or MariaDB
 
@@ -12,6 +12,8 @@ We are usually running Chexpire on typical POSIX servers like :
 - macOS High Sierra, Ruby 2.5.1, NodeJS 10.2.1 and MariaDB 10.2
 
 It probably works on any system that supports Ruby >2.3, NodeJS >6 and MySQL >5.5. Feel free to report any unexpected incompatibilities.
+
+If you use rbenv, chruby or RVM, you can set your prefered Ruby version in the `.ruby-version` file at the root of the project.
 
 If you are familiar with Ansible, you can use our [Ansible roles](http://forge.evolix.org/projects/ansible-roles) to easily install the requirements : rbenv, mysql, nodejs. Add this to your playbook :
 
@@ -24,9 +26,9 @@ roles:
 […]
 ```
 
-> NB: the Rbenv `username` variable points to the user that you want to install Rbenv for. If you use this user for the SSH connection of Ansible, you can leave the `{{ ansible_user }}` value.
+> NB: the rbenv `username` variable points to the user that you want to install rbenv for. If you use this user for the SSH connection of Ansible, you can leave the `{{ ansible_user }}` value.
 
-If you want to do manual installations, you can use our Wiki documentations for [Rbenv](https://github.com/rbenv/rbenv/#installation), [NodeJS](https://wiki.evolix.org/HowtoNodeJS#installation), [Yarn](https://wiki.evolix.org/HowtoNodeJS#yarn) and [MariaDB](https://wiki.evolix.org/HowtoMySQL#installation).
+If you want to do manual installations, you can use our Wiki documentations for [rbenv](https://github.com/rbenv/rbenv/#installation), [NodeJS](https://wiki.evolix.org/HowtoNodeJS#installation), [Yarn](https://wiki.evolix.org/HowtoNodeJS#yarn) and [MariaDB](https://wiki.evolix.org/HowtoMySQL#installation).
 
 ## Dependencies
 
