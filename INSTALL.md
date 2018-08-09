@@ -110,4 +110,4 @@ You can use the `script/to_staging` and/or `script/to_production` scripts.
 * with `to_staging` you deploy the current commit to the staging server ;
 * with `to_production` you deploy the `master` branch to production.
 
-On the remote servers – where the application will be deployed – you have to copy the configuration files just as yoiu've just did for your development setup. The files has to go in the `shared/config/` directory, relative to your `deploy_to` path. They will be symlinked to the proper destination by Capistrano.
+On the remote servers – where the application will be deployed – you have to copy the configuration files just as you've just did for your development setup. The files has to go in the `shared/config/` directory, relative to your `deploy_to` path. They will be symlinked to the proper destination by Capistrano.
