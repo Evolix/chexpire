@@ -26,6 +26,7 @@ default: &default
     long_term_interval: 300                    # when last known expiry date exceeds this interval in days, whois verification won't happen every day
     long_term_frequency: 4                     # when last known expiry exceeds $long_term, perform whois verification each $long_term_frequency days instead of every day
   checks_ssl:
+    interval: 0.0                              # pause in second between each check http call
     check_http_path:                           # defaults to check_http in $PATH
     check_http_args:                           # array of arguments appended to defaults arguments (-C 0 -H $HOSTNAME).
 
