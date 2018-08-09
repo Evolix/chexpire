@@ -47,15 +47,23 @@ To use elliptic curve SSH keys, we need to have `libsodium` and its headers.
 
 ## Rails configuration
 
-After cloning this repository, you have to create and edit a few files from example or defaults files, for your local development configuration :
+After cloning this repository, you have to create and edit a few files for your local development/test configuration. Theses files will be ignored by git.
 
-- `config/database.yml`
-- `config/secrets.yml`
-- `config/chexpire.yml` : set at least the `mailer_default_from` and `host` variables. See other configuration overridable in `config/chexpire.defaults.yml`.
+### Database configuration
 
-Theses files will be ignored by git.
+Create the file if missing : `cp config/database.example.yml config/database.yml`. If you change the settings in the `defaults` section it applies to the `development` and `test` sections. More information is available at "guides.rubyonrails.org":https://guides.rubyonrails.org/configuring.html#configuring-a-database
 
-## Database
+Note that on Debian 9 with MariaDB, the database socket is at `/var/run/mysqld/mysqld.sock`, which is not the default in the configuration file.
+
+### Rails secrets
+
+Create the file if missing : `cp config/secrets.example.yml config/secrets.yml`. You have to run the command `bundle exec rails secret` and copy/paste the output in the `secret_key_base` settings of the `development` and `test` sections
+
+### Chexpire configuration
+
+Create the file if missing : `cp config/chexpire.example.yml config/chexpire.yml`. Set at least the `mailer_default_from` and `host` variables. See other configuration overridable in `config/chexpire.defaults.yml`.
+
+## Database 
 
 You need databases for development and tests. You can create them like this (once connected to you MySQL server) :
 
@@ -72,12 +80,11 @@ MariaDB [none]> GRANT ALL PRIVILEGES ON `chexpire_test`.* TO `chexpire_test`@loc
 MariaDB [none]> FLUSH PRIVILEGES;
 ```
 
-Don't forget to adapt the settings in `config/database.yml` accordingly.
-Also, on Debian 9 with MariaDB, the database socket is at `/var/run/mysqld/mysqld.sock`, which is not the default in the configuration file.
-
 You must run the migrations with `# bundle exec rails db:migrate` (for the default environment – development) and `# bundle exec rails db:migrate RAILS_ENV=test` (for the test environment).
 
 ## Tests
+
+Some tests require Selenium with ChromeDriver. On Debian, you can install it with `$ apt install chromedriver`.
 
 The test suite can be run with `# bundle exec rails test`.
 
@@ -97,6 +104,12 @@ If you want to start the Rails application manually, with a simple Puma configur
 
 ### Capistrano
 
-If you want to use capistrano for deployment, yout need to create `config/deploy/config.yml` from the example file, and use the `script/to_staging` and/or `script/to_production` scripts.
+You can deploy Chexpire however you want, but we've pre-configured the repository to use Capistrano.
 
-The same way you've created the config files for development, you'll have to do the same on the staging and production servers in the `shared/config/` directory,relative to your `deploy_to` path.
+If you want to use it, you need to create `cp config/deploy/config.example.yml config/deploy/config.yml` and customize the settings.
+
+You can use the `script/to_staging` and/or `script/to_production` scripts.
+* with `to_staging` you deploy the current commit to the staging server ;
+* with `to_production` you deploy the `master` branch to production.
+
+On the remote servers – where the application will be deployed – you have to copy the configuration files just as you've just did for your development setup. The files has to go in the `shared/config/` directory, relative to your `deploy_to` path. They will be symlinked to the proper destination by Capistrano.
