@@ -108,8 +108,8 @@ fr:
       welcome: "Chexpire"
       intro: "vous n'oublierez plus jamais de renouveler un nom de domaine ou un certificat SSL."
     beta_banner: 
-      beta_info: "Chexpire est en version \"beta\" seuls certains TLD (.com/.net/.org/.fr) sont vérifiés pour les noms de domaine et TLS 1.2 n'est pas supporté pour les vérifications SSL."
-      issue_link: "Merci de nous reporter les bugs et suggestions."
+      beta_info: "Chexpire est en version \"beta\" : seuls certains TLD (.com/.net/.org/.fr) sont vérifiés pour les noms de domaine et TLS 1.2 n'est pas supporté pour les vérifications SSL."
+      issue_link: "Merci de nous reporter bugs et suggestions."
 
   pages:
     
