@@ -21,7 +21,9 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    I18n.locale = current_user.try(:locale) || I18n.default_locale
+    I18n.locale = current_user.try(:locale) \
+      || request.env["rack.locale"].presence \
+      || I18n.default_locale
   end
 
   def not_found
