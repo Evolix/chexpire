@@ -214,6 +214,8 @@ GEM
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.5)
+    rack-contrib (2.0.1)
+      rack (~> 2.0)
     rack-proxy (0.6.4)
       rack
     rack-test (1.1.0)
@@ -369,6 +371,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 3.11)
   pundit (~> 1.1)
+  rack-contrib
   rails (~> 5.2.0)
   rails-i18n (~> 5.1)
   rbnacl (>= 3.2, < 5.0)
