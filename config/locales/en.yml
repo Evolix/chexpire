@@ -91,8 +91,8 @@ en:
       new_ssl_check: "New SSL check"
       my_notifications: "My notifications"
       sign_up: "Sign up"
-      sign_in: "Log in"
-      sign_out: "Log out"
+      sign_in: "Sign in"
+      sign_out: "Sign out"
       profile: "Profile"
     home_header:
       welcome: "Chexpire"
