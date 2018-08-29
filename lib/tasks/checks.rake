@@ -7,17 +7,21 @@ namespace :checks do
 
     desc "Refresh domains expiry dates"
     task domain: :environment do
+      logger = Logging.logger(STDOUT)
+      logger.level = :warn
       configuration = Rails.configuration.chexpire.fetch("checks_domain")
 
-      process = CheckDomainProcessor.new(configuration: configuration)
+      process = CheckDomainProcessor.new(logger: logger, configuration: configuration)
       process.sync_dates
     end
 
     desc "Refresh SSL expiry dates"
     task ssl: :environment do
+      logger = Logging.logger(STDOUT)
+      logger.level = :warn
       configuration = Rails.configuration.chexpire.fetch("checks_ssl")
 
-      process = CheckSSLProcessor.new(configuration: configuration)
+      process = CheckSSLProcessor.new(logger: logger, configuration: configuration)
       process.sync_dates
     end
   end
