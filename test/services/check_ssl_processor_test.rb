@@ -5,7 +5,8 @@ require "test_helper"
 
 class CheckSSLProcessorTest < ActiveSupport::TestCase
   setup do
-    @processor = CheckSSLProcessor.new
+    configuration = Rails.configuration.chexpire.fetch("checks_ssl")
+    @processor = CheckSSLProcessor.new(configuration: configuration)
   end
 
   test "process SSLSyncJob for ssl checks" do

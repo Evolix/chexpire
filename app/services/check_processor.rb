@@ -4,11 +4,13 @@
 module CheckProcessor
   attr_reader :configuration
 
-  def initialize(configuration = nil)
-    @configuration = configuration || default_configuration
+  def initialize(configuration:, logger: NullLogger.new)
+    @logger = logger
+    @configuration = configuration
   end
 
   def sync_dates
+    @sync_started_at = Time.now
     resolvers.each do |resolver|
       public_send(resolver).find_each(batch_size: 100).each do |check|
         process(check)
@@ -16,6 +18,7 @@ module CheckProcessor
         sleep configuration.interval
       end
     end
+    @sync_finished_at = Time.now
   end
 
   # :nocov:
@@ -65,15 +68,5 @@ module CheckProcessor
   def process(_check)
     fail NotImplementedError, "#{self.class.name} did not implemented method #{__callee__}"
   end
-
-  def configuration_key
-    fail NotImplementedError, "#{self.class.name} did not implemented method #{__callee__}"
-  end
   # :nocov:
-
-  private
-
-  def default_configuration
-    Rails.configuration.chexpire.fetch(configuration_key)
-  end
 end

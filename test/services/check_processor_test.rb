@@ -9,10 +9,6 @@ class CheckDummyProcessor
     base_scope
   end
 
-  def configuration_key
-    "checks_dummy"
-  end
-
   def resolvers
     %i[
       resolve_expire_short_term
@@ -23,7 +19,8 @@ end
 
 class CheckProcessorTest < ActiveSupport::TestCase
   setup do
-    @processor = CheckDummyProcessor.new
+    configuration = Rails.configuration.chexpire.fetch("checks_dummy")
+    @processor = CheckDummyProcessor.new(configuration: configuration)
   end
 
   test "resolve_last_run_failed includes already and never succeeded" do
@@ -119,7 +116,7 @@ class CheckProcessorTest < ActiveSupport::TestCase
       configuration.expect(:interval, 0.000001)
     end
 
-    processor = CheckDummyProcessor.new(configuration)
+    processor = CheckDummyProcessor.new(configuration: configuration)
 
     mock = Minitest::Mock.new
     assert_stub = lambda { |actual_time|

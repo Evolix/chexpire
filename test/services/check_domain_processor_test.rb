@@ -5,7 +5,8 @@ require "test_helper"
 
 class CheckDomainProcessorTest < ActiveSupport::TestCase
   setup do
-    @processor = CheckDomainProcessor.new
+    configuration = Rails.configuration.chexpire.fetch("checks_domain")
+    @processor = CheckDomainProcessor.new(configuration: configuration)
   end
 
   test "process WhoisSyncJob for domain checks" do
