@@ -44,7 +44,7 @@ class SystemCommand
 
     SystemCommandResult.new(
       syscmd,
-      status.exitstatus,
+      status.exitstatus || 255,
       stdout.read.strip,
       stderr.read.strip,
     )
