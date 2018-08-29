@@ -51,6 +51,7 @@ class Check < ApplicationRecord
   validates :domain, presence: true
   validate :domain_created_at_past
   validate :domain_updated_at_past
+  validates :domain_expires_at, presence: true, unless: :supported?
   validates :comment, length: { maximum: 255 }
   validates :vendor, length: { maximum: 255 }
 

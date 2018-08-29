@@ -20,6 +20,10 @@ class CheckPolicy < ApplicationPolicy
     owner?
   end
 
+  def supports?
+    new?
+  end
+
   private
 
   def owner?

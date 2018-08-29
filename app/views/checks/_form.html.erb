@@ -3,12 +3,33 @@
 <%= simple_form_for(check) do |f| %>
   <%= f.input :domain,
         autofocus: true,
-        input_html: { autocapitalize: :none, autocorrect: :off },
-        label: t(".#{check.kind || "generic" }.domain") %>
+        input_html: { autocapitalize: :none, autocorrect: :off, data: { kind: check.kind } },
+        label: t(".#{check.kind || "generic" }.domain"),
+        hint: t(".#{check.kind || "generic" }.unsupported"),
+        hint_html: {
+          id: "check_domain_unsupported_container",
+          class: "#{check.supported? && 'd-none'}",
+        }
+    %>
 
   <% if check.new_record? %>
     <%= f.input :kind, as: check.kind.present? ? :hidden : :radio_buttons, collection: Check.kinds.keys %>
   <% end %>
+
+  <div id="check_domain_expires_at_container" class="<%= check.supported? ? "d-none" : "d-block" %>">
+    <%= f.input :domain_expires_at,
+                required: true,
+                input_html: {
+                  type: :string,
+                  value: check.domain_expires_at&.to_date,
+                  # min: Date.yesterday,
+                  # max: 10.years.from_now.end_of_year.to_date
+                },
+                as: :string,
+                placeholder: t(".domain_expires_at_placeholder"),
+                hint: t(".domain_expires_at_hint")
+    %>
+  </div>
 
   <%= f.input :comment %>
   <%= f.input :vendor %>

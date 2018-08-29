@@ -3,7 +3,7 @@
 
 class ChecksController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_check, except: [:index, :new, :create]
+  before_action :set_check, except: [:index, :new, :create, :supports]
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
 
@@ -65,6 +65,11 @@ class ChecksController < ApplicationController
     redirect_to checks_path
   end
 
+  def supports
+    @check = Check.new(new_check_params)
+    authorize @check
+  end
+
   private
 
   def set_check
@@ -81,7 +86,7 @@ class ChecksController < ApplicationController
   end
 
   def check_params(*others)
-    params.require(:check).permit(:domain, :domain_created_at, :comment, :vendor, *others,
+    params.require(:check).permit(:domain, :domain_expires_at, :comment, :vendor, *others,
       notifications_attributes: [:id, :channel, :recipient, :interval])
   end
 

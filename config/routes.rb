@@ -1,10 +1,29 @@
 # Copyright (C) 2018 Colin Darie <colin@darie.eu>, 2018 Evolix <info@evolix.fr>
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
+# In order to update the route map below,
+# run `bundle exec annotate -r` after modifying this file
+Rails.application.routes.draw do
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :checks, except: [:show] do
+    resources :notifications, only: [:destroy]
+    collection do
+      post :supports, format: :json
+    end
+  end
+
+  devise_for :users
+  root to: "pages#home"
+
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+end
+
 # == Route Map
 #
 #                    Prefix Verb   URI Pattern                                                                              Controller#Action
 #        check_notification DELETE /checks/:check_id/notifications/:id(.:format)                                            notifications#destroy
+#           supports_checks POST   /checks/supports(.:format)                                                               checks#supports
 #                    checks GET    /checks(.:format)                                                                        checks#index
 #                           POST   /checks(.:format)                                                                        checks#create
 #                 new_check GET    /checks/new(.:format)                                                                    checks#new
@@ -37,25 +56,10 @@
 #        rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
 # update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                      active_storage/disk#update
 #      rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
-# 
+#
 # Routes for LetterOpenerWeb::Engine:
 # clear_letters DELETE /clear(.:format)                 letter_opener_web/letters#clear
 # delete_letter DELETE /:id(.:format)                   letter_opener_web/letters#destroy
 #       letters GET    /                                letter_opener_web/letters#index
 #        letter GET    /:id(/:style)(.:format)          letter_opener_web/letters#show
 #               GET    /:id/attachments/:file(.:format) letter_opener_web/letters#attachment
-
-# In order to update the route map above,
-# run `bundle exec annotate -r` after modifying this file
-Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
-  resources :checks, except: [:show] do
-    resources :notifications, only: [:destroy]
-  end
-
-  devise_for :users
-  root to: "pages#home"
-
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
-end

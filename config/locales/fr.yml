@@ -11,6 +11,7 @@ fr:
         kind: Type
         domain_created_at: "Date de création"
         domain_updated_at: "Date de modification"
+        domain_expires_at: "Date d'expiration"
       notification:
         interval: Délai
         recipient: Destinataire
@@ -104,17 +105,17 @@ fr:
       sign_in: "Connexion"
       sign_out: "Déconnexion"
       profile: "Profil"
-    home_header: 
+    home_header:
       welcome: "Chexpire"
       intro: "vous n'oublierez plus jamais de renouveler un nom de domaine ou un certificat SSL."
-    beta_banner: 
+    beta_banner:
       beta_info: "Chexpire est en version \"beta\" : seuls certains TLD (.com/.net/.org/.fr) sont vérifiés pour les noms de domaine et TLS 1.2 n'est pas supporté pour les vérifications SSL."
       issue_link: "Merci de nous reporter bugs et suggestions."
 
   pages:
-    
+
     home:
-      why: "Pourquoi Chexpire ?" 
+      why: "Pourquoi Chexpire ?"
       description: "Chexpire est un Logiciel Libre (licence AGPLv3) permettant de gérer l'expiration de noms de domaine et de certificats SSL. C'est avant tout une interface web ergonomique permettant d'ajouter simplement de nouveaux noms de domaine/certificats SSL à surveiller, et des notifications sur mesure et illimitées pour être averti·e avant expiration."
       centralization: "Centralisez toutes vos dates d'expiration"
       centralization-details: "Vous avez des noms de domaine chez différents registrars ? de nombreux certificats SSL Let's Encrypt en renouvellement automatique ? Vous allez apprécier de tout centraliser simplement dans une interface web : ajout d'un nom de domaine/certificat SSL en deux clics, liste récapitulative triée, barre de recherche etc."
@@ -151,6 +152,12 @@ fr:
         domain: Domaine
       domain:
         domain: Nom de domaine
+        unsupported: |
+          Cette extension n'est pas supportée automatiquement actuellement.
+          Vous devrez saisir et maintenir vous-même sa date d'expiration.
+      domain_expires_at_hint: |
+        Renseignez la date d'expiration au format AAAA-MM-JJ.
+      domain_expires_at_placeholder: AAAA-MM-JJ
       ssl:
         domain: Nom d'hôte
       notifications_hint: |
