@@ -108,6 +108,16 @@ class CheckProcessorTest < ActiveSupport::TestCase
     assert_not_includes checks, c2
   end
 
+  test "resolvers does not include manual checks" do
+    c1 = create(:check, :expires_next_week)
+    c2 = create(:check, :expires_next_week, domain: "fff.wxyz")
+
+    checks = @processor.resolve_expire_short_term
+
+    assert_includes checks, c1
+    assert_not_includes checks, c2
+  end
+
   test "#sync_dates respects the interval configuration between sends" do
     create_list(:check, 3, :expires_next_week)
 

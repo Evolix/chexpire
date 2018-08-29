@@ -54,6 +54,7 @@ module CheckProcessor
   def base_scope
     Check
       .active
+      .auto
       .where("last_run_at IS NULL OR last_run_at < DATE_SUB(NOW(), INTERVAL 12 HOUR)")
   end
 
