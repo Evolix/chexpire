@@ -155,8 +155,6 @@ fr:
         unsupported: |
           Cette extension n'est pas supportée automatiquement actuellement.
           Vous devrez saisir et maintenir vous-même sa date d'expiration.
-      domain_expires_at_hint: |
-        Renseignez la date d'expiration au format AAAA-MM-JJ.
       domain_expires_at_placeholder: AAAA-MM-JJ
       ssl:
         domain: Nom d'hôte

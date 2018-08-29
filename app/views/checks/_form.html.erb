@@ -20,14 +20,13 @@
     <%= f.input :domain_expires_at,
                 required: true,
                 input_html: {
-                  type: :string,
+                  type: :date,
                   value: check.domain_expires_at&.to_date,
-                  # min: Date.yesterday,
-                  # max: 10.years.from_now.end_of_year.to_date
+                  min: Date.yesterday,
+                  max: 10.years.from_now.end_of_year.to_date
                 },
                 as: :string,
-                placeholder: t(".domain_expires_at_placeholder"),
-                hint: t(".domain_expires_at_hint")
+                placeholder: t(".domain_expires_at_placeholder")
     %>
   </div>
 

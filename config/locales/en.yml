@@ -122,8 +122,6 @@ en:
         unsupported: |
           This top-level domain isn't currently automatically supported.
           You'll have to fill and maintain yourself the expiry date.
-      domain_expires_at_hint: |
-        Fill the expiry date in YYYY-MM-DD format.
       domain_expires_at_placeholder: YYYY-MM-DD.
       ssl:
         domain: Hostname
