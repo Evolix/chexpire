@@ -60,7 +60,7 @@ class WhoisSyncJobTest < ActiveJob::TestCase
     assert_equal 1, check.consecutive_failures
   end
 
-  test "disable check when whois responds domain not found" do
+  test "increment consecutive failures when whois responds domain not found" do
     domain = "willneverexist.fr"
     check = create(:check, :nil_dates, domain: domain)
 
@@ -70,7 +70,6 @@ class WhoisSyncJobTest < ActiveJob::TestCase
 
     check.reload
 
-    refute check.active?
     assert_just_now check.last_run_at
     assert_nil check.last_success_at
     assert_equal 1, check.consecutive_failures
