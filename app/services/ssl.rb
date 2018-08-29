@@ -58,8 +58,9 @@ module SSL
 
     def check_http_args
       [
-        "-C 0", # enable SSL mode without any delay warning
-        "-H",   # check_http does not works with fully quoted arg (check_http "-H myhost.org")
+        "-C 0",  # enable SSL mode without any delay warning
+        "--sni", # some certificates must have this option
+        "-H",    # check_http does not works with fully quoted arg (check_http "-H myhost.org")
         domain,
         *custom_check_http_args,
       ].compact
