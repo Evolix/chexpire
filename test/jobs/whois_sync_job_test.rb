@@ -24,7 +24,6 @@ class WhoisSyncJobTest < ActiveJob::TestCase
 
   test "ignore invalid response (domain.fr)" do
     check = create(:check, :nil_dates, domain: "domain.fr")
-    original_updated_at = check.updated_at
 
     mock_system_command("whois", "domain.fr", stdout: "not a response") do
       WhoisSyncJob.perform_now(check.id)
@@ -34,7 +33,6 @@ class WhoisSyncJobTest < ActiveJob::TestCase
 
     assert_just_now check.last_run_at
     assert_nil check.last_success_at
-    assert_equal original_updated_at, check.updated_at
     assert check.active?
     assert_equal 1, check.consecutive_failures
   end
