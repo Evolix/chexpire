@@ -91,4 +91,14 @@ class CheckTest < ActiveSupport::TestCase
     check = build(:check, :ssl, domain: "domain.cn")
     assert check.supported?
   end
+
+  test "set mode before saving" do
+    check = build(:check, domain: "domain.fr")
+    check.save!
+    assert check.auto?
+
+    check.domain = "domain.xyz"
+    check.save!
+    assert check.mode?
+  end
 end

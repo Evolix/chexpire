@@ -55,6 +55,7 @@ class Check < ApplicationRecord
   validates :vendor, length: { maximum: 255 }
 
   before_save :reset_consecutive_failures
+  before_save :set_mode
   after_update :reset_notifications
   after_save :enqueue_sync
 
@@ -127,5 +128,10 @@ class Check < ApplicationRecord
     return if consecutive_failures_changed?
 
     self.consecutive_failures = 0
+  end
+
+  def set_mode
+    return unless domain_changed?
+    self.mode = supported? ? :auto : :manual
   end
 end
