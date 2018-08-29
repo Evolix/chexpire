@@ -13,7 +13,7 @@ class CheckSSLProcessorTest < ActiveSupport::TestCase
     check = create(:check, :ssl, :nil_dates, domain: domain)
 
     response = file_fixture("ssl/ssl0.domain.org.txt").read
-    mock_system_command("check_http", ["-C 0", "-H", domain], stdout: response) do
+    mock_system_command("check_http", ["-C 0", "--sni", "-H", domain], stdout: response) do
       @processor.send(:process, check)
     end
 

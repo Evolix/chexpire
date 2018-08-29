@@ -28,7 +28,9 @@ default: &default
   checks_ssl:
     interval: 0.0                              # pause in second between each check http call
     check_http_path:                           # defaults to check_http in $PATH
-    check_http_args:                           # array of arguments appended to defaults arguments (-C 0 -H $HOSTNAME).
+    check_http_args:                           # array of arguments *appended* after defaults arguments (which are -C 0 --sni -H $HOSTNAME)
+                                               # example: check_http_args: ["-4", "-I 127.0.0.1"]
+
 
 development:
   <<: *default

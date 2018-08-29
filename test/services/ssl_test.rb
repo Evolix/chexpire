@@ -10,7 +10,7 @@ module SSL
     test "should run the command, return the result" do
       result = OpenStruct.new(exit_status: 0)
 
-      mock_system_klass("check_http", ["-C 0", "-H", "example.org"], result) do |system_klass|
+      mock_system_klass("check_http", standard_args, result) do |system_klass|
         service = Service.new("example.org", system_klass: system_klass)
         assert_equal result, service.run_command
       end
@@ -19,7 +19,7 @@ module SSL
     test "should raise an exception if exit status > 0" do
       result = OpenStruct.new(exit_status: 1)
 
-      mock_system_klass("check_http", ["-C 0", "-H", "example.org"], result) do |system_klass|
+      mock_system_klass("check_http", standard_args, result) do |system_klass|
         service = Service.new("example.org", system_klass: system_klass)
 
         assert_raises SSLCommandError do
@@ -42,7 +42,7 @@ module SSL
       result = OpenStruct.new(exit_status: 0)
       config = OpenStruct.new(check_http_args: ["-f", "-I 127.0.0.1"])
 
-      expected_args = ["-C 0", "-H", "example.org", "-f", "-I 127.0.0.1"]
+      expected_args = standard_args.concat ["-f", "-I 127.0.0.1"]
       mock_system_klass("check_http", expected_args, result) do |system_klass|
         service = Service.new("example.org", configuration: config, system_klass: system_klass)
         assert_equal result, service.run_command
@@ -63,10 +63,16 @@ module SSL
       result = OpenStruct.new(exit_status: 0)
       config = OpenStruct.new(check_http_path: "/usr/local/custom/path")
 
-      mock_system_klass("/usr/local/custom/path", ["-C 0", "-H", "example.org"], result) do |sys|
+      mock_system_klass("/usr/local/custom/path", standard_args, result) do |sys|
         service = Service.new("example.org", configuration: config, system_klass: sys)
         assert_equal result, service.run_command
       end
+    end
+
+    private
+
+    def standard_args
+      ["-C 0", "--sni", "-H", "example.org"]
     end
 
     def mock_system_klass(program, command_args, result)
