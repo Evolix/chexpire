@@ -71,4 +71,24 @@ class CheckTest < ActiveSupport::TestCase
     check = build(:check, last_success_at: (10.1 * 24).hours.ago)
     assert_equal 10, check.days_from_last_success
   end
+
+  test "supported? for domain" do
+    check = build(:check, :domain, domain: "domain.fr")
+    assert check.supported?
+
+    check = build(:check, :domain, domain: "domain.cn")
+    refute check.supported?
+
+    # an empty domain name is still considered as supported
+    check = build(:check, :domain, domain: "")
+    assert check.supported?
+  end
+
+  test "supported? for SSL" do
+    check = build(:check, :ssl)
+    assert check.supported?
+
+    check = build(:check, :ssl, domain: "domain.cn")
+    assert check.supported?
+  end
 end

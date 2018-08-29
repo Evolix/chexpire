@@ -85,6 +85,20 @@ class Check < ApplicationRecord
     save!
   end
 
+  def supported?
+    return true unless domain?
+    return true if domain.blank?
+
+    begin
+      Whois::Parser.for(domain)
+      true
+    rescue Whois::UnsupportedDomainError
+      false
+    rescue StandardError
+      false
+    end
+  end
+
   private
 
   def domain_created_at_past
