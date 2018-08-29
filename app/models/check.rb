@@ -1,6 +1,5 @@
 # Copyright (C) 2018 Colin Darie <colin@darie.eu>, 2018 Jeremy Lecour <jlecour@evolix.fr>, 2018 Evolix <info@evolix.fr>
 # License: GNU AGPL-3+ (see full text in LICENSE file)
-
 # == Schema Information
 #
 # Table name: checks
@@ -16,6 +15,7 @@
 #  kind                 :integer          not null
 #  last_run_at          :datetime
 #  last_success_at      :datetime
+#  mode                 :integer          default("auto"), not null
 #  vendor               :string(255)
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
@@ -39,6 +39,7 @@ class Check < ApplicationRecord
     reject_if: lambda { |at| at["recipient"].blank? && at["interval"].blank? }
 
   enum kind: [:domain, :ssl]
+  enum mode: [:auto, :manual]
 
   self.skip_time_zone_conversion_for_attributes = [
     :domain_created_at,
