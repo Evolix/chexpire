@@ -11,7 +11,6 @@ set :repo_url, "https://github.com/Evolix/chexpire.git"
 # configured by environment
 # set :deploy_to, "/var/www/my_app_name"
 
-set :rbenv_ruby, File.read('.ruby-version').strip
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
