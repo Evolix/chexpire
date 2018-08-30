@@ -23,6 +23,7 @@ guard "minitest", spring: "bin/rails test" do
   watch(%r{^app/views/(.+)_mailer/.+}) { |m| "test/mailers/#{m[1]}_mailer_test.rb" }
   watch(%r{^app/services/notifier/.+\.rb}) { |_m| "test/services/notifier" }
   watch(%r{^app/services/whois/.+\.rb}) { |_m| "test/services/whois" }
+  watch(%r{^app/services/ssl/.+\.rb}) { |_m| "test/services/ssl" }
   watch(%r{^lib/(.*/)?([^/]+)\.rb$}) { |m| "test/#{m[1]}test_#{m[2]}.rb" }
   watch(%r{^test/.+_test\.rb$})
   watch(%r{^test/test_helper\.rb$}) { "test" }

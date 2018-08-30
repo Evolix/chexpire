@@ -4,7 +4,7 @@
 require "test_helper"
 
 class SSLSyncJobTest < ActiveJob::TestCase
-  test "calls whois database and update check with the response (domain.fr)" do
+  test "calls check_http and update check with the response (domain.fr)" do
     domain = "ssl0.domain.org"
     check = create(:check, :nil_dates, domain: domain)
 
