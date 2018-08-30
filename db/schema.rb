@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_29_134404) do
+ActiveRecord::Schema.define(version: 2018_08_30_083927) do
 
   create_table "check_logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "check_id"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 2018_08_29_134404) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["check_id"], name: "index_check_logs_on_check_id"
+  end
+
+  create_table "check_notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "check_id"
+    t.bigint "notification_id"
+    t.integer "status", limit: 1, default: 0, null: false
+    t.datetime "sent_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["check_id"], name: "index_check_notifications_on_check_id"
+    t.index ["notification_id"], name: "index_check_notifications_on_notification_id"
   end
 
   create_table "checks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -49,11 +60,13 @@ ActiveRecord::Schema.define(version: 2018_08_29_134404) do
     t.integer "channel", default: 0, null: false
     t.string "recipient", null: false
     t.integer "interval", null: false
-    t.integer "status", default: 0, null: false
-    t.datetime "sent_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.string "label"
+    t.integer "checks_count", default: 0, null: false
     t.index ["check_id"], name: "index_notifications_on_check_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -82,6 +95,9 @@ ActiveRecord::Schema.define(version: 2018_08_29_134404) do
   end
 
   add_foreign_key "check_logs", "checks"
+  add_foreign_key "check_notifications", "checks"
+  add_foreign_key "check_notifications", "notifications"
   add_foreign_key "checks", "users"
   add_foreign_key "notifications", "checks"
+  add_foreign_key "notifications", "users"
 end
