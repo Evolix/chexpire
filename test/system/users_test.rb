@@ -52,7 +52,7 @@ class UsersTest < ApplicationSystemTestCase
 
     click_button I18n.t("devise.sessions.new.sign_in")
 
-    assert_equal root_path, page.current_path
+    assert_equal checks_path, page.current_path
     assert page.has_content?(@user.email)
   end
 

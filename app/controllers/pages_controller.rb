@@ -2,5 +2,7 @@
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
 class PagesController < ApplicationController
-  def home; end
+  def home
+    redirect_to checks_path if user_signed_in?
+  end
 end
