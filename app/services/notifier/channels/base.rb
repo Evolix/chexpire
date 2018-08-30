@@ -4,26 +4,26 @@
 module Notifier
   module Channels
     class Base
-      def notify(notification) # rubocop:disable Metrics/MethodLength
-        return unless supports?(notification)
+      def notify(check_notification) # rubocop:disable Metrics/MethodLength
+        return unless supports?(check_notification)
 
-        notification.ongoing!
+        check_notification.ongoing!
 
-        case notification.check.kind.to_sym
+        case check_notification.check.kind.to_sym
         when :domain
-          domain_notify_expires_soon(notification)
+          domain_notify_expires_soon(check_notification)
         when :ssl
-          ssl_notify_expires_soon(notification)
+          ssl_notify_expires_soon(check_notification)
         else
           fail ArgumentError,
-            "Invalid notification for check kind `#{notification.check.kind}`."
+            "Invalid notification for check kind `#{check_notification.check.kind}`."
         end
       end
 
       private
 
       # :nocov:
-      def supports?(_notification)
+      def supports?(_check_notification)
         fail NotImplementedError,
           "#{self.class.name} channel did not implemented method #{__callee__}"
       end

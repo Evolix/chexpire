@@ -21,8 +21,8 @@ module Notifier
     private
 
     def scope
-      Notification
-        .includes(:check)
+      CheckNotification
+        .includes(:check, :notification)
         .where(status: [:pending, :failed])
         .merge(Check.active)
         .where.not(checks: { user: ignore_users })

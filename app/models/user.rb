@@ -39,7 +39,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
-  has_many :checks
+  has_many :checks, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   validates :tos_accepted, acceptance: true
   validates :locale, inclusion: { in: I18n.available_locales.map(&:to_s) }
 

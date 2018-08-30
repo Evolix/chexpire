@@ -33,7 +33,9 @@
 class Check < ApplicationRecord
   belongs_to :user
   has_many :logs, class_name: "CheckLog", dependent: :destroy
-  has_many :notifications, validate: true, dependent: :destroy
+  has_many :check_notifications, dependent: :destroy
+  has_many :notifications, through: :check_notifications, validate: true
+
   accepts_nested_attributes_for :notifications,
     allow_destroy: true,
     reject_if: lambda { |at| at["recipient"].blank? && at["interval"].blank? }
@@ -54,7 +56,7 @@ class Check < ApplicationRecord
   validates :vendor, length: { maximum: 255 }
 
   before_save :reset_consecutive_failures
-  after_update :reset_notifications
+  after_update :reset_check_notifications
   after_save :enqueue_sync
 
   scope :active, -> { where(active: true) }
@@ -101,10 +103,10 @@ class Check < ApplicationRecord
     ResyncJob.perform_later(id)
   end
 
-  def reset_notifications
+  def reset_check_notifications
     return unless (saved_changes.keys & %w[domain domain_expires_at]).present?
 
-    notifications.each(&:reset!)
+    check_notifications.each(&:reset!)
   end
 
   def reset_consecutive_failures

@@ -28,28 +28,14 @@
 
 FactoryBot.define do
   factory :notification do
-    check
+    user
     interval 30
     channel :email
+    label { "#{recipient} (#{interval})" }
     recipient "recipient@domain.fr"
-    status :pending
-    sent_at nil
 
     trait :email do
       channel :email
-    end
-
-    trait :ongoing do
-      status :ongoing
-    end
-
-    trait :succeed do
-      status :succeed
-      sent_at { 1.day.ago }
-    end
-
-    trait :failed do
-      status :failed
     end
   end
 end
