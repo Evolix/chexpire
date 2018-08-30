@@ -1,6 +1,5 @@
 # Copyright (C) 2018 Colin Darie <colin@darie.eu>, 2018 Jeremy Lecour <jlecour@evolix.fr>, 2018 Evolix <info@evolix.fr>
 # License: GNU AGPL-3+ (see full text in LICENSE file)
-
 # == Schema Information
 #
 # Table name: checks
@@ -16,6 +15,7 @@
 #  kind                 :integer          not null
 #  last_run_at          :datetime
 #  last_success_at      :datetime
+#  round_robin          :boolean          default(TRUE)
 #  vendor               :string(255)
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
