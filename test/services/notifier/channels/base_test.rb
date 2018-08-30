@@ -50,7 +50,8 @@ module Notifier
       end
 
       test "#notify does nothing when channel doesn't support a notification whatever the reason" do
-        check_notification = create(:check_notification, notification: build(:notification, interval: 10_000))
+        check_notification = create(:check_notification,
+                                    notification: build(:notification, interval: 10_000))
 
         @channel.notify(check_notification)
 

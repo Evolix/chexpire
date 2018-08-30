@@ -5,6 +5,7 @@ require "test_helper"
 
 module Notifier
   class ProcessorTest < ActiveSupport::TestCase
+    # rubocop:disable Metrics/LineLength
     test "#process_expires_soon sends an email for checks expiring soon" do
       create_list(:check_notification, 3, notification: email_notification, check: build(:check, :expires_next_week))
       create(:check_notification, notification: email_notification, check: build(:check, :nil_dates))
@@ -30,6 +31,7 @@ module Notifier
         configuration.expect(:consecutive_failures, 4.2)
       end
     end
+    # rubocop:enable Metrics/LineLength
 
     private
 

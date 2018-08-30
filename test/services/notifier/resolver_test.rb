@@ -3,6 +3,7 @@
 
 require "test_helper"
 
+# rubocop:disable Metrics/LineLength
 module Notifier
   class ResolverTest < ActiveSupport::TestCase
     setup do
@@ -116,3 +117,4 @@ module Notifier
     end
   end
 end
+# rubocop:enable Metrics/LineLength

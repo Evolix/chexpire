@@ -7,7 +7,11 @@
     </div>
   <% end %>
 
-  <div class="<%= recipient_col_class %>">
+  <div class="<%= notification_variable_col_class %>">
+    <%= f.label :label %>
+  </div>
+
+  <div class="<%= notification_variable_col_class %>">
     <%= f.label :recipient %>
   </div>
 
