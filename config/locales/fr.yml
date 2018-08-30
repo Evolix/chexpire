@@ -12,8 +12,10 @@ fr:
         domain_created_at: "Date de création"
         domain_updated_at: "Date de modification"
       notification:
+        label: Étiquette
         interval: Délai
         recipient: Destinataire
+        checks_count: Vérifications
       user:
         tos_accepted: "Conditions d'utilisation"
         notifications_enabled: "Notifications activées"
@@ -26,6 +28,10 @@ fr:
       check:
         create: "Créer"
         update: "Valider"
+      notification:
+        create: "Créer"
+        update: "Modifier"
+        delete: "Supprimer la notification"
     page_entries_info:
       one_page:
         display_entries:
@@ -70,6 +76,16 @@ fr:
 
   flashes:
     user_not_authorized: "Vous n'êtes pas autorisé•e à accéder à cette ressouce."
+    checks:
+      create: La vérification est enregistrée.
+      updated: La vérification est mise à jour.
+      invalid: Veuillez vérifier le formulaire.
+      destroyed: La vérification est supprimée.
+    notifications:
+      created: La notification est créée.
+      updated: "La notification est mise à jour."
+      destroyed: La notification est supprimée.
+      invalid: Veuillez vérifier le formulaire.
 
   notifications_mailer:
     domain_expires_soon:
@@ -100,21 +116,22 @@ fr:
       my_checks: "Mes vérifications"
       new_domain_check: "Nouveau nom de domaine"
       new_ssl_check: "Nouveau certificat SSL"
+      my_notifications: "Mes notifications"
       sign_up: "Enregistrement"
       sign_in: "Connexion"
       sign_out: "Déconnexion"
       profile: "Profil"
-    home_header: 
+    home_header:
       welcome: "Chexpire"
       intro: "vous n'oublierez plus jamais de renouveler un nom de domaine ou un certificat SSL."
-    beta_banner: 
+    beta_banner:
       beta_info: "Chexpire est en version \"beta\" : seuls certains TLD (.com/.net/.org/.fr) sont vérifiés pour les noms de domaine et TLS 1.2 n'est pas supporté pour les vérifications SSL."
       issue_link: "Merci de nous reporter bugs et suggestions."
 
   pages:
-    
+
     home:
-      why: "Pourquoi Chexpire ?" 
+      why: "Pourquoi Chexpire ?"
       description: "Chexpire est un Logiciel Libre (licence AGPLv3) permettant de gérer l'expiration de noms de domaine et de certificats SSL. C'est avant tout une interface web ergonomique permettant d'ajouter simplement de nouveaux noms de domaine/certificats SSL à surveiller, et des notifications sur mesure et illimitées pour être averti·e avant expiration."
       centralization: "Centralisez toutes vos dates d'expiration"
       centralization-details: "Vous avez des noms de domaine chez différents registrars ? de nombreux certificats SSL Let's Encrypt en renouvellement automatique ? Vous allez apprécier de tout centraliser simplement dans une interface web : ajout d'un nom de domaine/certificat SSL en deux clics, liste récapitulative triée, barre de recherche etc."
@@ -136,10 +153,6 @@ fr:
         title: Nouvelle vérification d'un nom de domaine
       ssl:
         title: Nouvelle vérification d'un certificat SSL
-
-    create:
-      saved: La vérification est enregistrée.
-      invalid: Veuillez vérifier le formulaire.
 
     filters:
       kind_domain: Domaine
@@ -171,3 +184,38 @@ fr:
         zero: "Dernière vérification réussie : aujourd'hui"
         one: "Dernière vérification réussie : hier"
         other: "Dernière vérification réussie il y a %{count} jours"
+
+  notifications:
+    index:
+      title: "Liste de vos notifications"
+      no_notification_yet_html: |
+        Vous n'avez pas encore créé de notification.
+        <a href="%{new_domain_path}">Créez votre première notification</a>.
+      explanation: |
+        Pour chacune de vos vérifications,
+        vous pouvez associer une ou plusieurs notifications que vous recevrez
+        par email un certain nombre de jours avant la date d'expiration.
+    table:
+      th:
+        edit: Modifier
+      interval_in_days:
+        one: 1 jour
+        other: "%{count} jours"
+    new:
+      title: Nouvelle notification
+    edit:
+      title: "Modification d'une notification"
+      checks:
+        zero: Aucune vérification associée.
+        one: Vérification associée
+        other: Vérifications associées
+      destroy_confirmation:
+        zero: "Confirmez-vous la suppression de cette notification ?"
+        one: |
+          Confirmez-vous la suppression ?
+          Vous ne recevrez plus la notification associée à cette vérification.
+        other: |
+          Confirmez-vous la suppression ?
+          Vous ne recevrez plus les notifications associées à ces vérifications.
+    form:
+      label_hint: Ce nom vous permet d'identifier cette notification pour l'associer à une vérification.

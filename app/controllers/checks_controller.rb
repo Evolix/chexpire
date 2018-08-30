@@ -35,10 +35,10 @@ class ChecksController < ApplicationController
     authorize @check
 
     if @check.save
-      flash[:notice] = t(".saved")
+      flash[:notice] = t("checks.created", scope: :flashes)
       redirect_to checks_path
     else
-      flash.now[:alert] = t(".invalid")
+      flash.now[:alert] = t("checks.invalid", scope: :flashes)
       render :new
     end
   end
@@ -49,10 +49,10 @@ class ChecksController < ApplicationController
 
   def update
     if @check.update(update_check_params)
-      flash[:notice] = "Your check has been updated."
+      flash[:notice] = t("checks.updated", scope: :flashes)
       redirect_to checks_path
     else
-      flash.now[:alert] = "An error occured."
+      flash.now[:alert] = t("checks.invalid", scope: :flashes)
       build_empty_notification
       render :edit
     end
@@ -61,7 +61,7 @@ class ChecksController < ApplicationController
   def destroy
     @check.destroy!
 
-    flash[:notice] = "Your check has been destroyed."
+    flash[:notice] = t("checks.destroyed", scope: :flashes)
     redirect_to checks_path
   end
 

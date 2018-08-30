@@ -1,0 +1,46 @@
+<% # Copyright (C) 2018 Colin Darie <colin@darie.eu>, 2018 Evolix <info@evolix.fr> %>
+<% # License: GNU AGPL-3+ (see full text in LICENSE file) %>
+<div class="mb-4 table-responsive">
+  <table class="table notifications-table">
+    <thead>
+      <tr>
+        <th scope="col">
+          <%= Notification.human_attribute_name("label") %>
+        </th>
+        <th scope="col">
+          <%= Notification.human_attribute_name("recipient") %>
+        </th>
+        <th scope="col">
+          <%= Notification.human_attribute_name("interval") %>
+        </th>
+        <th scope="col">
+          <%= Notification.human_attribute_name("checks_count") %>
+        </th>
+        <th scope="col" class="text-right"><%= t(".th.edit") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% notifications.each do |notification| %>
+        <tr class="notification-row">
+          <td>
+            <strong><%= notification.label %></strong>
+          </td>
+          <td>
+            <%= notification.recipient %>
+          </td>
+          <td>
+            <%= t(".interval_in_days", count: notification.interval) %>
+          </td>
+          <td>
+            <%= notification.checks_count %>
+          </td>
+          <td class="action text-right">
+            <%= link_to edit_notification_path(notification), "data-turbolinks" => false do %>
+              <%== Octicons::Octicon.new("pencil").to_svg %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
