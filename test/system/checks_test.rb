@@ -9,7 +9,7 @@ class ChecksTest < ApplicationSystemTestCase
     login_as(@user)
   end
 
-  test "create a check and a notification without kind" do
+  test "create a check and a new notification without kind" do
     visit new_check_path
 
     choose "domain"
@@ -33,20 +33,34 @@ class ChecksTest < ApplicationSystemTestCase
     fill_and_valid_new_check
   end
 
-  test "remove a notification" do
-    check = create(:check, :with_notifications, domain: "dom-with-notif.net", user: @user)
+  test "dissociate a notification" do
+    check = create(:check, :with_notifications, user: @user)
+    notification = create(:notification, label: "label-notification", user: @user)
+    check.notifications << notification
+
     visit edit_check_path(check)
-    notification = check.notifications.first
 
-    selector = "[data-notification-id=\"#{notification.id}\"]"
+    uncheck notification.label
 
-    assert_difference "Notification.where(check_id: #{check.id}).count", -1 do
-      within selector do
-        find(".btn-danger").click
-      end
+    click_button "Update Check"
 
-      page.has_no_content?(selector)
-    end
+    notification.reload
+    assert_equal 0, notification.checks_count
+    assert_equal 2, check.check_notifications.count
+  end
+
+  test "associate a notification" do
+    check = create(:check, user: @user)
+    notification = create(:notification, label: "label-notification", user: @user)
+    visit edit_check_path(check)
+
+    check notification.label
+    click_button "Update Check"
+
+    notification.reload
+
+    assert_equal 1, notification.checks_count
+    assert_equal 1, check.check_notifications.count
   end
 
   test "update a check" do
@@ -62,29 +76,6 @@ class ChecksTest < ApplicationSystemTestCase
     assert page.has_css?(".alert-success")
     check.reload
     assert_equal "My comment", check.comment
-  end
-
-  test "add a notification" do
-    check = create(:check, :with_notifications, domain: "dom-with-notif.net", user: @user)
-    visit edit_check_path(check)
-
-    recipient = "recipient2@example.org"
-    fill_in("check[notifications_attributes][2][recipient]", with: recipient)
-    fill_in("check[notifications_attributes][2][interval]", with: 55)
-
-    assert_difference "Notification.where(check_id: #{check.id}).count", +1 do
-      click_button "Update Check"
-
-      assert_equal checks_path, page.current_path
-    end
-
-    assert page.has_css?(".alert-success")
-
-    notification = Notification.last
-    assert_equal recipient, notification.recipient
-    assert_equal 55, notification.interval
-    assert notification.email?
-    assert notification.pending?
   end
 
   test "list my checks" do
@@ -266,6 +257,8 @@ class ChecksTest < ApplicationSystemTestCase
     fill_in("check[domain]", with: domain)
 
     recipient = "recipient@example.org"
+    label = "my new notificatiion"
+    fill_in("check[notifications_attributes][0][label]", with: label)
     fill_in("check[notifications_attributes][0][recipient]", with: recipient)
     fill_in("check[notifications_attributes][0][interval]", with: 30)
 
@@ -277,10 +270,14 @@ class ChecksTest < ApplicationSystemTestCase
     assert page.has_content?(domain)
 
     notification = Notification.last
+    assert_equal label, notification.label
     assert_equal recipient, notification.recipient
     assert_equal 30, notification.interval
     assert notification.email?
-    assert notification.pending?
+
+    check_notification = CheckNotification.last
+    assert check_notification.pending?
+    assert_nil check_notification.sent_at
   end
   # rubocop:enable Metrics/AbcSize
   # rubocop:enable Metrics/MethodLength

@@ -36,12 +36,13 @@ en:
   helpers:
     submit:
       check:
-        create: "Create"
-        update: "Update"
+        create: "Create Check"
+        update: "Update Check"
+        delete: "Destroy Check"
       notification:
-        create: "Create"
-        update: "Update"
-        delete: "Delete"
+        create: "Create Notification"
+        update: "Update Notification"
+        delete: "Destroy Notification"
 
   flashes:
     user_not_authorized: "You are not authorized to access to this resource."
@@ -125,7 +126,9 @@ en:
         title: New domain check
       ssl:
         title: New SSL check
-
+    edit:
+      title: Check edition
+      destroy_confirmation: Are you sure to destroy this check ?
     create:
       saved: "Your check has been saved."
       invalid: "Please check the form."
@@ -144,7 +147,7 @@ en:
         domain: Hostname
       notifications_hint: |
         Receive notifications to warn you when our system detects that the
-        expiration date is coming. The time is set in number of days.
+        expiration date is coming.
 
     table:
       th:

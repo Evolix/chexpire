@@ -29,9 +29,8 @@ class ChecksController < ApplicationController
     build_empty_notification
   end
 
-  def create
-    @check = Check.new(new_check_params)
-    @check.user = current_user
+  def create # rubocop:disable Metrics/AbcSize
+    @check = Check.new(new_check_params.merge(user: current_user))
     authorize @check
 
     if @check.save
@@ -39,6 +38,8 @@ class ChecksController < ApplicationController
       redirect_to checks_path
     else
       flash.now[:alert] = t("checks.invalid", scope: :flashes)
+
+      fill_or_build_new_notification
       render :new
     end
   end
@@ -53,7 +54,8 @@ class ChecksController < ApplicationController
       redirect_to checks_path
     else
       flash.now[:alert] = t("checks.invalid", scope: :flashes)
-      build_empty_notification
+
+      fill_or_build_new_notification
       render :edit
     end
   end
@@ -81,13 +83,32 @@ class ChecksController < ApplicationController
   end
 
   def check_params(*others)
-    params.require(:check)
-          .permit(:domain, :domain_created_at, :comment, :vendor, :round_robin, *others,
-                  notifications_attributes: [:id, :channel, :recipient, :interval])
+    permitted_params = params.require(:check)
+                             .permit(:domain, :domain_created_at, :comment, :vendor, :round_robin, *others,
+                             notification_ids: [],
+                             notifications_attributes: [:channel, :label, :recipient, :interval])
+
+    permitted_params[:notifications_attributes].each_pair do |_key, attributes|
+      attributes.merge!(user: current_user)
+    end
+
+    permitted_params
   end
 
   def build_empty_notification
-    @check.notifications.build
+    @new_notification = @check.notifications.build
+    @new_notification.recipient = current_user.email
+  end
+
+  def fill_or_build_new_notification
+    last_notification = @check.notifications.last
+
+    # user has filled a new notification: we use it for the form
+    if last_notification.new_record?
+      @new_notification = last_notification
+    else # otherwise, set a new empty notification
+      build_empty_notification
+    end
   end
 
   def current_sort

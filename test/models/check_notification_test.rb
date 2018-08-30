@@ -21,7 +21,7 @@
 #  fk_rails_...  (notification_id => notifications.id)
 #
 
-require 'test_helper'
+require "test_helper"
 
 class CheckNotificationTest < ActiveSupport::TestCase
   # test "the truth" do

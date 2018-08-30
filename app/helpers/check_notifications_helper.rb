@@ -2,7 +2,4 @@
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
 module CheckNotificationsHelper
-  def recipient_col_class
-    many_channels_available? ? "col-md-7" : "col-md-9"
-  end
 end

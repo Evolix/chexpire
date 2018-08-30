@@ -11,7 +11,7 @@ class NotificationsController < ApplicationController
     @notifications = policy_scope(Notification).order(checks_count: :desc)
   end
 
-  def new;
+  def new
     @notification = Notification.new
     authorize @notification
     @notification.recipient = current_user.email
@@ -30,7 +30,6 @@ class NotificationsController < ApplicationController
       render :new
     end
   end
-
 
   def edit; end
 

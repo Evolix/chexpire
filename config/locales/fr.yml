@@ -26,11 +26,12 @@ fr:
   helpers:
     submit:
       check:
-        create: "Créer"
-        update: "Valider"
+        create: "Créer la vérification"
+        update: "Modifier la vérification"
+        delete: "Supprimer la vérification"
       notification:
-        create: "Créer"
-        update: "Modifier"
+        create: "Créer la notification"
+        update: "Modifier la notification"
         delete: "Supprimer la notification"
     page_entries_info:
       one_page:
@@ -153,6 +154,9 @@ fr:
         title: Nouvelle vérification d'un nom de domaine
       ssl:
         title: Nouvelle vérification d'un certificat SSL
+    edit:
+      title: Modification de la vérification
+      destroy_confirmation: Confirmez-vous la suppression de cette vérification ?
 
     filters:
       kind_domain: Domaine
@@ -168,7 +172,7 @@ fr:
         domain: Nom d'hôte
       notifications_hint: |
         Recevez des notifications pour vous avertir lorsque notre système détecte
-        que la date d'expiration approche. Le délai est indiqué ennombre de jours.
+        que la date d'expiration approche.
 
     table:
       th:

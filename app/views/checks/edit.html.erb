@@ -3,16 +3,16 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12 col-lg-10">
-      <h1>Edit your check</h1>
+      <h1><%= t(".title") %></h1>
 
-      <%= render "form", check: @check %>
+      <%= render "form", check: @check, new_notification: @new_notification %>
     </div>
   </div>
 
   <div class="row mt-5 justify-content-center">
     <div class="col-12 col-lg-10">
-      <%= button_to("Delete", check_path(@check), class: "btn btn-danger", method: :delete,
-            data: { confirm: "Are you sure ?" }) %>
+      <%= button_to(t("helpers.submit.check.delete"), check_path(@check), class: "btn btn-danger", method: :delete,
+            data: { confirm: t(".destroy_confirmation") }) %>
     </div>
   </div>
 </div>
