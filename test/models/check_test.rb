@@ -15,6 +15,7 @@
 #  kind                 :integer          not null
 #  last_run_at          :datetime
 #  last_success_at      :datetime
+#  mode                 :integer          default(0), not null
 #  round_robin          :boolean          default(TRUE)
 #  vendor               :string(255)
 #  created_at           :datetime         not null
