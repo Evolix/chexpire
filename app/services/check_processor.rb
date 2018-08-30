@@ -2,23 +2,54 @@
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
 module CheckProcessor
-  attr_reader :configuration
+  attr_reader :configuration, :logger
 
   def initialize(configuration:, logger: NullLogger.new)
+    # Levels: debug info warn error fatal
     @logger = logger
     @configuration = configuration
   end
 
-  def sync_dates
-    @sync_started_at = Time.now
-    resolvers.each do |resolver|
-      public_send(resolver).find_each(batch_size: 100).each do |check|
-        process(check)
+  def sync_dates # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
+    sync_started_at = Time.now
+    logger.info "#{self.class.name}: sync_dates has started"
 
-        sleep configuration.interval
+    resolvers.each do |resolver|
+      logger.info "#{self.class.name}: using resolver '#{resolver}'"
+
+      public_send(resolver).find_in_batches(batch_size: 100) do |checks|
+        group_started_at = Time.now
+
+        checks.each do |check|
+          logger.info "#{self.class.name}: processing check ##{check.id}"
+          process(check)
+
+          logger.debug "#{self.class.name}: sleeping #{configuration.interval} seconds"
+          sleep configuration.interval
+        end
+
+        group_finished_at = Time.now
+
+        check_errors_scope(check_ids: checks.map(&:id),
+                           after_date: group_started_at,
+                           before_date: group_finished_at).includes(:check).each do |check_log|
+          message = "#{self.class.name}: check ##{check_log.check_id} for '#{check_log.check.domain}' failed (#{check_log.exit_status}) ; #{check_log.error.lines.first}" # rubocop:disable Metrics/LineLength
+          logger.error(message)
+        end
       end
     end
-    @sync_finished_at = Time.now
+
+    sync_finished_at = Time.now
+    duration = (sync_finished_at - sync_started_at).to_i
+    logger.info "#{self.class.name}: sync_dates has finished (#{duration}s)"
+  end
+
+  def check_errors_scope(check_ids:, before_date: nil, after_date: nil)
+    scope = CheckLog.failed.where("exit_status > 0").where(id: check_ids)
+    scope = scope.where("created_at <= ?", before_date) if before_date
+    scope = scope.where("created_at >= ?", after_date) if after_date
+
+    scope
   end
 
   # :nocov:

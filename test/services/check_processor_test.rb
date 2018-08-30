@@ -108,19 +108,15 @@ class CheckProcessorTest < ActiveSupport::TestCase
   test "#sync_dates respects the interval configuration between sends" do
     create_list(:check, 3, :expires_next_week)
 
-    configuration = Minitest::Mock.new
-    2.times do configuration.expect(:long_term_interval, 300) end
-    configuration.expect(:long_term_frequency, 4)
-
-    3.times do
-      configuration.expect(:interval, 0.000001)
-    end
+    configuration = OpenStruct.new(long_term_interval: 300,
+                                   long_term_frequency: 4,
+                                   interval: 0.000001)
 
     processor = CheckDummyProcessor.new(configuration: configuration)
 
     mock = Minitest::Mock.new
     assert_stub = lambda { |actual_time|
-      assert_equal 0.000001, actual_time
+      assert_equal configuration.interval, actual_time
       mock
     }
 
@@ -130,7 +126,6 @@ class CheckProcessorTest < ActiveSupport::TestCase
       end
     end
 
-    configuration.verify
     mock.verify
   end
 end
