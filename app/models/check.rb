@@ -39,7 +39,7 @@ class Check < ApplicationRecord
                           through: :check_notifications, validate: true
 
   accepts_nested_attributes_for :notifications,
-    reject_if: lambda { |att| att["label"].blank? && att["interval"].blank? }
+    reject_if: lambda { |att| att["interval"].blank? }
 
   enum kind: [:domain, :ssl]
   enum mode: [:auto, :manual]

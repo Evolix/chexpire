@@ -45,7 +45,7 @@
 
   <%= f.association :notifications, as: :check_boxes,
                     collection: policy_scope(Notification),
-                    label_method: :label,
+                    label_method: :notifical_label,
                     label_text: false %>
 
   <%= f.fields_for :notifications, new_notification do |nf| %>

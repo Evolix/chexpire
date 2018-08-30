@@ -33,8 +33,13 @@ class Notification < ApplicationRecord
 
   enum channel: [:email]
 
-  validates :label, presence: true
   validates :channel, presence: true
   validates :interval, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validates :recipient, presence: true
+
+  def notifical_label
+    return label if label.present?
+
+    "#{recipient} (#{interval})"
+  end
 end

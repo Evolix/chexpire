@@ -8,14 +8,14 @@
   <% end %>
 
   <div class="<%= notification_variable_col_class %>">
-    <%= f.label :label %>
-  </div>
-
-  <div class="<%= notification_variable_col_class %>">
     <%= f.label :recipient %>
   </div>
 
   <div class="col-md-2">
-    <%= f.label :interval %>
+    <%= f.label :interval, required: true %>
+  </div>
+
+  <div class="<%= notification_variable_col_class %>">
+    <%= f.label :label %>
   </div>
 </div>
