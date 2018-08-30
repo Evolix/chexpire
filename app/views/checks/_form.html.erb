@@ -33,6 +33,10 @@
   <%= f.input :comment %>
   <%= f.input :vendor %>
 
+  <% if check.ssl? %>
+    <%= f.input :round_robin %>
+  <% end %>
+
   <% if check.persisted? %>
     <%= f.input :active %>
   <% end %>

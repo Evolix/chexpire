@@ -16,6 +16,7 @@
 #  last_run_at          :datetime
 #  last_success_at      :datetime
 #  mode                 :integer          default("auto"), not null
+#  round_robin          :boolean          default(TRUE)
 #  vendor               :string(255)
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
