@@ -15,6 +15,7 @@
 #  kind                 :integer          not null
 #  last_run_at          :datetime
 #  last_success_at      :datetime
+#  mode                 :integer          default("auto"), not null
 #  round_robin          :boolean          default(TRUE)
 #  vendor               :string(255)
 #  created_at           :datetime         not null
@@ -39,6 +40,7 @@ class Check < ApplicationRecord
     reject_if: lambda { |at| at["recipient"].blank? && at["interval"].blank? }
 
   enum kind: [:domain, :ssl]
+  enum mode: [:auto, :manual]
 
   self.skip_time_zone_conversion_for_attributes = [
     :domain_created_at,
@@ -50,10 +52,12 @@ class Check < ApplicationRecord
   validates :domain, presence: true
   validate :domain_created_at_past
   validate :domain_updated_at_past
+  validates :domain_expires_at, presence: true, unless: :supported?
   validates :comment, length: { maximum: 255 }
   validates :vendor, length: { maximum: 255 }
 
   before_save :reset_consecutive_failures
+  before_save :set_mode
   after_update :reset_notifications
   after_save :enqueue_sync
 
@@ -84,6 +88,20 @@ class Check < ApplicationRecord
     save!
   end
 
+  def supported?
+    return true unless domain?
+    return true if domain.blank?
+
+    begin
+      Whois::Parser.for(domain)
+      true
+    rescue Whois::UnsupportedDomainError
+      false
+    rescue StandardError
+      false
+    end
+  end
+
   private
 
   def domain_created_at_past
@@ -112,5 +130,10 @@ class Check < ApplicationRecord
     return if consecutive_failures_changed?
 
     self.consecutive_failures = 0
+  end
+
+  def set_mode
+    return unless domain_changed?
+    self.mode = supported? ? :auto : :manual
   end
 end

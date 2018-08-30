@@ -20,9 +20,13 @@ import 'bootstrap/js/dist/tooltip';
 
 import '../scss';
 
+import checkValidationInitialize from '../components/check_validation';
+
 Rails.start()
 Turbolinks.start()
 
 document.addEventListener("turbolinks:load", () => {
   $('[data-toggle="tooltip"]').tooltip();
+
+  checkValidationInitialize();
 });

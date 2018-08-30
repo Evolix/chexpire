@@ -25,6 +25,26 @@ class ChecksTest < ApplicationSystemTestCase
     fill_and_valid_new_check
   end
 
+  test "create a manual domain check" do
+    visit new_check_path(kind: :domain)
+
+    domain = "unsupported.wxyz"
+    fill_in("check[domain]", with: domain)
+
+    page.find("body").click # simulate blur
+    fill_in("check[domain_expires_at]", with: "2022-04-05")
+
+    click_button
+
+    assert_equal checks_path, page.current_path
+
+    assert page.has_css?(".alert-success")
+    assert page.has_content?(domain)
+
+    check = Check.last
+    assert_equal Date.new(2022, 4, 5), check.domain_expires_at
+  end
+
   test "create a predefined ssl check" do
     visit new_check_path(kind: :ssl)
 

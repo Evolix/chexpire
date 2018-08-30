@@ -72,17 +72,17 @@ en:
       sign_in: "Log in"
       sign_out: "Log out"
       profile: "Profile"
-    home_header: 
+    home_header:
       welcome: "Chexpire"
       intro: "Never forget to renew a domain name or SSL certificate."
-    beta_banner: 
+    beta_banner:
       beta_info: "Chexpire is in \"beta\" release: only few TLD (.com/.net/.org/.fr) are verified for domain name checks and TLS 1.2 is not supported for SSL checks."
       issue_link: "Please report issues."
 
   pages:
-    
+
     home:
-      why: "Why Chexpire?" 
+      why: "Why Chexpire?"
       description: "Chexpire is a Free Software (AGPLv3 license) to manage the expiration of domain names and SSL certificates. It is primarily an ergonomic web interface that allows you easily to add new domain names/SSL certificates to monitor, and custom/unlimited notifications to be notified before expiration."
       centralization: "Centralize all your expiry dates"
       centralization-details: "Do you have domain names at different registrars? many Let's Encrypt SSL certificates with automatic renewal? You will enjoy everything centralized in a web interface: adding a domain name/SSL certificate in two clicks, sorted list, search bar etc."
@@ -119,6 +119,10 @@ en:
         domain: Domain
       domain:
         domain: Domain name
+        unsupported: |
+          This top-level domain isn't currently automatically supported.
+          You'll have to fill and maintain yourself the expiry date.
+      domain_expires_at_placeholder: YYYY-MM-DD.
       ssl:
         domain: Hostname
       notifications_hint: |

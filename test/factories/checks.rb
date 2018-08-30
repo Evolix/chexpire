@@ -15,6 +15,7 @@
 #  kind                 :integer          not null
 #  last_run_at          :datetime
 #  last_success_at      :datetime
+#  mode                 :integer          default("auto"), not null
 #  round_robin          :boolean          default(TRUE)
 #  vendor               :string(255)
 #  created_at           :datetime         not null
@@ -44,6 +45,7 @@ FactoryBot.define do
     last_run_at nil
     last_success_at nil
     consecutive_failures 0
+    mode :auto
 
     trait :domain do
       kind :domain

@@ -20,9 +20,6 @@ class WhoisSyncJob < ApplicationJob
     return unless response.valid?
 
     update_from_response(response)
-  rescue Whois::DomainNotFoundError
-    check.active = false
-    check.save!
   end
 
   def update_from_response(response)
