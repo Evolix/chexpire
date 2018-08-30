@@ -15,6 +15,18 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:notifications_enabled, :locale])
   end
 
+  def after_sign_in_path_for(_resource)
+    checks_path
+  end
+
+  def after_sign_up_path_for(_resource)
+    checks_path
+  end
+
+  def after_sign_out_path_for(_resource)
+    root_path
+  end
+
   def user_not_authorized
     flash[:alert] = I18n.t("user_not_authorized", scope: :flashes)
     redirect_to(request.referrer || root_path)
