@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 2018_08_30_083927) do
     t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "round_robin", default: true
     t.integer "consecutive_failures", default: 0, null: false
+    t.boolean "round_robin", default: true
     t.integer "mode", default: 0, null: false
     t.index ["user_id"], name: "index_checks_on_user_id"
   end
