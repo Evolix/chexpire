@@ -5,8 +5,9 @@ class NotificationsMailer < ApplicationMailer
   helper :application
 
   before_action except: :recurrent_failures do
-    @notification = params.fetch(:notification)
-    @check = @notification.check
+    @check_notification = params.fetch(:check_notification)
+    @check = @check_notification.check
+    @notification = @check_notification.notification
   end
 
   def domain_expires_soon

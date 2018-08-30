@@ -27,26 +27,14 @@
 #
 
 class Notification < ApplicationRecord
-  belongs_to :check
+  belongs_to :user
+  has_many :check_notifications
+  has_many :checks, through: :notifications
 
   enum channel: [:email]
-  enum status: [:pending, :ongoing, :succeed, :failed]
 
+  validates :label, presence: true
   validates :channel, presence: true
   validates :interval, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validates :recipient, presence: true
-
-  scope :active_check, -> { Check.active }
-  scope :check_last_run_failed, -> { Check.last_run_failed }
-
-  def pending!
-    self.sent_at = nil
-    super
-  end
-  alias reset! pending!
-
-  def ongoing!
-    self.sent_at = Time.now
-    super
-  end
 end

@@ -19,8 +19,8 @@ module Notifier
     end
 
     def process_expires_soon
-      resolver.notifications_expiring_soon.find_each do |notification|
-        notifier_channel_for(notification).notify(notification)
+      resolver.notifications_expiring_soon.find_each do |check_notification|
+        notifier_channel_for(check_notification.notification).notify(check_notification)
 
         sleep configuration.interval
       end
