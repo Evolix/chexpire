@@ -7,13 +7,13 @@ namespace :checks do
   namespace :sync_dates do
     task all: [:domain, :ssl]
 
-    def stdout_logger(env={})
+    def stdout_logger(env = {}) # rubocop:disable Metrics/MethodLength
       verbose_mode = env.fetch("VERBOSE") { 0 }.to_i == 1
       quiet_mode   = env.fetch("QUIET")   { 0 }.to_i == 1
       silent_mode  = env.fetch("SILENT")  { 0 }.to_i == 1
 
       if silent_mode
-        NullLogger.new 
+        NullLogger.new
       else
         logger = Logging.logger(STDOUT)
         logger.level = if quiet_mode
@@ -32,7 +32,7 @@ namespace :checks do
     task domain: :environment do
       process = CheckDomainProcessor.new(
         logger: stdout_logger(ENV),
-        configuration: Rails.configuration.chexpire.fetch("checks_domain")
+        configuration: Rails.configuration.chexpire.fetch("checks_domain"),
       )
       process.sync_dates
     end
@@ -41,7 +41,7 @@ namespace :checks do
     task ssl: :environment do
       process = CheckSSLProcessor.new(
         logger: stdout_logger(ENV),
-        configuration: Rails.configuration.chexpire.fetch("checks_ssl")
+        configuration: Rails.configuration.chexpire.fetch("checks_ssl"),
       )
       process.sync_dates
     end
