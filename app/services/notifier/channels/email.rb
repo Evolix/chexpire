@@ -11,17 +11,21 @@ module Notifier
 
       protected
 
-      def supports?(_notification)
+      def supports?(_check_notification)
         true
       end
 
       # Expiration notifications
-      def domain_notify_expires_soon(notification)
-        NotificationsMailer.with(notification: notification).domain_expires_soon.deliver_now
+      def domain_notify_expires_soon(check_notification)
+        NotificationsMailer.with(check_notification: check_notification)
+                           .domain_expires_soon
+                           .deliver_now
       end
 
-      def ssl_notify_expires_soon(notification)
-        NotificationsMailer.with(notification: notification).ssl_expires_soon.deliver_now
+      def ssl_notify_expires_soon(_notification)
+        NotificationsMailer.with(check_notification: check_notification)
+                           .ssl_expires_soon
+                           .deliver_now
       end
     end
   end

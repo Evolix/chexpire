@@ -5,10 +5,11 @@ require "test_helper"
 
 module Notifier
   class ProcessorTest < ActiveSupport::TestCase
+    # rubocop:disable Metrics/LineLength
     test "#process_expires_soon sends an email for checks expiring soon" do
-      create_list(:notification, 3, :email, check: build(:check, :expires_next_week))
-      create(:notification, :email, check: build(:check, :nil_dates))
-      create(:notification, :email, check: build(:check, :inactive))
+      create_list(:check_notification, 3, notification: email_notification, check: build(:check, :expires_next_week))
+      create(:check_notification, notification: email_notification, check: build(:check, :nil_dates))
+      create(:check_notification, notification: email_notification, check: build(:check, :inactive))
 
       processor = Processor.new
       assert_difference "ActionMailer::Base.deliveries.size", +3 do
@@ -20,7 +21,7 @@ module Notifier
     end
 
     test "#process_expires_soon respects the interval configuration between sends" do
-      create_list(:notification, 3, :email, check: build(:check, :expires_next_week))
+      create_list(:check_notification, 3, notification: email_notification, check: build(:check, :expires_next_week))
       test_interval_respected(:process_expires_soon, 3)
     end
 
@@ -30,8 +31,13 @@ module Notifier
         configuration.expect(:consecutive_failures, 4.2)
       end
     end
+    # rubocop:enable Metrics/LineLength
 
     private
+
+    def email_notification
+      build(:notification, :email)
+    end
 
     # rubocop:disable Metrics/MethodLength
     def test_interval_respected(process_method, count_expected)

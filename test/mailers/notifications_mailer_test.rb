@@ -6,10 +6,11 @@ require "test_helper"
 class NotificationsMailerTest < ActionMailer::TestCase # rubocop:disable Metrics/ClassLength
   test "domain_expires_soon" do
     check = create(:check, domain_expires_at: Time.new(2018, 6, 10, 12, 0, 5, "+02:00"))
-    notification = build(:notification, interval: 10, check: check, recipient: "colin@example.org")
+    notification = build(:notification, interval: 10, recipient: "colin@example.org")
+    check_notification = build(:check_notification, check: check, notification: notification)
 
     Date.stub :today, Date.new(2018, 6, 2) do
-      mail = NotificationsMailer.with(notification: notification).domain_expires_soon
+      mail = NotificationsMailer.with(check_notification: check_notification).domain_expires_soon
 
       assert_emails 1 do
         mail.deliver_now
@@ -37,10 +38,11 @@ class NotificationsMailerTest < ActionMailer::TestCase # rubocop:disable Metrics
     check = create(:check,
                   domain_expires_at: Time.new(2018, 6, 10, 12, 0, 5, "+02:00"),
                   user: build(:user, :fr))
-    notification = build(:notification, interval: 10, check: check, recipient: "colin@example.org")
+    notification = build(:notification, interval: 10, recipient: "colin@example.org")
+    check_notification = build(:check_notification, check: check, notification: notification)
 
     Date.stub :today, Date.new(2018, 6, 2) do
-      mail = NotificationsMailer.with(notification: notification).domain_expires_soon
+      mail = NotificationsMailer.with(check_notification: check_notification).domain_expires_soon
 
       assert_emails 1 do
         mail.deliver_now
@@ -69,9 +71,9 @@ class NotificationsMailerTest < ActionMailer::TestCase # rubocop:disable Metrics
                   domain_expires_at: 1.week.from_now,
                   comment: "My comment",
                   vendor: "The vendor")
-    notification = build(:notification, check: check)
+    check_notification = build(:check_notification, check: check)
 
-    mail = NotificationsMailer.with(notification: notification).domain_expires_soon
+    mail = NotificationsMailer.with(check_notification: check_notification).domain_expires_soon
 
     parts = [mail.text_part.decode_body, mail.html_part.decode_body]
 
@@ -87,9 +89,9 @@ class NotificationsMailerTest < ActionMailer::TestCase # rubocop:disable Metrics
                   comment: "My comment",
                   vendor: "The vendor",
                   user: build(:user, :fr))
-    notification = build(:notification, check: check)
+    check_notification = build(:check_notification, check: check)
 
-    mail = NotificationsMailer.with(notification: notification).domain_expires_soon
+    mail = NotificationsMailer.with(check_notification: check_notification).domain_expires_soon
 
     parts = [mail.text_part.decode_body, mail.html_part.decode_body]
 
@@ -158,10 +160,11 @@ class NotificationsMailerTest < ActionMailer::TestCase # rubocop:disable Metrics
 
   test "ssl_expires_soon" do
     check = create(:check, :ssl, domain_expires_at: Time.new(2018, 6, 10, 12, 0, 5, "+02:00"))
-    notification = build(:notification, interval: 10, check: check, recipient: "colin@example.org")
+    notification = build(:notification, interval: 10, recipient: "colin@example.org")
+    check_notification = build(:check_notification, check: check, notification: notification)
 
     Date.stub :today, Date.new(2018, 6, 2) do
-      mail = NotificationsMailer.with(notification: notification).ssl_expires_soon
+      mail = NotificationsMailer.with(check_notification: check_notification).ssl_expires_soon
 
       assert_emails 1 do
         mail.deliver_now
@@ -190,10 +193,11 @@ class NotificationsMailerTest < ActionMailer::TestCase # rubocop:disable Metrics
     check = create(:check, :ssl,
                   domain_expires_at: Time.new(2018, 6, 10, 12, 0, 5, "+02:00"),
                   user: build(:user, :fr))
-    notification = build(:notification, interval: 10, check: check, recipient: "colin@example.org")
+    notification = build(:notification, interval: 10, recipient: "colin@example.org")
+    check_notification = build(:check_notification, check: check, notification: notification)
 
     Date.stub :today, Date.new(2018, 6, 2) do
-      mail = NotificationsMailer.with(notification: notification).ssl_expires_soon
+      mail = NotificationsMailer.with(check_notification: check_notification).ssl_expires_soon
 
       assert_emails 1 do
         mail.deliver_now

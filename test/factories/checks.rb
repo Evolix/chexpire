@@ -86,7 +86,9 @@ FactoryBot.define do
 
     trait :with_notifications do
       after :create do |check|
-        create_list :notification, 2, check: check
+        create_list :check_notification, 2,
+                    check: check,
+                    notification: build(:notification, user: check.user)
       end
     end
   end

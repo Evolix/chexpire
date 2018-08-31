@@ -7,11 +7,12 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :checks, except: [:show] do
-    resources :notifications, only: [:destroy]
     collection do
       post :supports, format: :json
     end
   end
+
+  resources :notifications, except: [:show]
 
   devise_for :users
   root to: "pages#home"
@@ -22,7 +23,6 @@ end
 # == Route Map
 #
 #                    Prefix Verb   URI Pattern                                                                              Controller#Action
-#        check_notification DELETE /checks/:check_id/notifications/:id(.:format)                                            notifications#destroy
 #           supports_checks POST   /checks/supports(.:format)                                                               checks#supports
 #                    checks GET    /checks(.:format)                                                                        checks#index
 #                           POST   /checks(.:format)                                                                        checks#create
@@ -31,6 +31,13 @@ end
 #                     check PATCH  /checks/:id(.:format)                                                                    checks#update
 #                           PUT    /checks/:id(.:format)                                                                    checks#update
 #                           DELETE /checks/:id(.:format)                                                                    checks#destroy
+#             notifications GET    /notifications(.:format)                                                                 notifications#index
+#                           POST   /notifications(.:format)                                                                 notifications#create
+#          new_notification GET    /notifications/new(.:format)                                                             notifications#new
+#         edit_notification GET    /notifications/:id/edit(.:format)                                                        notifications#edit
+#              notification PATCH  /notifications/:id(.:format)                                                             notifications#update
+#                           PUT    /notifications/:id(.:format)                                                             notifications#update
+#                           DELETE /notifications/:id(.:format)                                                             notifications#destroy
 #          new_user_session GET    /users/sign_in(.:format)                                                                 devise/sessions#new
 #              user_session POST   /users/sign_in(.:format)                                                                 devise/sessions#create
 #      destroy_user_session DELETE /users/sign_out(.:format)                                                                devise/sessions#destroy
@@ -56,7 +63,7 @@ end
 #        rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
 # update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                      active_storage/disk#update
 #      rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
-#
+# 
 # Routes for LetterOpenerWeb::Engine:
 # clear_letters DELETE /clear(.:format)                 letter_opener_web/letters#clear
 # delete_letter DELETE /:id(.:format)                   letter_opener_web/letters#destroy

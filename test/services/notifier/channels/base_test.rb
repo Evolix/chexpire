@@ -8,8 +8,8 @@ module Notifier
     class BaseTest < ActiveSupport::TestCase
       setup do
         class FakeChannel < Base
-          def supports?(notification)
-            notification.interval < 1_000
+          def supports?(check_notification)
+            check_notification.notification.interval < 1_000
           end
 
           def domain_notify_expires_soon(*); end
@@ -19,45 +19,46 @@ module Notifier
       end
 
       test "#notify change the status of the notification" do
-        notification = create(:notification)
+        check_notification = create(:check_notification)
 
-        @channel.notify(notification)
+        @channel.notify(check_notification)
 
-        notification.reload
+        check_notification.reload
 
-        assert notification.ongoing?
-        assert_just_now notification.sent_at
+        assert check_notification.ongoing?
+        assert_just_now check_notification.sent_at
       end
 
       test "#notify raises an exception for a non supported check kind" do
-        notification = Minitest::Mock.new
-        notification.expect :ongoing!, true
-        notification.expect :interval, 10
+        check_notification = Minitest::Mock.new
+        check_notification.expect :ongoing!, true
+        check_notification.expect :notification, OpenStruct.new(interval: 10)
 
         check = Minitest::Mock.new
         check.expect(:kind, :invalid_kind)
         check.expect(:kind, :invalid_kind) # twice (second call for exception message)
 
-        notification.expect :check, check
-        notification.expect :check, check
+        check_notification.expect :check, check
+        check_notification.expect :check, check
 
         assert_raises ArgumentError do
-          @channel.notify(notification)
+          @channel.notify(check_notification)
         end
 
         check.verify
-        notification.verify
+        check_notification.verify
       end
 
       test "#notify does nothing when channel doesn't support a notification whatever the reason" do
-        notification = create(:notification, interval: 10_000)
+        check_notification = create(:check_notification,
+                                    notification: build(:notification, interval: 10_000))
 
-        @channel.notify(notification)
+        @channel.notify(check_notification)
 
-        notification.reload
+        check_notification.reload
 
-        assert notification.pending?
-        assert_nil notification.sent_at
+        assert check_notification.pending?
+        assert_nil check_notification.sent_at
       end
     end
   end

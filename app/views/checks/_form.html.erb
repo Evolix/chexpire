@@ -41,18 +41,17 @@
     <%= f.input :active %>
   <% end %>
 
-  <h2 class="mt-5"><%= t(".notifications") %></h2>
-  <p class="alert alert-light"><%= t(".notifications_hint") %></p>
+  <p class="mt-5 bd-callout bd-callout-info"><%= t(".notifications_hint") %></p>
 
-  <%- check.notifications.each_with_index do |notification, index| %>
-    <div data-notification-id="<%= notification.id %>">
-      <%= f.fields_for :notifications, notification do |nf| %>
-        <%= render "notifications/nested_form_headers", f: nf if index.zero? %>
-        <%= render "notifications/nested_form", f: nf, check: check %>
-      <% end %>
-    </div>
+  <%= f.association :notifications, as: :check_boxes,
+                    collection: policy_scope(Notification),
+                    label_method: :notifical_label,
+                    label_text: false %>
+
+  <%= f.fields_for :notifications, new_notification do |nf| %>
+    <%= render "notifications/nested_form_headers", f: nf %>
+    <%= render "notifications/nested_form", f: nf, notification: new_notification %>
   <% end %>
-
 
   <%= f.button :submit, class: "btn-primary mt-5" %>
 <% end %>

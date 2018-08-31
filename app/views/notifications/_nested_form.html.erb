@@ -12,20 +12,16 @@
       </div>
     <% end %>
 
-    <div class="form-group <%= recipient_col_class %>">
+    <div class="form-group <%= notification_variable_col_class %>">
       <%= f.input :recipient, as: :email, label: false %>
     </div>
 
     <div class="form-group col-md-2">
-      <%= f.input :interval, as: :integer, label: false %>
+      <%= f.input :interval, as: :integer, label: false, required: true %>
     </div>
 
-    <div class="form-group col-md-1">
-      <% if f.object.persisted? %>
-        <%= link_to check_notification_path(check, f.object), method: :delete, remote: true, class: "btn btn-danger" do %>
-          <%== Octicons::Octicon.new("x", width: 15, height: 20).to_svg %>
-        <% end %>
-      <% end %>
+    <div class="form-group <%= notification_variable_col_class %>">
+      <%= f.input :label, label: false %>
     </div>
   </div>
 </fieldset>

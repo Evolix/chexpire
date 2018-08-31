@@ -15,6 +15,7 @@
 #  kind                 :integer          not null
 #  last_run_at          :datetime
 #  last_success_at      :datetime
+#  mode                 :integer          default("auto"), not null
 #  round_robin          :boolean          default(TRUE)
 #  vendor               :string(255)
 #  created_at           :datetime         not null
@@ -35,23 +36,23 @@ require "test_helper"
 class CheckTest < ActiveSupport::TestCase
   test "notifications are resetted when domain expiration date has changed" do
     check = create(:check)
-    notification = create(:notification, :succeed, check: check)
+    check_notification = create(:check_notification, :succeed, check: check)
 
     check.comment = "Will not reset because of this attribute"
     check.save!
 
-    notification.reload
+    check_notification.reload
 
-    assert notification.succeed?
-    assert_not_nil notification.sent_at
+    assert check_notification.succeed?
+    assert_not_nil check_notification.sent_at
 
     check.domain_expires_at = 1.year.from_now
     check.save!
 
-    notification.reload
+    check_notification.reload
 
-    assert notification.pending?
-    assert_nil notification.sent_at
+    assert check_notification.pending?
+    assert_nil check_notification.sent_at
   end
 
   test "days_from_last_success without any success" do

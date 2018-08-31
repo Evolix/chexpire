@@ -3,45 +3,61 @@
 
 class NotificationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_notification, except: [:create]
+  before_action :set_notification, except: [:index, :new, :create]
+  after_action :verify_authorized, except: :index
+  after_action :verify_policy_scoped, only: :index
+
+  def index
+    @notifications = policy_scope(Notification).order(checks_count: :desc)
+  end
+
+  def new
+    @notification = Notification.new
+    authorize @notification
+    @notification.recipient = current_user.email
+  end
 
   def create
-    check = Check.find(params[:check_id])
-    @notification = check.notifications.build(notification_params)
+    @notification = Notification.new(notification_params)
+    @notification.user = current_user
     authorize @notification
 
     if @notification.save
-      flash[:notice] = "Your notification has been saved."
-      redirect_to check_path
+      flash[:notice] = t("notifications.created", scope: :flashes)
+      redirect_to notifications_path
     else
-      flash.now[:alert] = "An error occured."
-      render "checks/edit"
+      flash.now[:alert] = t("notifications.invalid", scope: :flashes)
+      render :new
+    end
+  end
+
+  def edit; end
+
+  def update
+    if @notification.update(notification_params)
+      flash[:notice] = t("notifications.updated", scope: :flashes)
+      redirect_to notifications_path
+    else
+      flash.now[:alert] = t("notifications.error", scope: :flashes)
+      render :edit
     end
   end
 
   def destroy
     @notification.destroy!
 
-    respond_to do |format|
-      format.js
-    end
+    flash[:notice] = t("notifications.destroyed", scope: :flashes)
+    redirect_to notifications_path
   end
 
   private
 
   def set_notification
-    # joins the check because policy use the check relation
-    @notification = Notification
-                    .joins(:check)
-                    .find_by!(id: params[:id], check_id: params[:check_id])
+    @notification = Notification.find(params[:id])
     authorize @notification
   end
 
   def notification_params
-    params.require(:notification).permit(:channel, :recipient, :interval)
-  end
-
-  def check_path
-    edit_check_path(check_id: params[:check_id])
+    params.require(:notification).permit(:label, :recipient, :interval)
   end
 end

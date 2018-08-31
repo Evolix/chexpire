@@ -1,7 +1,7 @@
 # Copyright (C) 2018 Colin Darie <colin@darie.eu>, 2018 Jeremy Lecour <jlecour@evolix.fr>, 2018 Evolix <info@evolix.fr>
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
-class ChecksController < ApplicationController
+class ChecksController < ApplicationController # rubocop:disable Metrics/ClassLength
   before_action :authenticate_user!
   before_action :set_check, except: [:index, :new, :create, :supports]
   after_action :verify_authorized, except: :index
@@ -29,16 +29,17 @@ class ChecksController < ApplicationController
     build_empty_notification
   end
 
-  def create
-    @check = Check.new(new_check_params)
-    @check.user = current_user
+  def create # rubocop:disable Metrics/AbcSize
+    @check = Check.new(new_check_params.merge(user: current_user))
     authorize @check
 
     if @check.save
-      flash[:notice] = t(".saved")
+      flash[:notice] = t("checks.created", scope: :flashes)
       redirect_to checks_path
     else
-      flash.now[:alert] = t(".invalid")
+      flash.now[:alert] = t("checks.invalid", scope: :flashes)
+
+      fill_or_build_new_notification
       render :new
     end
   end
@@ -49,11 +50,12 @@ class ChecksController < ApplicationController
 
   def update
     if @check.update(update_check_params)
-      flash[:notice] = "Your check has been updated."
+      flash[:notice] = t("checks.updated", scope: :flashes)
       redirect_to checks_path
     else
-      flash.now[:alert] = "An error occured."
-      build_empty_notification
+      flash.now[:alert] = t("checks.invalid", scope: :flashes)
+
+      fill_or_build_new_notification
       render :edit
     end
   end
@@ -61,7 +63,7 @@ class ChecksController < ApplicationController
   def destroy
     @check.destroy!
 
-    flash[:notice] = "Your check has been destroyed."
+    flash[:notice] = t("checks.destroyed", scope: :flashes)
     redirect_to checks_path
   end
 
@@ -86,13 +88,39 @@ class ChecksController < ApplicationController
   end
 
   def check_params(*others)
-    params.require(:check)
-          .permit(:domain, :domain_expires_at, :comment, :vendor, :round_robin, *others,
-                  notifications_attributes: [:id, :channel, :recipient, :interval])
+    permitted = params.require(:check)
+                      .permit(:domain, :domain_expires_at, :comment, :vendor,
+                              :round_robin, *others,
+                              notification_ids: [],
+                              notifications_attributes: [:channel, :label, :recipient, :interval])
+
+    merge_current_user!(permitted)
+
+    permitted
+  end
+
+  def merge_current_user!(permitted)
+    return unless permitted[:notifications_attributes].present?
+
+    permitted[:notifications_attributes].each_pair do |_key, attributes|
+      attributes.merge!(user: current_user)
+    end
   end
 
   def build_empty_notification
-    @check.notifications.build
+    @new_notification = @check.notifications.build
+    @new_notification.recipient = current_user.email
+  end
+
+  def fill_or_build_new_notification
+    last_notification = @check.notifications.last
+
+    # user has filled a new notification: we use it for the form
+    if last_notification.new_record?
+      @new_notification = last_notification
+    else # otherwise, set a new empty notification
+      build_empty_notification
+    end
   end
 
   def current_sort
