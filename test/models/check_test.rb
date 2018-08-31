@@ -55,6 +55,27 @@ class CheckTest < ActiveSupport::TestCase
     assert_nil check_notification.sent_at
   end
 
+  test "consecutive failures are resetted when domain changed" do
+    check = create(:check, consecutive_failures: 1)
+
+    check.domain = "mynewdomain.fr"
+    check.save!
+
+    assert_equal 0, check.consecutive_failures
+  end
+
+  test "consecutive failures are resetted when mode changed" do
+    check = create(:check, consecutive_failures: 1, mode: :auto)
+    check.manual!
+
+    assert_equal 0, check.consecutive_failures
+
+    check = create(:check, domain: "x.wxyz", consecutive_failures: 1, mode: :manual)
+    check.auto!
+
+    assert_equal 0, check.consecutive_failures
+  end
+
   test "days_from_last_success without any success" do
     check = build(:check)
     assert_nil check.days_from_last_success
