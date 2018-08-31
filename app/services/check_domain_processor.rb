@@ -6,10 +6,6 @@ class CheckDomainProcessor
 
   protected
 
-  def configuration_key
-    "checks_domain"
-  end
-
   def resolvers
     %i[
       resolve_last_run_failed

@@ -6,10 +6,6 @@ class CheckSSLProcessor
 
   protected
 
-  def configuration_key
-    "checks_ssl"
-  end
-
   def resolvers
     %i[
       resolve_all

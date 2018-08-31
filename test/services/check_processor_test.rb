@@ -9,10 +9,6 @@ class CheckDummyProcessor
     base_scope
   end
 
-  def configuration_key
-    "checks_dummy"
-  end
-
   def resolvers
     %i[
       resolve_expire_short_term
@@ -23,7 +19,8 @@ end
 
 class CheckProcessorTest < ActiveSupport::TestCase
   setup do
-    @processor = CheckDummyProcessor.new
+    configuration = Rails.configuration.chexpire.fetch("checks_dummy")
+    @processor = CheckDummyProcessor.new(configuration: configuration)
   end
 
   test "resolve_last_run_failed includes already and never succeeded" do
@@ -121,19 +118,15 @@ class CheckProcessorTest < ActiveSupport::TestCase
   test "#sync_dates respects the interval configuration between sends" do
     create_list(:check, 3, :expires_next_week)
 
-    configuration = Minitest::Mock.new
-    2.times do configuration.expect(:long_term_interval, 300) end
-    configuration.expect(:long_term_frequency, 4)
+    configuration = OpenStruct.new(long_term_interval: 300,
+                                   long_term_frequency: 4,
+                                   interval: 0.000001)
 
-    3.times do
-      configuration.expect(:interval, 0.000001)
-    end
-
-    processor = CheckDummyProcessor.new(configuration)
+    processor = CheckDummyProcessor.new(configuration: configuration)
 
     mock = Minitest::Mock.new
     assert_stub = lambda { |actual_time|
-      assert_equal 0.000001, actual_time
+      assert_equal configuration.interval, actual_time
       mock
     }
 
@@ -143,7 +136,6 @@ class CheckProcessorTest < ActiveSupport::TestCase
       end
     end
 
-    configuration.verify
     mock.verify
   end
 end
