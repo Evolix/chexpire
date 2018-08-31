@@ -128,7 +128,7 @@ class Check < ApplicationRecord
   end
 
   def reset_consecutive_failures
-    return unless last_success_at_changed?
+    return unless last_success_at_changed? || mode_changed? || domain_changed?
     return if consecutive_failures_changed?
 
     self.consecutive_failures = 0
