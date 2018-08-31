@@ -87,7 +87,7 @@ class Check < ApplicationRecord
 
   def increment_consecutive_failures!
     self.consecutive_failures += 1
-    save!
+    save!(validate: false)
   end
 
   def supported?
