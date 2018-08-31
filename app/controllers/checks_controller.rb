@@ -116,7 +116,7 @@ class ChecksController < ApplicationController # rubocop:disable Metrics/ClassLe
     last_notification = @check.notifications.last
 
     # user has filled a new notification: we use it for the form
-    if last_notification.new_record?
+    if last_notification.present? && last_notification.new_record?
       @new_notification = last_notification
     else # otherwise, set a new empty notification
       build_empty_notification
