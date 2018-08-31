@@ -7,16 +7,20 @@
         <th scope="col"></th>
         <th scope="col">
           <%= t(".th.domain") %>
-          <span class="sort-links mx-sm-2 text-nowrap">
-            <%== checks_sort_links(:domain) %>
-          </span>
+          <% unless defined?(skip_sort) %>
+            <span class="sort-links mx-sm-2 text-nowrap">
+              <%== checks_sort_links(:domain) %>
+            </span>
+          <% end %>
         </th>
         <th scope="col">
           <span class="d-none d-sm-inline"><%= t(".th.expiry_date") %></span>
           <span class="d-inline d-sm-none"><%= t(".th.expiry_date_short") %></span>
-          <span class="sort-links mx-sm-2 text-nowrap">
-            <%== checks_sort_links(:domain_expires_at) %>
-          </span>
+          <% unless defined?(skip_sort) %>
+            <span class="sort-links mx-sm-2 text-nowrap">
+              <%== checks_sort_links(:domain_expires_at) %>
+            </span>
+          <% end %>
         </th>
         <th scope="col" class="text-right"><%= t(".th.edit") %></th>
       </tr>
@@ -48,4 +52,4 @@
   </table>
 </div>
 
-<%= paginate @checks %>
+<%= paginate checks unless defined?(skip_pagination)%>

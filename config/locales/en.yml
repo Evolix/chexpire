@@ -33,8 +33,28 @@ en:
       notifications:
         recipient: john@example.com
 
+  helpers:
+    submit:
+      check:
+        create: "Create"
+        update: "Update"
+      notification:
+        create: "Create"
+        update: "Update"
+        delete: "Delete"
+
   flashes:
     user_not_authorized: "You are not authorized to access to this resource."
+    checks:
+      create: The check has been saved.
+      updated: The check has been updated.
+      invalid: Please check the form.
+      destroyed: The check has been destroyed.
+    notifications:
+      created: The notification has been created.
+      updated: The notification has been updated."
+      destroyed: The notification has been destroyed.
+      invalid: Please check the form.
 
   notifications_mailer:
     domain_expires_soon:
@@ -68,6 +88,7 @@ en:
       my_checks: "My checks"
       new_domain_check: "New domain check"
       new_ssl_check: "New SSL check"
+      my_notifications: "My notifications"
       sign_up: "Sign up"
       sign_in: "Log in"
       sign_out: "Log out"
@@ -143,3 +164,36 @@ en:
         zero: "Last check successful: today"
         one: "Last check successful: yesterday"
         other: "Last check successful %{count} days ago"
+
+  notifications:
+    index:
+      title: "List of your notifications"
+      no_notification_yet_html: |
+        You have not set up a notification yet.
+        <a href="%{new_path}">Create your first notification</a>.
+      explanation: |
+        For each of your checks,
+        you can associate one or more notifications that you will receive
+        by email at the interval of your choice before the expiration date.
+    table:
+      th:
+        edit: Edit
+      interval_in_days:
+        one: 1 day
+        other: "%{count} days"
+    edit:
+      title: "Edit the notification"
+      checks:
+        zero: No check associated check.
+        one: Check associated
+        other: Checks associated
+      destroy_confirmation:
+        zero: "Are you sure ?"
+        one: |
+          Are you sure ?
+          You won't receive this notification for the associated check.
+        other: |
+          Are you sure ?
+          You won't receive this notification for the associated checks.
+    form:
+      label_hint: This label allows you to identify this notification and associate it with a check.

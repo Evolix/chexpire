@@ -1,0 +1,22 @@
+<% # Copyright (C) 2018 Colin Darie <colin@darie.eu>, 2018 Evolix <info@evolix.fr> %>
+<% # License: GNU AGPL-3+ (see full text in LICENSE file) %>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10 col-xl-9">
+      <% if @notifications.empty? %>
+        <div class="alert alert-info">
+          <%= t(".no_notification_yet_html", new_path: new_notification_path) %>
+        </div>
+      <% else %>
+        <div class="row justify-content-md-end">
+          <%= link_to("Ajouter une notification", new_notification_path, class: "btn btn-primary") %>
+        </div>
+        <h1 class="mb-3 mb-sm-5"><%= t(".title") %></h1>
+        <%= render "table", notifications: @notifications %>
+      <% end %>
+      <div class="bd-callout bd-callout-info">
+        <p><%= t(".explanation") %></p>
+      </div>
+    </div>
+  </div>
+</div>

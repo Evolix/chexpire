@@ -28,8 +28,8 @@
 
 class Notification < ApplicationRecord
   belongs_to :user
-  has_many :check_notifications
-  has_many :checks, through: :notifications
+  has_many :check_notifications, dependent: :destroy
+  has_many :checks, -> { order(domain_expires_at: :asc) }, through: :check_notifications
 
   enum channel: [:email]
 

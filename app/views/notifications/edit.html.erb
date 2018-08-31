@@ -1,0 +1,27 @@
+<% # Copyright (C) 2018 Colin Darie <colin@darie.eu>, 2018 Evolix <info@evolix.fr> %>
+<% # License: GNU AGPL-3+ (see full text in LICENSE file) %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10">
+      <h1><%= t(".title") %></h1>
+
+      <%= render "form", notification: @notification %>
+    </div>
+  </div>
+
+  <div class="row mt-5 justify-content-center">
+    <div class="col-12 col-lg-10">
+      <h4><%= t(".checks", count: @notification.checks_count) %></h4>
+      <% if @notification.checks_count.positive? %>
+        <%= render "checks/table", checks: @notification.checks, skip_sort: true, skip_pagination: true %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row mt-5 mb-3 justify-content-center">
+    <div class="col-12 col-lg-10">
+      <%= button_to(t("helpers.submit.notification.delete"), notification_path(@notification), class: "btn btn-danger", method: :delete,
+            data: { confirm: t(".destroy_confirmation", count: @notification.checks_count) }) %>
+    </div>
+  </div>
+</div>
