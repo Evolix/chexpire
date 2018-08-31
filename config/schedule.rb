@@ -5,7 +5,8 @@
 
 set :output, standard: "log/cron.log"
 
-#
+job_type :rake_with_stdout, "cd :path && :environment_variable=:environment bundle exec rake :task"
+
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
 #   runner "MyModel.some_method"
@@ -19,7 +20,7 @@ set :output, standard: "log/cron.log"
 # Learn more: http://github.com/javan/whenever
 
 every 1.day, at: '1:00 am', roles: [:app] do
-  rake "checks:sync_dates:all"
+  rake_with_stdout "checks:sync_dates:all QUIET=1"
 end
 
 every 1.day, at: '8:30 am', roles: [:app] do
