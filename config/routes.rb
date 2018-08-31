@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :checks, except: [:show] do
-    resources :check_notifications, only: [:destroy]
     collection do
       post :supports, format: :json
     end
@@ -24,7 +23,6 @@ end
 # == Route Map
 #
 #                    Prefix Verb   URI Pattern                                                                              Controller#Action
-#  check_check_notification DELETE /checks/:check_id/check_notifications/:id(.:format)                                      check_notifications#destroy
 #           supports_checks POST   /checks/supports(.:format)                                                               checks#supports
 #                    checks GET    /checks(.:format)                                                                        checks#index
 #                           POST   /checks(.:format)                                                                        checks#create
