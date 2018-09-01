@@ -13,6 +13,7 @@ module Notifier
     def checks_recurrent_failures(min_consecutive)
       Check
         .active
+        .auto
         .consecutive_failures(min_consecutive)
         .includes(:user)
         .where.not(user: ignore_users)

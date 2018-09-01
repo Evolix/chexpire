@@ -84,6 +84,15 @@ FactoryBot.define do
       active false
     end
 
+    trait :auto do
+      mode :auto
+    end
+
+    trait :manual do
+      mode :manual
+      domain "unupported.wxyz"
+    end
+
     trait :with_notifications do
       after :create do |check|
         create_list :check_notification, 2,
