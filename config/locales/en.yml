@@ -97,6 +97,9 @@ en:
     home_header:
       welcome: "Chexpire"
       intro: "Never forget to renew a domain name or SSL certificate."
+      actions:
+        learn_more: "Learn More"
+        sign_up: "Sign Up"
     beta_banner:
       beta_info: "Chexpire is in \"beta\" release: only few TLD (.com/.net/.org/.fr) are verified for domain name checks and TLS 1.2 is not supported for SSL checks."
       issue_link: "Please report issues."

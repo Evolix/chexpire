@@ -119,13 +119,16 @@ fr:
       new_domain_check: "Nouveau nom de domaine"
       new_ssl_check: "Nouveau certificat SSL"
       my_notifications: "Mes notifications"
-      sign_up: "Enregistrement"
+      sign_up: "Inscription"
       sign_in: "Connexion"
       sign_out: "Déconnexion"
       profile: "Profil"
     home_header:
       welcome: "Chexpire"
       intro: "vous n'oublierez plus jamais de renouveler un nom de domaine ou un certificat SSL."
+      actions:
+        learn_more: "En savoir plus"
+        sign_up: "S'inscrire"
     beta_banner:
       beta_info: "Chexpire est en version \"beta\" : seuls certains TLD (.com/.net/.org/.fr) sont vérifiés pour les noms de domaine et TLS 1.2 n'est pas supporté pour les vérifications SSL."
       issue_link: "Merci de nous reporter bugs et suggestions."
