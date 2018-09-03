@@ -1,4 +1,4 @@
-SSL: <%= check.domain %> (<%= check.consecutive_failures %> erreurs consécutives)
+SSL: <%= check.domain %> (<%= check.consecutive_failures %> consecutive errors)
 <%= "-" * (check.domain.length + "SSL: ".length) %>
 
 <%- if check.domain_expires_at.present? %>
