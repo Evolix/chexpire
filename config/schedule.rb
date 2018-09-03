@@ -20,7 +20,7 @@ job_type :rake_with_stdout, "cd :path && :environment_variable=:environment bund
 # Learn more: http://github.com/javan/whenever
 
 every 1.day, at: '1:00 am', roles: [:app] do
-  rake_with_stdout "checks:sync_dates:all QUIET=1"
+  rake_with_stdout "checks:sync_dates:all VERBOSE=1"
 end
 
 every 1.day, at: '8:30 am', roles: [:app] do
