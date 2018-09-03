@@ -22,10 +22,10 @@
               <%= link_to(t(".new_ssl_check"), new_check_path(kind: :ssl), class: "nav-link") %>
             </li>
             <li class="nav-item">
-              <%= link_to(t(".GitHub"), "https://github.com/Evolix/chexpire", class: "nav-link") %>
+              <%= link_to(t(".my_notifications"), notifications_path, class: "nav-link") %>
             </li>
             <li class="nav-item">
-              <%= link_to(t(".my_notifications"), notifications_path, class: "nav-link") %>
+              <%= link_to("GitHub", "https://github.com/Evolix/chexpire", class: "nav-link") %>
             </li>
           <% end %>
         </ul>
@@ -55,7 +55,7 @@
         <!-- Login link (when logged out) -->
         <%= link_to t(".sign_in"), new_user_session_path, class: "navbar-item navbar-link" %>
         <%= link_to t(".sign_up"), new_user_registration_path, class: "navbar-item navbar-link" %>
-        <%= link_to t(".GitHub"), "https://github.com/Evolix/chexpire", class: "navbar-item navbar-link" %>
+        <%= link_to "GitHub", "https://github.com/Evolix/chexpire", class: "navbar-item navbar-link" %>
       <% end %>
     </div>
   </div>
