@@ -91,12 +91,15 @@ en:
       new_ssl_check: "New SSL check"
       my_notifications: "My notifications"
       sign_up: "Sign up"
-      sign_in: "Log in"
-      sign_out: "Log out"
+      sign_in: "Sign in"
+      sign_out: "Sign out"
       profile: "Profile"
     home_header:
       welcome: "Chexpire"
       intro: "Never forget to renew a domain name or SSL certificate."
+      actions:
+        learn_more: "Learn More"
+        sign_up: "Sign Up"
     beta_banner:
       beta_info: "Chexpire is in \"beta\" release: only few TLD (.com/.net/.org/.fr) are verified for domain name checks and TLS 1.2 is not supported for SSL checks."
       issue_link: "Please report issues."
