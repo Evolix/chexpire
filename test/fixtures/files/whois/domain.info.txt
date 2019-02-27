@@ -1,0 +1,149 @@
+% IANA WHOIS server
+% for more information on IANA, visit http://www.iana.org
+% This query returned 1 object
+
+refer:        whois.afilias.net
+
+domain:       INFO
+
+organisation: Afilias Limited
+address:      Office 107
+address:      3013 Lake Drive
+address:      CityWest
+address:      Dublin 24
+address:      Ireland
+
+contact:      administrative
+name:         Ram Mohan
+organisation: Afilias Limited
+address:      C/O Afilias USA, Inc.
+address:      300 Welsh Road, Building 3
+address:      Suite 105
+address:      Horsham Pennsylvania 19044
+address:      United States
+phone:        +1 215 706 5700
+fax-no:       +1 215 706 5701
+e-mail:       domainadmin@afilias.info
+
+contact:      technical
+name:         Howard Eland
+organisation: Afilias Limited
+address:      C/O Afilias USA, Inc.
+address:      300 Welsh Road, Building 3
+address:      Suite 105
+address:      Horsham Pennsylvania 19044
+address:      United States
+phone:        +1 215 706 5700
+fax-no:       +1 215 706 5701
+e-mail:       domaintech@afilias.info
+
+nserver:      A0.INFO.AFILIAS-NST.INFO 199.254.31.1 2001:500:19:0:0:0:0:1
+nserver:      A2.INFO.AFILIAS-NST.INFO 199.249.113.1 2001:500:41:0:0:0:0:1
+nserver:      B0.INFO.AFILIAS-NST.ORG 199.254.48.1 2001:500:1a:0:0:0:0:1
+nserver:      B2.INFO.AFILIAS-NST.ORG 199.249.121.1 2001:500:49:0:0:0:0:1
+nserver:      C0.INFO.AFILIAS-NST.INFO 199.254.49.1 2001:500:1b:0:0:0:0:1
+nserver:      D0.INFO.AFILIAS-NST.ORG 199.254.50.1 2001:500:1c:0:0:0:0:1
+ds-rdata:     8674 7 1 197789a2cbaba6fecd0b5ac88c5bc414ce1fc309
+ds-rdata:     8674 7 2 ec9b6082b96b5f87143696f2b483acc9b2c433dce0c94e70f1ff5648ca18008b
+
+whois:        whois.afilias.net
+
+status:       ACTIVE
+remarks:      Registration information: http://www.nic.info
+
+created:      2001-06-26
+changed:      2015-09-09
+source:       IANA
+
+Domain Name: DOMAIN.INFO
+Registry Domain ID: D11252785-LRMS
+Registrar WHOIS Server: whois.gandi.net
+Registrar URL: https://www.gandi.net/whois
+Updated Date: 2018-12-03T21:21:22Z
+Creation Date: 2006-03-25T14:01:14Z
+Registry Expiry Date: 2020-03-25T14:01:14Z
+Registrar Registration Expiration Date:
+Registrar: Gandi SAS
+Registrar IANA ID: 81
+Registrar Abuse Contact Email: abuse@support.gandi.net
+Registrar Abuse Contact Phone: +33.170377661
+Reseller:
+Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited
+Registrant Organization: Evolix SARL
+Registrant State/Province:
+Registrant Country: FR
+Name Server: NS1.DOMAIN.NET
+Name Server: NS0.DOMAIN.COM
+DNSSEC: unsigned
+URL of the ICANN Whois Inaccuracy Complaint Form is https://www.icann.org/wicf/
+>>> Last update of WHOIS database: 2019-02-27T21:27:43Z <<<
+
+Domain Name: domain.info
+Registry Domain ID: D11252785-LRMS
+Registrar WHOIS Server: whois.gandi.net
+Registrar URL: http://www.gandi.net
+Updated Date: 2018-12-03T22:21:23Z
+Creation Date: 2006-03-25T14:01:14Z
+Registrar Registration Expiration Date: 2020-03-25T14:01:14Z
+Registrar: GANDI SAS
+Registrar IANA ID: 81
+Registrar Abuse Contact Email: abuse@support.gandi.net
+Registrar Abuse Contact Phone: +33.170377661
+Reseller:
+Domain Status: clientTransferProhibited http://www.icann.org/epp#clientTransferProhibited
+Domain Status:
+Domain Status:
+Domain Status:
+Domain Status:
+Registry Registrant ID: REDACTED FOR PRIVACY
+Registrant Name: REDACTED FOR PRIVACY
+Registrant Organization: Evolix SARL
+Registrant Street: REDACTED FOR PRIVACY
+Registrant City: REDACTED FOR PRIVACY
+Registrant State/Province:
+Registrant Postal Code: REDACTED FOR PRIVACY
+Registrant Country: FR
+Registrant Phone: REDACTED FOR PRIVACY
+Registrant Phone Ext:
+Registrant Fax: REDACTED FOR PRIVACY
+Registrant Fax Ext:
+Registrant Email: 7487d1824de2ffea6b1ba98ba8b83342-793288@contact.gandi.net
+Registry Admin ID: REDACTED FOR PRIVACY
+Admin Name: REDACTED FOR PRIVACY
+Admin Organization: REDACTED FOR PRIVACY
+Admin Street: REDACTED FOR PRIVACY
+Admin City: REDACTED FOR PRIVACY
+Admin State/Province: REDACTED FOR PRIVACY
+Admin Postal Code: REDACTED FOR PRIVACY
+Admin Country: REDACTED FOR PRIVACY
+Admin Phone: REDACTED FOR PRIVACY
+Admin Phone Ext:
+Admin Fax: REDACTED FOR PRIVACY
+Admin Fax Ext:
+Admin Email: 7487d1824de2ffea6b1ba98ba8b83342-793288@contact.gandi.net
+Registry Tech ID: REDACTED FOR PRIVACY
+Tech Name: REDACTED FOR PRIVACY
+Tech Organization: REDACTED FOR PRIVACY
+Tech Street: REDACTED FOR PRIVACY
+Tech City: REDACTED FOR PRIVACY
+Tech State/Province: REDACTED FOR PRIVACY
+Tech Postal Code: REDACTED FOR PRIVACY
+Tech Country: REDACTED FOR PRIVACY
+Tech Phone: REDACTED FOR PRIVACY
+Tech Phone Ext:
+Tech Fax: REDACTED FOR PRIVACY
+Tech Fax Ext:
+Tech Email: 7487d1824de2ffea6b1ba98ba8b83342-793288@contact.gandi.net
+Name Server: NS1.DOMAIN.NET
+Name Server: NS0.DOMAIN.COM
+Name Server:
+Name Server:
+Name Server:
+Name Server:
+Name Server:
+Name Server:
+Name Server:
+Name Server:
+DNSSEC: Unsigned
+URL of the ICANN WHOIS Data Problem Reporting System: http://wdprs.internic.net/
+>>> Last update of WHOIS database: 2019-02-27T21:28:43Z <<<

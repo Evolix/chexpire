@@ -7,12 +7,52 @@ require_relative "base"
 
 module Whois
   module Parser
-    class PIR < Base
+    class Afilias < Base
+      # https://afilias.info/products-services
+      # https://afilias.info/global-registry-services/ctlds
+      # https://afilias.info/global-registry-services/gtlds
       SUPPORTED_TLD = %w[
+        .info
+        .ag
+        .bz
+        .gi
+        .au
+        .lc
+        .me
+        .mn
+        .sc
+        .vc
         .org
+        .aero
+        .asia
+        .xxx
+        .post
+        .global
+        .vegas
+        .onl
+        .rich
+        .ltda
+        .srl
+        .adult
+        .porn
         .ngo
         .ong
-        .opr
+        .bet
+        .pet
+        .lotto
+        .poker
+        .lgbt
+        .vote
+        .voto
+        .organic
+        .green
+        .black
+        .red
+        .pink
+        .blue
+        .kim
+        .shiksha
+        .promo
       ].freeze
 
       COMMENT_REGEX = /^(%|>)+ +(?<text>.+)$/
