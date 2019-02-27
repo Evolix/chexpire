@@ -39,12 +39,15 @@ module Whois
 
       protected
 
-      def get_field!(name, after: -1, value: nil)
+      def get_field(name, after: -1, value: nil)
         fields.detect { |field|
           field.index > after &&
             field.name == name &&
             (value.nil? || field.value == value)
-        } || fail(FieldNotFoundError, "Field `#{name}` not found, after index #{after}")
+        }
+      end
+      def get_field!(name, after: -1, value: nil)
+        get_field(name, after: after, value: value) || fail(FieldNotFoundError, "Field `#{name}` not found, after index #{after}")
       end
 
       def get_value!(name, after: -1)

@@ -1,0 +1,187 @@
+% IANA WHOIS server
+% for more information on IANA, visit http://www.iana.org
+% This query returned 1 object
+
+refer:        whois.cira.ca
+
+domain:       CA
+
+organisation: Canadian Internet Registration Authority (CIRA) Autorité Canadienne pour les enregistrements Internet (ACEI)
+address:      979 Bank Street, Suite 400
+address:      Ottawa, Ontario, K1S 5K5
+address:      Canada
+
+contact:      administrative
+name:         Chief Information Officer
+organisation: CIRA
+address:      979 Bank Street, Suite 400
+address:      Ottawa, Ontario, K1S 5K5
+address:      Canada
+phone:        +1 613 237 5335
+fax-no:       +1 613 237 0534
+e-mail:       chief.information.officer@cira.ca
+
+contact:      technical
+name:         DNS Admin
+organisation: CIRA
+address:      979 Bank Street, Suite 400
+address:      Ottawa, Ontario, K1S 5K5
+address:      Canada
+phone:        +1 613 237 5335
+fax-no:       +1 613 237 0534
+e-mail:       admin-dns@cira.ca
+
+nserver:      ANY.CA-SERVERS.CA 199.4.144.2 2001:500:a7:0:0:0:0:2
+nserver:      C.CA-SERVERS.CA 185.159.196.2 2620:10a:8053:0:0:0:0:2
+nserver:      J.CA-SERVERS.CA 198.182.167.1 2001:500:83:0:0:0:0:1
+nserver:      X.CA-SERVERS.CA 199.253.250.68 2620:10a:80ba:0:0:0:0:68
+ds-rdata:     2134 8 2 4b8475c0c0fe2afdfee1a71a237c91059098d12fc18265b290edb238a5f63582
+
+whois:        whois.cira.ca
+
+status:       ACTIVE
+remarks:      Registration information: http://www.cira.ca/
+
+created:      1987-05-14
+changed:      2018-03-12
+source:       IANA
+
+Domain Name: domain.ca
+Registry Domain ID: 20543793-CIRA
+Registrar WHOIS Server: whois.ca.fury.ca
+Registrar URL: www.gandi.net
+Updated Date: 2018-12-03T21:21:04Z
+Creation Date: 2015-03-24T09:10:16Z
+Registry Expiry Date: 2020-03-24T09:10:16Z
+Registrar: Gandi Services Inc.
+Registrar IANA ID:
+Registrar Abuse Contact Email:
+Registrar Abuse Contact Phone:
+Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited
+Registry Registrant ID: 20489098-CIRA
+Registrant Name: DOMAIN LLC ()
+Registrant Organization:
+Registrant Street: 12, r De la vie
+Registrant City: Marseille
+Registrant State/Province: Marseille
+Registrant Postal Code: 13009
+Registrant Country: FR
+Registrant Phone: +33.491234567
+Registrant Phone Ext:
+Registrant Fax:
+Registrant Fax Ext:
+Registrant Email: 7487d1824de2ffea6b1ba98ba8b83342-793288@contact.gandi.net
+Registry Admin ID: 20528918-CIRA
+Admin Name: John Appleseeds
+Admin Organization:
+Admin Street: A complete street address
+Admin City: cityville
+Admin State/Province: cityville
+Admin Postal Code: 19321
+Admin Country: FR
+Admin Phone: +33.491234567
+Admin Phone Ext:
+Admin Fax:
+Admin Fax Ext:
+Admin Email: contact@domain.fr
+Registry Tech ID: 20528918-CIRA
+Tech Name: John Appleseeds
+Tech Organization:
+Tech Street: A complete street address
+Tech City: cityville
+Tech State/Province: cityville
+Tech Postal Code: 19321
+Tech Country: FR
+Tech Phone: +33.491234567
+Tech Phone Ext:
+Tech Fax:
+Tech Fax Ext:
+Tech Email: contact@domain.fr
+Registry Billing ID:
+Billing Name:
+Billing Organization:
+Billing Street:
+Billing City:
+Billing State/Province:
+Billing Postal Code:
+Billing Country:
+Billing Phone:
+Billing Phone Ext:
+Billing Fax:
+Billing Fax Ext:
+Billing Email:
+Name Server: ns1.domain.net
+Name Server: ns0.domain.com
+DNSSEC: unsigned
+URL of the ICANN Whois Inaccuracy Complaint Form: https://www.icann.org/wicf/
+>>> Last update of WHOIS database: 2019-02-27T22:40:02Z <<<
+
+Domain Name: domain.ca
+Registry Domain ID: 20543793-CIRA
+Registrar WHOIS Server: whois.ca.fury.ca
+Registrar URL: www.gandi.net
+Updated Date: 2018-12-03T21:21:04Z
+Creation Date: 2015-03-24T09:10:16Z
+Registry Expiry Date: 2020-03-24T09:10:16Z
+Registrar: Gandi Services Inc.
+Registrar IANA ID:
+Registrar Abuse Contact Email:
+Registrar Abuse Contact Phone:
+Domain Status: clientTransferProhibited https://icann.org/epp#clientTransferProhibited
+Registry Registrant ID: 20489098-CIRA
+Registrant Name: domain SARL ()
+Registrant Organization:
+Registrant Street: 37, r Guibal
+Registrant City: Marseille
+Registrant State/Province: Marseille
+Registrant Postal Code: 19321
+Registrant Country: FR
+Registrant Phone: +33.491234567
+Registrant Phone Ext:
+Registrant Fax:
+Registrant Fax Ext:
+Registrant Email: 7487d1824de2ffea6b1ba98ba8b83342-793288@contact.gandi.net
+Registry Admin ID: 20528918-CIRA
+Admin Name: John Appleseeds
+Admin Organization:
+Admin Street: A complete street address
+Admin City: cityville
+Admin State/Province: cityville
+Admin Postal Code: 19321
+Admin Country: FR
+Admin Phone: +33.491234567
+Admin Phone Ext:
+Admin Fax:
+Admin Fax Ext:
+Admin Email: contact@domain.fr
+Registry Tech ID: 20528918-CIRA
+Tech Name: John Appleseeds
+Tech Organization:
+Tech Street: A complete street address
+Tech City: cityville
+Tech State/Province: cityville
+Tech Postal Code: 19321
+Tech Country: FR
+Tech Phone: +33.491234567
+Tech Phone Ext:
+Tech Fax:
+Tech Fax Ext:
+Tech Email: contact@domain.fr
+Registry Billing ID:
+Billing Name:
+Billing Organization:
+Billing Street:
+Billing City:
+Billing State/Province:
+Billing Postal Code:
+Billing Country:
+Billing Phone:
+Billing Phone Ext:
+Billing Fax:
+Billing Fax Ext:
+Billing Email:
+Name Server: ns1.domain.net
+Name Server: ns0.domain.com
+DNSSEC: unsigned
+URL of the ICANN Whois Inaccuracy Complaint Form: https://www.icann.org/wicf/
+>>> Last update of WHOIS database: 2019-02-27T22:40:02Z <<<
