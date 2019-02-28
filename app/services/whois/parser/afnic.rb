@@ -8,6 +8,9 @@ require_relative "base"
 module Whois
   module Parser
     class AFNIC < Base
+      # https://www.afnic.fr
+      # Rate limiting : 7200 requests per 24h
+      # cf. https://www.afnic.fr/fr/ressources/documents-de-reference/documents-techniques/documents-techniques-supplementaires-1.html
       SUPPORTED_TLD = %w[
         .fr
         .re
