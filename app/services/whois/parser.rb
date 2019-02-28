@@ -6,11 +6,18 @@ require "whois/errors"
 require "whois/parser/afilias"
 require "whois/parser/afnic"
 require "whois/parser/cira"
+require "whois/parser/neustar"
 require "whois/parser/verisign"
 
 module Whois
   module Parser
-    PARSERS = [AFNIC, CIRA, Verisign, Afilias].freeze
+    PARSERS = [
+      Afilias,
+      AFNIC,
+      CIRA,
+      Neustar,
+      Verisign,
+    ].freeze
 
     class << self
       def for(domain, logger: NullLogger.new)
