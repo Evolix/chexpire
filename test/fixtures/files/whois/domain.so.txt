@@ -1,0 +1,90 @@
+% IANA WHOIS server
+% for more information on IANA, visit http://www.iana.org
+% This query returned 1 object
+
+refer:        whois.nic.so
+
+domain:       SO
+
+organisation: Ministry of Post and Telecommunications
+address:      Mogadishu
+address:      Somalia
+
+contact:      administrative
+name:         Administrator
+organisation: Ministry of Post and Telecommunications
+address:      Mogadishu
+address:      Somalia
+phone:        +252 1 587 1200
+fax-no:       +252 1 231 599
+e-mail:       admin@mipt.gov.so
+
+contact:      technical
+name:         Tech Manager
+organisation: soNIC
+address:      Via Republic
+address:      Mogadishu Benadir 1000
+address:      Somalia
+phone:        +252 61 8250888
+fax-no:       +252 61 8250991
+e-mail:       admin@sonic.gov.so
+
+nserver:      D.NIC.SO 196.216.168.54 2001:43f8:120:0:0:0:0:54
+nserver:      E.NIC.SO 2001:500:14:6101:ad:0:0:1 204.61.216.101
+
+whois:        whois.nic.so
+
+status:       ACTIVE
+remarks:      Registration information: http://www.nic.so/
+
+created:      1997-08-28
+changed:      2016-04-18
+source:       IANA
+
+Domain Name: domain.so
+Domain ID: 35445-sonic
+WHOIS Server: whois.nic.so
+Updated Date: 2018-11-11T11:09:47.823Z
+Creation Date: 2010-10-31T00:00:00.0Z
+Registry Expiry Date: 2021-10-31T00:00:00.0Z
+Domain Status: clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited
+Domain Status: inactive https://icann.org/epp#inactive
+Registrar: SONIC
+Registrar Abuse Phone: +252.618250888
+Registrar Abuse Email: admin@sonic.gov.so
+Registrant ID: 53306-sonic
+Registrant Name: SONIC
+Registrant Organization: 0
+Registrant Street: Via Republic
+Registrant City: Mogadishu
+Registrant State/Province: Benadir
+Registrant Postal Code: 1000
+Registrant Country: SO
+Registrant Phone: +252.618250888
+Registrant Fax: +252.618250991
+Registrant Email: admin@sonic.gov.so
+Admin ID: 53306-sonic
+Admin Name: SONIC
+Admin Organization: 0
+Admin Street: Via Republic
+Admin City: Mogadishu
+Admin State/Province: Benadir
+Admin Postal Code: 1000
+Admin Country: SO
+Admin Phone: +252.618250888
+Admin Fax: +252.618250991
+Admin Email: admin@sonic.gov.so
+Tech ID: 53306-sonic
+Tech Name: SONIC
+Tech Organization: 0
+Tech Street: Via Republic
+Tech City: Mogadishu
+Tech State/Province: Benadir
+Tech Postal Code: 1000
+Tech Country: SO
+Tech Phone: +252.618250888
+Tech Fax: +252.618250991
+Tech Email: admin@sonic.gov.so
+DNSSEC: unsigned
+>>> Last update of WHOIS database: 2019-02-28T21:14:58.920Z <<<
+

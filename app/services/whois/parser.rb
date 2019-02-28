@@ -7,6 +7,7 @@ require "whois/parser/afilias"
 require "whois/parser/afnic"
 require "whois/parser/cira"
 require "whois/parser/neustar"
+require "whois/parser/sonic"
 require "whois/parser/verisign"
 
 module Whois
@@ -16,6 +17,7 @@ module Whois
       AFNIC,
       CIRA,
       Neustar,
+      Sonic,
       Verisign,
     ].freeze
 
