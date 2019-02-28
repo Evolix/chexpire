@@ -1,0 +1,138 @@
+% IANA WHOIS server
+% for more information on IANA, visit http://www.iana.org
+% This query returned 1 object
+
+refer:        whois.nic.io
+
+domain:       IO
+
+organisation: IO Top Level Domain Registry
+address:      c/o Sure (Diego Garcia) Limited
+address:      Diego Garcia
+address:      British Indian Ocean Territories, PSC 466 Box 59
+address:      FPO-AP 96595-0059
+address:      British Indian Ocean Territory
+
+contact:      administrative
+name:         Internet Administrator
+organisation: IO Top Level Domain Registry
+address:      c/o Sure (Diego Garcia) Limited
+address:      Diego Garcia
+address:      British Indian Ocean Territories, PSC 466 Box 59
+address:      FPO-AP 96595-0059
+address:      British Indian Ocean Territory
+phone:        +246 9398
+fax-no:       +246 9398
+e-mail:       administrator@nic.io
+
+contact:      technical
+name:         Administrator
+organisation: Internet Computer Bureau Ltd
+address:      Greytown House, 221-227 High Street
+address:      Orpington
+address:      Kent
+address:      BR6 0NZ
+address:      United Kingdom
+phone:        +44 (0)1689 827505
+fax-no:       +44 (0)1689 831478
+e-mail:       admin@icb.co.uk
+
+nserver:      A0.NIC.IO 2a01:8840:9e:0:0:0:0:17 65.22.160.17
+nserver:      A2.NIC.IO 2a01:8840:a1:0:0:0:0:17 65.22.163.17
+nserver:      B0.NIC.IO 2a01:8840:9f:0:0:0:0:17 65.22.161.17
+nserver:      C0.NIC.IO 2a01:8840:a0:0:0:0:0:17 65.22.162.17
+nserver:      NS-A1.IO 194.0.1.1 2001:678:4:0:0:0:0:1
+nserver:      NS-A3.IO 74.116.178.1
+ds-rdata:     64744 8 2 2E7D661097A76EAC145858E4FF8F3DDAE5EAEDFD527725BC6F8A943E4FE23A29
+ds-rdata:     57355 8 2 95a57c3bab7849dbcddf7c72ada71a88146b141110318ca5be672057e865c3e2
+ds-rdata:     57355 8 1 434e91e206134f5b3b0ac603b26f5e029346abc9
+
+whois:        whois.nic.io
+
+status:       ACTIVE
+remarks:      Registration information: http://www.nic.io/
+
+created:      1997-09-16
+changed:      2018-11-02
+source:       IANA
+
+Domain Name: DOMAIN.IO
+Registry Domain ID: D543050083000300258-LRMS
+Registrar WHOIS Server: whois.ovh.com
+Registrar URL: http://www.ovh.com/
+Updated Date: 2018-07-01T13:21:18Z
+Creation Date: 2016-07-26T06:16:00Z
+Registry Expiry Date: 2019-07-26T06:16:00Z
+Registrar Registration Expiration Date:
+Registrar: OVH sas
+Registrar IANA ID: 433
+Registrar Abuse Contact Email: abuse@ovh.net
+Registrar Abuse Contact Phone: +33.972101007
+Reseller:
+Domain Status: clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited
+Registrant Organization:
+Registrant State/Province:
+Registrant Country: FR
+Name Server: DNS200.ANYCAST.ME
+Name Server: NS200.ANYCAST.ME
+DNSSEC: unsigned
+
+>>> Last update of WHOIS database: 2019-02-28T21:34:40Z <<<
+
+Domain Name: domain.io
+Registry Domain ID: D543050083000300258-LRMS
+Registrar WHOIS Server: whois.ovh.com
+Registrar URL: http://www.ovh.com
+Updated Date: 2018-07-01T11:21:18.0Z
+Creation Date: 2016-07-26T04:16:00.0Z
+Registrar Registration Expiration Date: 2019-07-26T04:16:00.0Z
+Registrar: OVH, SAS
+Registrar IANA ID: 433
+Registrar Abuse Contact Email: abuse@ovh.net
+Registrar Abuse Contact Phone: +33.972101007
+Domain Status: clientDeleteProhibited https://icann.org/epp#clientDeleteProhibited
+Registry Registrant ID:
+Registrant Name:
+Registrant Organization:
+Registrant Street:
+Registrant City:
+Registrant State/Province:
+Registrant Postal Code:
+Registrant Country: FR
+Registrant Phone:
+Registrant Phone Ext:
+Registrant Fax:
+Registrant Fax Ext:
+Registrant Email: 4931ibk2dx1pmkrwu18g@m.o-w-o.info
+Registry Admin ID:
+Admin Name:
+Admin Organization:
+Admin Street:
+Admin City:
+Admin State/Province:
+Admin Postal Code:
+Admin Country:
+Admin Phone:
+Admin Phone Ext:
+Admin Fax:
+Admin Fax Ext:
+Admin Email: x53mwb84wf1qsv2mw7mw@x.o-w-o.info
+Registry Tech ID:
+Tech Name:
+Tech Organization:
+Tech Street:
+Tech City:
+Tech State/Province:
+Tech Postal Code:
+Tech Country:
+Tech Phone:
+Tech Phone Ext:
+Tech Fax:
+Tech Fax Ext:
+Tech Email: x4wfsv2mw7q8m53mwb1w@x.o-w-o.info
+Name Server: dns200.anycast.me
+Name Server: ns200.anycast.me
+DNSSEC: unsigned
+URL of the ICANN WHOIS Data Problem Reporting System:
+http://wdprs.internic.net/
+>>> Last update of WHOIS database: 2018-07-01T13:21:40.0Z <<<

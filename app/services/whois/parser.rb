@@ -6,6 +6,7 @@ require "whois/errors"
 require "whois/parser/afilias"
 require "whois/parser/afnic"
 require "whois/parser/cira"
+require "whois/parser/io"
 require "whois/parser/neustar"
 require "whois/parser/sonic"
 require "whois/parser/verisign"
@@ -16,6 +17,7 @@ module Whois
       Afilias,
       AFNIC,
       CIRA,
+      IO,
       Neustar,
       Sonic,
       Verisign,
