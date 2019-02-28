@@ -31,7 +31,8 @@ module Whois
       private
 
       def extract_values
-        domain_index = get_field!("Domain Name", value: domain.upcase).index
+
+        domain_index = get_field!("Domain Name", value: domain.downcase).index
 
         created_date = get_value!("Creation Date", after: domain_index)
         response.created_at = parse_date(created_date)

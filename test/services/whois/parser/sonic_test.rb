@@ -14,10 +14,14 @@ module Whois
       response = parser.parse(whois_output)
       assert_kind_of Response, response
 
-      assert_equal Time.new(2018, 11, 11, 11, 9, 47, 0), response.created_at
+      assert_equal Time.new(2010, 10, 31, 0, 0, 0, 0), response.created_at
       assert response.created_at.utc?
 
-      assert_equal Time.new(2018, 12, 3, 21, 21, 22, 0), response.updated_at
+      # We can't use Time.new here
+      # Sonic times have subseconds and the parsed version
+      # is different than the generated time (which doesn't have
+      # subseconds).
+      assert_equal Time.parse("2018-11-11T11:09:47.823Z"), response.updated_at
       assert_equal Time.new(2021, 10, 31, 0, 0, 0, 0), response.expire_at
     end
 
