@@ -29,10 +29,15 @@ module CheckProcessor
         end
 
         group_finished_at = Time.now
+        check_ids = checks.map(&:id)
+        check_logs = check_errors_scope(check_ids: check_ids,
+                                        after_date: group_started_at,
+                                        before_date: group_finished_at).includes(:check).all
 
-        check_errors_scope(check_ids: checks.map(&:id),
-                           after_date: group_started_at,
-                           before_date: group_finished_at).includes(:check).each do |check_log|
+        message = "#{self.class.name}: #{check_logs.count} error(s) found for checks '#{check_ids.join(',')}' between '#{group_started_at}' and '#{group_finished_at}'" # rubocop:disable Metrics/LineLength
+        logger.debug(message)
+
+        check_logs.each do |check_log|
           message = "#{self.class.name}: check ##{check_log.check_id} for '#{check_log.check.domain}' failed (#{check_log.exit_status}) ; #{check_log.error.lines.first}" # rubocop:disable Metrics/LineLength
           logger.error(message)
         end
