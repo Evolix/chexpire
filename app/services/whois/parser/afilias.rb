@@ -53,6 +53,7 @@ module Whois
         .kim
         .shiksha
         .promo
+        .pro
       ].freeze
 
       COMMENT_REGEX = /^(%|>)+ +(?<text>.+)$/
