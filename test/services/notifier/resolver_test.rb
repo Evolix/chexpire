@@ -91,6 +91,16 @@ module Notifier
       assert_includes checks, c2
     end
 
+    test "#checks_recurrent_failures ignores manual checks" do
+      c1 = create(:check, :last_runs_failed, :manual)
+      c2 = create(:check, :last_runs_failed, :auto)
+
+      checks = @resolver.checks_recurrent_failures(4)
+
+      assert_not_includes checks, c1
+      assert_includes checks, c2
+    end
+
     test "#checks_recurrent_failures ignores user having notification disabled" do
       c1 = create(:check, :last_runs_failed)
       c1.user.update_attribute(:notifications_enabled, false)
