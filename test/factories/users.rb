@@ -38,14 +38,14 @@ require "securerandom"
 FactoryBot.define do
   factory :user do
     sequence(:email) { |n| "user-#{n}@chexpire.org" }
-    password "password"
-    confirmed_at Time.new(2018, 4, 1, 12, 0, 0, "+02:00")
-    notifications_enabled true
-    locale "en"
-    tos_accepted true
+    password { "password" }
+    confirmed_at { Time.new(2018, 4, 1, 12, 0, 0, "+02:00") }
+    notifications_enabled { true }
+    locale { "en" }
+    tos_accepted { true }
 
     trait :fr do
-      locale "fr"
+      locale { "fr" }
     end
   end
 end

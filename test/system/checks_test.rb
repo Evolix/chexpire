@@ -32,9 +32,8 @@ class ChecksTest < ApplicationSystemTestCase
     fill_in("check[domain]", with: domain)
 
     page.find("body").click # simulate blur
-    fill_in("check[domain_expires_at]", with: "2022-04-05")
-
-    click_button
+    fill_in("check[domain_expires_at]", with: Date.new(2022, 4, 5))
+    click_button "Create Check"
 
     assert_equal checks_path, page.current_path
 
@@ -53,48 +52,54 @@ class ChecksTest < ApplicationSystemTestCase
     fill_and_valid_new_check
   end
 
-  test "dissociate a notification" do
-    check = create(:check, :with_notifications, user: @user)
+  test "dettach a notification from a check" do
+    initial_notifications_count = 2
+    check = create(:check, user: @user)
+    existing_notifications = create_list(:notification, initial_notifications_count, user: @user)
+    check.notifications << existing_notifications
+
     notification = create(:notification, label: "label-notification", user: @user)
     check.notifications << notification
 
     visit edit_check_path(check)
-
     uncheck notification.label
-
     click_button "Update Check"
 
     notification.reload
+    check.reload
+
     assert_equal 0, notification.checks_count
-    assert_equal 2, check.check_notifications.count
+    assert_equal initial_notifications_count, check.notifications.count
   end
 
-  test "associate a notification" do
+  test "attach a notification to a check" do
     check = create(:check, user: @user)
     notification = create(:notification, label: "label-notification", user: @user)
-    visit edit_check_path(check)
 
+    visit edit_check_path(check)
     check notification.label
     click_button "Update Check"
 
     notification.reload
+    check.reload
 
     assert_equal 1, notification.checks_count
     assert_equal 1, check.check_notifications.count
   end
 
   test "update a check" do
-    check = create(:check, :with_notifications, domain: "dom-with-notif.net", user: @user)
+    check = create(:check, domain: "dom-with-notif.net", user: @user)
+    check.notifications << create_list(:notification, 2, user: @user)
+
     visit edit_check_path(check)
-
     fill_in "check[comment]", with: "My comment"
-
     click_button "Update Check"
 
     assert_equal checks_path, page.current_path
-
     assert page.has_css?(".alert-success")
+
     check.reload
+
     assert_equal "My comment", check.comment
   end
 

@@ -34,62 +34,54 @@
 FactoryBot.define do
   factory :check do
     user
-    kind :domain
-    domain "domain.fr"
-    domain_created_at Time.new(2016, 4, 1, 12, 0, 0, "+02:00")
-    domain_updated_at Time.new(2017, 3, 1, 12, 0, 0, "+02:00")
-    domain_expires_at Time.new(2019, 4, 1, 12, 0, 0, "+02:00")
-    active true
-    vendor nil
-    comment nil
-    last_run_at nil
-    last_success_at nil
-    consecutive_failures 0
-    mode :auto
+    kind { :domain }
+    domain { "domain.fr" }
+    domain_created_at { Time.new(2016, 4, 1, 12, 0, 0, "+02:00") }
+    domain_updated_at { Time.new(2017, 3, 1, 12, 0, 0, "+02:00") }
+    domain_expires_at { Time.new(2019, 4, 1, 12, 0, 0, "+02:00") }
+    active { true }
+    vendor { nil }
+    comment { nil }
+    last_run_at { nil }
+    last_success_at { nil }
+    consecutive_failures { 0 }
+    mode { :auto }
 
     trait :domain do
-      kind :domain
+      kind { :domain }
     end
 
     trait :ssl do
-      kind :ssl
+      kind { :ssl }
     end
 
     trait :nil_dates do
-      domain_created_at nil
-      domain_updated_at nil
-      domain_expires_at nil
+      domain_created_at { nil }
+      domain_updated_at { nil }
+      domain_expires_at { nil }
     end
 
     trait :expires_next_week do
-      domain_expires_at 1.week.from_now
+      domain_expires_at { 1.week.from_now }
     end
 
     trait :expires_next_year do
-      domain_expires_at 1.year.from_now
+      domain_expires_at { 1.year.from_now }
     end
 
     trait :last_runs_failed do
-      consecutive_failures 5
-      last_run_at 3.days.ago - 90.minutes
-      last_success_at 7.days.ago - 2.hours
+      consecutive_failures { 5 }
+      last_run_at { 3.days.ago - 90.minutes }
+      last_success_at { 7.days.ago - 2.hours }
     end
 
     trait :last_run_succeed do
-      last_run_at 25.hour.ago
-      last_success_at 25.hour.ago
+      last_run_at { 25.hours.ago }
+      last_success_at { 25.hours.ago }
     end
 
     trait :inactive do
-      active false
-    end
-
-    trait :with_notifications do
-      after :create do |check|
-        create_list :check_notification, 2,
-                    check: check,
-                    notification: build(:notification, user: check.user)
-      end
+      active { false }
     end
   end
 end

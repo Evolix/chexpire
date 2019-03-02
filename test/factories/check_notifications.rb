@@ -25,20 +25,20 @@ FactoryBot.define do
   factory :check_notification do
     check
     notification
-    status :pending
-    sent_at nil
+    status { :pending }
+    sent_at { nil }
 
     trait :ongoing do
-      status :ongoing
+      status { :ongoing }
     end
 
     trait :succeed do
-      status :succeed
+      status { :succeed }
       sent_at { 1.day.ago }
     end
 
     trait :failed do
-      status :failed
+      status { :failed }
     end
   end
 end
