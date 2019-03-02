@@ -59,7 +59,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
 
-  gem "factory_bot_rails"
+  gem "factory_bot_rails", '< 5'
 end
 
 group :development do
@@ -90,9 +90,9 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15', '< 4.0'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 3.12.0'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'chromedriver-helper', '< 2'
   gem 'launchy'
 
   gem "database_cleaner"
