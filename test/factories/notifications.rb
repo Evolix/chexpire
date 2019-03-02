@@ -31,7 +31,7 @@ FactoryBot.define do
     user
     interval 30
     channel :email
-    label { "#{recipient} (#{interval})" }
+    sequence(:label) { |n| "#{recipient}-#{n} (#{interval})" }
     recipient "recipient@domain.fr"
 
     trait :email do
