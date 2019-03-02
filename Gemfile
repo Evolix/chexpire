@@ -59,7 +59,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
 
-  gem "factory_bot_rails", '< 5'
+  gem "factory_bot_rails", '~> 5.0'
 end
 
 group :development do
