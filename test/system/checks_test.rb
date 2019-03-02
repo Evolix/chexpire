@@ -32,9 +32,8 @@ class ChecksTest < ApplicationSystemTestCase
     fill_in("check[domain]", with: domain)
 
     page.find("body").click # simulate blur
-    fill_in("check[domain_expires_at]", with: "2022-04-05")
-
-    click_button
+    fill_in("check[domain_expires_at]", with: Date.new(2022, 4, 5))
+    click_button "Create Check"
 
     assert_equal checks_path, page.current_path
 
