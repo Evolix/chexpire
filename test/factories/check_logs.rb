@@ -27,9 +27,9 @@
 FactoryBot.define do
   factory :check_log do
     check
-    status :pending
-    exit_status nil
-    parsed_response nil
-    raw_response nil
+    status { :pending }
+    exit_status { nil }
+    parsed_response { nil }
+    raw_response { nil }
   end
 end

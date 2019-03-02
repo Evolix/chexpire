@@ -29,13 +29,13 @@
 FactoryBot.define do
   factory :notification do
     user
-    interval 30
-    channel :email
+    interval { 30 }
+    channel { :email }
     sequence(:label) { |n| "#{recipient}-#{n} (#{interval})" }
-    recipient "recipient@domain.fr"
+    recipient { "recipient@domain.fr" }
 
     trait :email do
-      channel :email
+      channel { :email }
     end
   end
 end
