@@ -11,7 +11,7 @@
 module Whois
   class Error < StandardError; end
 
-  class WhoisCommandError < Error; end
+  class CommandError < Error; end
   class UnsupportedDomainError < Error; end
   class DomainNotFoundError < Error; end
   class ParserError < Error; end
@@ -49,7 +49,7 @@ module Whois
       result = command.execute
 
       unless result.exit_status.zero?
-        fail WhoisCommandError, "Whois command failed with status #{result.exit_status}"
+        fail Whois::CommandError, "Whois command failed with status #{result.exit_status}"
       end
 
       result

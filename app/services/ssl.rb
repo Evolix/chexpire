@@ -10,8 +10,8 @@
 module SSL
   class Error < StandardError; end
 
-  class SSLCommandError < Error; end
-  class SSLConfigurationError < Error; end
+  class CommandError < Error; end
+  class ConfigurationError < Error; end
 
   class ParserError < Error; end
   class DomainNotMatchError < ParserError; end
@@ -51,7 +51,7 @@ module SSL
       result = command.execute
 
       unless result.exit_status.zero?
-        fail SSLCommandError, "SSL command failed with status #{result.exit_status}"
+        fail SSL::CommandError, "SSL command failed with status #{result.exit_status}"
       end
 
       result
@@ -79,7 +79,7 @@ module SSL
     def custom_check_http_args
       return nil unless configuration.check_http_args.present?
 
-      fail SSLConfigurationError, "check_http_args option must be an array of argument." \
+      fail SSL::ConfigurationError, "check_http_args option must be an array of argument." \
         unless configuration.check_http_args.is_a?(Array)
 
       configuration.check_http_args
