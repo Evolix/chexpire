@@ -9,10 +9,10 @@ require "test_helper"
 module Whois
   class VerisignTest < ActiveSupport::TestCase
     test "should parse a whois response" do
-      parser = Parser::Verisign.new("domain.com")
+      parser = Whois::Parser::Verisign.new("domain.com")
       domain_com = file_fixture("whois/domain.com.txt").read
       response = parser.parse(domain_com)
-      assert_kind_of Response, response
+      assert_kind_of Whois::Response, response
 
       assert_equal Time.new(1994, 7, 1, 4, 0, 0, 0), response.created_at
       assert response.created_at.utc?
@@ -22,7 +22,7 @@ module Whois
     end
 
     test "should raises DomainNotFoundError when domain is not registered" do
-      parser = Parser::Verisign.new("willneverexist.com")
+      parser = Whois::Parser::Verisign.new("willneverexist.com")
       not_found_com = file_fixture("whois/willneverexist.com.txt").read
 
       assert_raises DomainNotFoundError do
@@ -31,7 +31,7 @@ module Whois
     end
 
     test "should raises InvalidDateError when a date is not parsable" do
-      parser = Parser::Verisign.new("domain.com")
+      parser = Whois::Parser::Verisign.new("domain.com")
       domain_com = file_fixture("whois/domain.com.txt").read
       domain_com.gsub!("2018-02-13T18:33:26Z", "not a date")
 

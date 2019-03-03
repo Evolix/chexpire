@@ -35,7 +35,7 @@ module SSL
       )
 
       service = Service.new("ssl0.domain.org")
-      assert_kind_of Response, service.parse(result)
+      assert_kind_of Whois::Response, service.parse(result)
     end
 
     test "should uses the command line arguments of the configuration" do

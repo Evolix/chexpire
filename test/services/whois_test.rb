@@ -35,7 +35,7 @@ module Whois
       )
 
       service = Service.new("domain.fr")
-      assert_kind_of Response, service.parse(result)
+      assert_kind_of Whois::Response, service.parse(result)
     end
 
     def mock_system_klass(program, command_args, result)
