@@ -3,7 +3,7 @@
 
 require "test_helper"
 require "check_logger"
-require "system_command"
+# require "system_command"
 
 class CheckLoggerTest < ActiveSupport::TestCase
   setup do
@@ -20,7 +20,7 @@ class CheckLoggerTest < ActiveSupport::TestCase
   end
 
   test "should log a success raw result command" do
-    result = SystemCommandResult.new("command", 0, "the result", "")
+    result = SystemCommand::Result.new("command", 0, "the result", "")
 
     assert_no_difference -> { CheckLog.where(check: @check).count } do
       @logger.log :after_command, result
@@ -33,7 +33,7 @@ class CheckLoggerTest < ActiveSupport::TestCase
   end
 
   test "should log a raw result command with an error" do
-    result = SystemCommandResult.new("command", 1, "optional stdout", "an error occured")
+    result = SystemCommand::Result.new("command", 1, "optional stdout", "an error occured")
     @logger.log :after_command, result
 
     assert_equal "optional stdout", @logger.check_log.raw_response
@@ -43,7 +43,7 @@ class CheckLoggerTest < ActiveSupport::TestCase
   end
 
   test "should log an error when there is not exit status" do
-    result = SystemCommandResult.new("command", nil, nil, "an error")
+    result = SystemCommand::Result.new("command", nil, nil, "an error")
     @logger.log :after_command, result
 
     assert_nil @logger.check_log.raw_response

@@ -3,7 +3,7 @@
 
 require "test_helper"
 require "ssl"
-require "system_command"
+# require "system_command"
 
 module SSL
   class ServiceTest < ActiveSupport::TestCase

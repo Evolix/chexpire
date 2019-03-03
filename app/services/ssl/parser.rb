@@ -1,8 +1,8 @@
 # Copyright (C) 2018 Colin Darie <colin@darie.eu>, 2018 Evolix <info@evolix.fr>
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
-require "null_logger"
-require "ssl/errors"
+# require "null_logger"
+# require "ssl/errors"
 
 module SSL
   class Parser

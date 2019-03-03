@@ -1,7 +1,7 @@
 # Copyright (C) 2018 Colin Darie <colin@darie.eu>, 2018 Jeremy Lecour <jlecour@evolix.fr>, 2018 Evolix <info@evolix.fr>
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
-require "application_system_test_case"
+# require "application_system_test_case"
 
 class ChecksTest < ApplicationSystemTestCase
   setup do

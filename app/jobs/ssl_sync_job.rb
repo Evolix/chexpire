@@ -1,3 +1,5 @@
+# require "ssl/errors"
+
 class SSLSyncJob < ApplicationJob
   queue_as :default
 

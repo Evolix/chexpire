@@ -2,8 +2,8 @@
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
 require "test_helper"
-require "ssl/parser"
-require "ssl/errors"
+# require "ssl/parser"
+# require "ssl/errors"
 
 module SSL
   class ParserTest < ActiveSupport::TestCase

@@ -48,11 +48,11 @@ Capybara.javascript_driver = :headless_chrome
 Capybara.default_driver = :headless_chrome
 
 # Disable Open4 real system calls
-require "open4"
-require "errors"
+# require "open4"
+# require "errors"
 module Open4
   def popen4(*)
-    fail SystemCommandNotAllowedError,
+    fail SystemCommand::NotAllowedError,
       "Real Open4 calls are disabled in test env. Use mock_system_command helper instead."
   end
   alias open4 popen4

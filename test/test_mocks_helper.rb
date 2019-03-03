@@ -1,13 +1,13 @@
 # Copyright (C) 2018 Colin Darie <colin@darie.eu>, 2018 Evolix <info@evolix.fr>
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
-require "system_command"
+# require "system_command"
 
 module TestMocksHelper
   # rubocop:disable Metrics/MethodLength
   def mock_system_command(program, args, exit_status: 0, stdout: "", stderr: "")
     syscmd = "#{program} #{Array.wrap(args).join(' ')}"
-    result = SystemCommandResult.new(syscmd, exit_status, stdout, stderr)
+    result = SystemCommand::Result.new(syscmd, exit_status, stdout, stderr)
 
     mock = Minitest::Mock.new
     mock.expect :execute, result

@@ -1,3 +1,5 @@
+# require "whois/errors"
+
 class WhoisSyncJob < ApplicationJob
   queue_as :default
 

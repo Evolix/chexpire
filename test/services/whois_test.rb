@@ -2,8 +2,8 @@
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
 require "test_helper"
-require "whois"
-require "system_command"
+# require "whois"
+# require "system_command"
 
 module Whois
   class ServiceTest < ActiveSupport::TestCase

@@ -1,14 +1,24 @@
 # Copyright (C) 2018 Colin Darie <colin@darie.eu>, 2018 Evolix <info@evolix.fr>
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
-require "null_logger"
-require "domain_helper"
-require "system_command"
-require_relative "whois/parser"
-require_relative "whois/response"
-require_relative "whois/errors"
+# require "null_logger"
+# require "domain_helper"
+# require "system_command"
+# require_relative "whois/parser"
+# require_relative "whois/response"
+# require_relative "whois/errors"
 
 module Whois
+  class Error < StandardError; end
+
+  class WhoisCommandError < Error; end
+  class UnsupportedDomainError < Error; end
+  class DomainNotFoundError < Error; end
+  class ParserError < Error; end
+
+  class FieldNotFoundError < ParserError; end
+  class InvalidDateError < ParserError; end
+
   class << self
     def ask(domain, system_klass: SystemCommand, logger: NullLogger.new)
       Service.new(domain, system_klass: system_klass, logger: logger).call
