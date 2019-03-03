@@ -3,7 +3,7 @@
   "private": true,
   "dependencies": {
     "@rails/ujs": "^6.0.0-alpha",
-    "@rails/webpacker": "3.5",
+    "@rails/webpacker": "^4.0.0-rc.8",
     "bootstrap": "^4.1.1",
     "exports-loader": "^0.7.0",
     "jquery": "^3.3.1",
@@ -11,6 +11,7 @@
     "turbolinks": "^5.2.0"
   },
   "devDependencies": {
-    "webpack-dev-server": "2.11.2"
-  }
+    "webpack-dev-server": "^3.2.1"
+  },
+  "version": "0.1.0"
 }
