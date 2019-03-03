@@ -368,8 +368,8 @@ DEPENDENCIES
   capybara (>= 2.15, < 4.0)
   chromedriver-helper
   database_cleaner
-  devise (~> 4.4)
-  devise-i18n (~> 1.6)
+  devise (~> 4.6)
+  devise-i18n (~> 1.8)
   factory_bot_rails (~> 5.0)
   guard
   guard-minitest
