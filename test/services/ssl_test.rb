@@ -2,7 +2,7 @@
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
 require "test_helper"
-require "ssl"
+# require "ssl"
 # require "system_command"
 
 module SSL

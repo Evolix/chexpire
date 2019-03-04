@@ -2,7 +2,7 @@
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
 require "test_helper"
-require "check_logger"
+# require "check_logger"
 # require "system_command"
 
 class CheckLoggerTest < ActiveSupport::TestCase
