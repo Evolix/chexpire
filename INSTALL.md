@@ -75,8 +75,8 @@ MariaDB [none]> CREATE DATABASE `chexpire_test`;
 If you don't want to use the default `root` MySQL user with no password, you can create users :
 
 ```
-MariaDB [none]> GRANT ALL PRIVILEGES ON `chexpire_development`.* TO `chexpire_development`@localhost IDENTIFIED BY 'MY_PASSWORD_FOR_DEV';
-MariaDB [none]> GRANT ALL PRIVILEGES ON `chexpire_test`.* TO `chexpire_test`@localhost IDENTIFIED BY 'MY_PASSWORD_FOR_TEST';
+MariaDB [none]> GRANT ALL PRIVILEGES ON `chexpire_development%`.* TO `chexpire_development`@localhost IDENTIFIED BY 'MY_PASSWORD_FOR_DEV';
+MariaDB [none]> GRANT ALL PRIVILEGES ON `chexpire_test%`.* TO `chexpire_test`@localhost IDENTIFIED BY 'MY_PASSWORD_FOR_TEST';
 MariaDB [none]> FLUSH PRIVILEGES;
 ```
 
