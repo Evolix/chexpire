@@ -41,3 +41,6 @@ module Chexpire
     config.chexpire = Hashie::Mash.new(config_for(:"chexpire.defaults").deep_merge(config_for(:chexpire)))
   end
 end
+
+### Uncomment this to have zeitwerk debug log printed in stdout.
+# Rails.autoloaders.logger = method(:puts)
