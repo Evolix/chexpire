@@ -1,25 +1,26 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '>= 2.3.3'
+ruby '>= 2.5.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '6.0.0.beta2'
-gem 'rails-i18n', '~> 5.1'
+gem 'rails', '6.0.0'
+gem 'rails-i18n', '~> 6.0.0.beta1'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 4.0'
 
-gem 'devise', '~> 4.6'
+# gem 'devise', '~> 4.6'
+gem 'devise', github: "plataformatec/devise"
 gem 'devise-i18n', '~> 1.8'
 gem 'simple_form', '~> 4.0'
 gem 'pundit', '~> 1.1'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 6.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 4.0.0'
+gem 'webpacker'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
@@ -61,7 +62,7 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console', '~> 4.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
@@ -69,7 +70,7 @@ group :development do
 
   gem 'rubocop', '~> 0.56.0', require: false
   gem 'annotate', require: false
-  gem 'letter_opener_web'
+  # gem 'letter_opener_web'
 
   gem "guard"
   gem "guard-minitest"
@@ -88,8 +89,7 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15', '< 4.0'
   gem 'selenium-webdriver'
-  # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'webdriver'
   gem 'launchy'
 
   gem "database_cleaner"
