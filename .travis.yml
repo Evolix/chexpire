@@ -4,9 +4,9 @@
 language:
   - ruby
 rvm:
-  ### Zeitwerk is not fully compatible with 2.5
+  ### Zeitwerk is not fully compatible with < 2.5.4
   ### cf. https://github.com/Evolix/chexpire/pull/104
-  # - 2.5
+  - 2.5
   - 2.6
 
 cache:
