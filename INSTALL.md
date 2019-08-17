@@ -3,13 +3,13 @@
 ## Requirements
 
 Chexpire requires :
-* Ruby > 2.3.3 and Bundler
+* Ruby > 2.5.4 and Bundler
 * NodeJS and Yarn
 * MySQL or MariaDB
 
 We are usually running Chexpire on typical POSIX servers like :
-- Linux Debian 9, Ruby 2.5.1, NodeJS 8.11 and MariaDB 10.1
-- macOS High Sierra, Ruby 2.5.1, NodeJS 10.2.1 and MariaDB 10.2
+- Linux Debian 9, Ruby 2.5.4, NodeJS 8.11 and MariaDB 10.1
+- macOS High Sierra, Ruby 2.5.4, NodeJS 10.2.1 and MariaDB 10.2
 
 It probably works on any system that supports Ruby >2.3, NodeJS >6 and MySQL >5.5. Feel free to report any unexpected incompatibilities.
 
@@ -21,7 +21,7 @@ If you are familiar with Ansible, you can use our [Ansible roles](http://forge.e
 […]
 roles:
   - mysql
-  - { role: rbenv, username: "{{ ansible_user }}", rbenv_ruby_version: "2.5.1" }
+  - { role: rbenv, username: "{{ ansible_user }}", rbenv_ruby_version: "2.5.4" }
   - { role: nodejs, nodejs_install_yarn: yes }
 […]
 ```
@@ -63,7 +63,7 @@ Create the file if missing : `cp config/secrets.example.yml config/secrets.yml`.
 
 Create the file if missing : `cp config/chexpire.example.yml config/chexpire.yml`. Set at least the `mailer_default_from` and `host` variables. See other configuration overridable in `config/chexpire.defaults.yml`.
 
-## Database 
+## Database
 
 You need databases for development and tests. You can create them like this (once connected to you MySQL server) :
 
