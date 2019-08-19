@@ -5,6 +5,10 @@
 @import '~bootstrap/scss/_variables';
 @import '~bootstrap/scss/mixins/_breakpoints';
 
+h2 {
+  color: red;
+}
+
 /*
 * === GENERAL ===
 */
@@ -146,7 +150,7 @@ a.navbar-item.navbar-link {
   .row {
     height: 100%;
   }
-  
+
   .homepage-img {
     border: 1px solid  map-get($theme-colors, secondary);
   }
