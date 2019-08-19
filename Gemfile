@@ -13,6 +13,10 @@ gem 'puma', '~> 3.11'
 
 gem 'devise', '~> 4.4'
 gem 'devise-i18n', '~> 1.6'
+
+# responders 3 depends on Ruy >= 2.4.0, let's keep a 2.x for now
+gem 'responders', '~> 2.4.1' 
+
 gem 'simple_form', '~> 4.0'
 gem 'pundit', '~> 1.1'
 
