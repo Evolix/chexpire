@@ -11,19 +11,15 @@ class NotificationsMailer < ApplicationMailer
   end
 
   def domain_expires_soon
-    @expire_in_days = Integer(@check.domain_expires_at.to_date - Date.today)
-
     I18n.with_locale params&.fetch(:locale) { @check.user.locale } do
-      subject = t(".subject", domain: @check.domain, count: @expire_in_days)
+      subject = t(".subject", domain: @check.domain, count: @check.domain_expires_in_days)
       mail subject: subject, to: @notification.recipient
     end
   end
 
   def ssl_expires_soon
-    @expire_in_days = Integer(@check.domain_expires_at.to_date - Date.today)
-
     I18n.with_locale params&.fetch(:locale) { @check.user.locale } do
-      subject = t(".subject", domain: @check.domain, count: @expire_in_days)
+      subject = t(".subject", domain: @check.domain, count: @check.domain_expires_in_days)
       mail subject: subject, to: @notification.recipient
     end
   end

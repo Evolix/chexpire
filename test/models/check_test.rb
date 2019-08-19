@@ -123,4 +123,16 @@ class CheckTest < ActiveSupport::TestCase
     check.save!
     assert check.mode?
   end
+
+  test "expiration in days (future)" do
+    check = create(:check, domain_expires_at: 1.week.from_now)
+
+    assert_equal 7, check.domain_expires_in_days
+  end
+
+  test "expiration in days (past)" do
+    check = create(:check, domain_expires_at: 1.week.ago)
+
+    assert_equal -7, check.domain_expires_in_days
+  end
 end

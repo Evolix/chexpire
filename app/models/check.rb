@@ -105,6 +105,10 @@ class Check < ApplicationRecord
     end
   end
 
+  def domain_expires_in_days
+    Integer(domain_expires_at.to_date - Time.now.utc.to_date)
+  end
+
   private
 
   def domain_created_at_past
