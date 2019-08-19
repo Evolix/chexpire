@@ -21,7 +21,8 @@ gem 'simple_form', '~> 4.0'
 gem 'pundit', '~> 1.1'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+# sass-rails 5.1 depends on Ruy >= 2.4.0, let's keep a 5.0.x for now
+gem 'sass-rails', '~> 5.0.7'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', '~> 3.5'
