@@ -44,6 +44,8 @@ class Check < ApplicationRecord
   enum kind: [:domain, :ssl]
   enum mode: [:auto, :manual]
 
+  # Those dates are written as UTC,
+  # but not converted back when read from the database
   self.skip_time_zone_conversion_for_attributes = [
     :domain_created_at,
     :domain_updated_at,
