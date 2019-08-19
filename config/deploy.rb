@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.10.2"
+lock "~> 3.10"
 
 set :application, "chexpire"
 set :repo_url, "https://github.com/Evolix/chexpire.git"
