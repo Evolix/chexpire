@@ -82,7 +82,8 @@ class Check < ApplicationRecord
   def days_from_last_success
     return unless last_success_at.present?
 
-    (Date.today - last_success_at.to_date).to_i
+    # return the number of whole days
+    ((Time.now - last_success_at) / (24 * 3600)).to_i
   end
 
   def increment_consecutive_failures!
