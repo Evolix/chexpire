@@ -87,6 +87,7 @@ group :development do
   # Necessary for elliptic curve SSH keys
   gem 'rbnacl', ">= 3.2", "<5.0"
   gem 'bcrypt_pbkdf', ">= 1.0", "<2.0"
+  gem 'ed25519', ">= 1.2", "< 2.0"
 end
 
 group :test do
