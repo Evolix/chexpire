@@ -2,7 +2,6 @@
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
 require "test_helper"
-# require "system_command"
 
 class SystemCommandTest < ActiveSupport::TestCase
   test "should execute and log a command" do

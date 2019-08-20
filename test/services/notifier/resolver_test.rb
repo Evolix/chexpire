@@ -2,7 +2,6 @@
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
 require "test_helper"
-# require "notifier/resolver"
 
 # rubocop:disable Metrics/LineLength
 module Notifier

@@ -40,8 +40,6 @@ class ActiveSupport::TestCase
 end
 
 # Disable Open4 real system calls
-# require "open4"
-# require "errors"
 module Open4
   def popen4(*)
     fail SystemCommand::NotAllowedError,

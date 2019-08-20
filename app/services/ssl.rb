@@ -1,12 +1,6 @@
 # Copyright (C) 2018 Colin Darie <colin@darie.eu>, 2018 Evolix <info@evolix.fr>
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
-# require "null_logger"
-# require "system_command"
-# require_relative "ssl/parser"
-# require_relative "ssl/response"
-# require_relative "ssl/errors"
-
 module SSL
   class Error < StandardError; end
 

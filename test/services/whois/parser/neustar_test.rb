@@ -2,9 +2,6 @@
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
 require "test_helper"
-# require "whois/parser/neustar"
-# require "whois/response"
-# require "whois/errors"
 
 module Whois
   class NeustarTest < ActiveSupport::TestCase

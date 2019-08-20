@@ -1,12 +1,6 @@
 # Copyright (C) 2018 Colin Darie <colin@darie.eu>, 2018 Evolix <info@evolix.fr>
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
-# require "null_logger"
-# require "domain_helper"
-# require "system_command"
-# require_relative "whois/parser"
-# require_relative "whois/response"
-# require_relative "whois/errors"
 
 module Whois
   class Error < StandardError; end

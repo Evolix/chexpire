@@ -2,8 +2,6 @@
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
 require "test_helper"
-# require "whois/parser"
-# require "whois/errors"
 
 module Whois
   class ParserTest < ActiveSupport::TestCase

@@ -2,7 +2,6 @@
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
 require "test_helper"
-# require "notifier"
 
 class NotifierTest < ActiveSupport::TestCase
   test "#process_all process expirable & failures notifications" do
