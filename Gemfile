@@ -74,7 +74,7 @@ group :development do
 
   gem 'rubocop', '~> 0.56.0', require: false
   gem 'annotate', require: false
-  # gem 'letter_opener_web'
+  gem 'letter_opener_web'
 
   gem "guard"
   gem "guard-minitest"
