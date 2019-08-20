@@ -277,7 +277,7 @@ class ChecksTest < ApplicationSystemTestCase
 
   # rubocop:disable Metrics/AbcSize
   # rubocop:disable Metrics/MethodLength
-  def create_new_check()
+  def create_new_check
     domain = "domain-test.fr"
     fill_in("check[domain]", with: domain)
 
