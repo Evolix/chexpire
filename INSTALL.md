@@ -11,7 +11,7 @@ We are usually running Chexpire on typical POSIX servers like :
 - Linux Debian 9, Ruby 2.5.4, NodeJS 8.11 and MariaDB 10.1
 - macOS High Sierra, Ruby 2.5.4, NodeJS 10.2.1 and MariaDB 10.2
 
-It probably works on any system that supports Ruby >2.3, NodeJS >6 and MySQL >5.5. Feel free to report any unexpected incompatibilities.
+It probably works on any system that supports Ruby >= 2.5.4, NodeJS >= 6 and MySQL >= 5.5. Feel free to report any unexpected incompatibilities.
 
 If you use rbenv, chruby or RVM, you can set your prefered Ruby version in the `.ruby-version` file at the root of the project.
 
@@ -34,7 +34,7 @@ If you want to do manual installations, you can use our Wiki documentations for 
 
 Execute `# bundle install` to install Ruby gems (including Rails itself).
 
-Execute `# yarn install` to install Javascript/NodeJS packages.
+Execute `# yarn install --check-files` to install Javascript/NodeJS packages.
 
 Depending on what is already installed on your OS or not, you might need to install a few system packages to be able to have everything working.
 
@@ -45,15 +45,21 @@ To use elliptic curve SSH keys, we need to have `libsodium` and its headers.
 * on macOS with Homebrew : `# brew install libsodium`.
 
 
-## Rails configuration
+## Application configuration
 
 After cloning this repository, you have to create and edit a few files for your local development/test configuration. Theses files will be ignored by git.
+
+### Environment variables
+
+A handful of settings can be set by environment variables. If you use Heroku-like platforms they offer a simple way to set them.
+
+If you use Rbenv, there is the `rbenv-vars` plugin. That is what we recommend on POSIX servers. You have to put an `.rbenv-vars` file at the root of the project. If you use Capistrano, put it in the shared directory and have it linked in the `current` directory at deploy time.
 
 ### Database configuration
 
 Create the file if missing : `cp config/database.example.yml config/database.yml`. If you change the settings in the `defaults` section it applies to the `development` and `test` sections. More information is available at "guides.rubyonrails.org":https://guides.rubyonrails.org/configuring.html#configuring-a-database
 
-Note that on Debian 9 with MariaDB, the database socket is at `/var/run/mysqld/mysqld.sock`, which is not the default in the configuration file.
+Note that on Debian 9+ with MariaDB, the database socket is at `/var/run/mysqld/mysqld.sock`, which is not the default in the configuration file.
 
 ### Rails secrets
 
@@ -113,3 +119,17 @@ You can use the `script/to_staging` and/or `script/to_production` scripts.
 * with `to_production` you deploy the `master` branch to production.
 
 On the remote servers – where the application will be deployed – you have to copy the configuration files just as you've just did for your development setup. The files has to go in the `shared/config/` directory, relative to your `deploy_to` path. They will be symlinked to the proper destination by Capistrano.
+If an `.rbenv-vars` file is found in the shared directory, it will be linked to help loading environment files (by Ruby via Rbenv, systemd…).
+
+### systemd
+
+If you want to use systemd to manage your Puma process, there are [a few different ways](https://github.com/puma/puma/blob/master/docs/systemd.md). We've prepared a systemd unit file (`config/deploy/puma-chexpire@.service`) but you can adjust to better suit your needs.
+
+If you deploy your application to `/home/chexpire_<environment>`, the systemd unit can be used as a template, for example : `puma-chexpire@production.service`. This template is compatible with systemd actions like `systemctl stop puma-chexpire@production.service` and also with Capistrano tasks like `cap production puma:stop`.
+
+To install the systemd unit :
+
+```
+$ cp config/deploy/puma-chexpire@.service /etc/systemd/system/puma-chexpire@.service
+$ systemctl enable puma-chexpire@<environment>.service
+```
