@@ -3,6 +3,11 @@
 
 language:
   - ruby
+rvm:
+  - 2.3
+  - 2.4
+  - 2.5
+  - 2.6
 
 cache:
   - bundler
@@ -14,8 +19,12 @@ sudo: required # required with chrome addon
 addons:
   chrome: stable
 
+services:
+  - mysql
+
 before_install:
-  - cp config/database.example.yml config/database.yml
+  - mysql -e 'CREATE DATABASE chexpire_test;'
+  - cp config/database.travis.yml config/database.yml
   - cp config/secrets.example.yml config/secrets.yml
 
   # Test configuration loaded from chexpire.defaults.yml,
