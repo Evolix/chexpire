@@ -1,13 +1,17 @@
 # Copyright (C) 2018 Colin Darie <colin@darie.eu>, 2018 Evolix <info@evolix.fr>
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
-require "null_logger"
-require "system_command"
-require_relative "ssl/parser"
-require_relative "ssl/response"
-require_relative "ssl/errors"
-
 module SSL
+  class Error < StandardError; end
+
+  class CommandError < Error; end
+  class ConfigurationError < Error; end
+
+  class ParserError < Error; end
+  class DomainNotMatchError < ParserError; end
+  class InvalidResponseError < ParserError; end
+  class InvalidDateError < ParserError; end
+
   class << self
     def ask(domain, system_klass: SystemCommand, logger: NullLogger.new)
       Service.new(domain, system_klass: system_klass, logger: logger).call
@@ -41,7 +45,7 @@ module SSL
       result = command.execute
 
       unless result.exit_status.zero?
-        fail SSLCommandError, "SSL command failed with status #{result.exit_status}"
+        fail SSL::CommandError, "SSL command failed with status #{result.exit_status}"
       end
 
       result
@@ -69,7 +73,7 @@ module SSL
     def custom_check_http_args
       return nil unless configuration.check_http_args.present?
 
-      fail SSLConfigurationError, "check_http_args option must be an array of argument." \
+      fail SSL::ConfigurationError, "check_http_args option must be an array of argument." \
         unless configuration.check_http_args.is_a?(Array)
 
       configuration.check_http_args

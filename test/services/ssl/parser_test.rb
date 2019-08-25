@@ -2,8 +2,6 @@
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
 require "test_helper"
-require "ssl/parser"
-require "ssl/errors"
 
 module SSL
   class ParserTest < ActiveSupport::TestCase
@@ -11,7 +9,7 @@ module SSL
       parser = Parser.new("ssl0.domain.org")
       domain = file_fixture("ssl/ssl0.domain.org.txt").read
       response = parser.parse(domain)
-      assert_kind_of Response, response
+      assert_kind_of SSL::Response, response
 
       assert_equal Time.new(2028, 6, 10, 9, 14, 18, 0), response.expire_at
       assert response.expire_at.utc?
@@ -21,7 +19,7 @@ module SSL
       parser = Parser.new("ssl1.domain.org")
       domain = file_fixture("ssl/ssl1.domain.org.txt").read
       response = parser.parse(domain)
-      assert_kind_of Response, response
+      assert_kind_of SSL::Response, response
 
       assert_equal Time.new(2022, 8, 6, 0, 57, 0, 0), response.expire_at
       assert response.expire_at.utc?

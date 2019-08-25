@@ -2,17 +2,14 @@
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
 require "test_helper"
-require "whois/parser/sonic"
-require "whois/response"
-require "whois/errors"
 
 module Whois
   class SonicTest < ActiveSupport::TestCase
     test "should parse a whois response for .so" do
-      parser = Parser::Sonic.new("domain.so")
+      parser = Whois::Parser::Sonic.new("domain.so")
       whois_output = file_fixture("whois/domain.so.txt").read
       response = parser.parse(whois_output)
-      assert_kind_of Response, response
+      assert_kind_of Whois::Response, response
 
       assert_equal Time.new(2010, 10, 31, 0, 0, 0, 0), response.created_at
       assert response.created_at.utc?
@@ -26,7 +23,7 @@ module Whois
     end
 
     test "should raises DomainNotFoundError for .so when domain is not registered" do
-      parser = Parser::Sonic.new("willneverexist.so")
+      parser = Whois::Parser::Sonic.new("willneverexist.so")
       not_found = file_fixture("whois/willneverexist.so.txt").read
 
       assert_raises DomainNotFoundError do
@@ -35,7 +32,7 @@ module Whois
     end
 
     test "should raises InvalidDateError for .so when a date is not parsable" do
-      parser = Parser::Sonic.new("domain.so")
+      parser = Whois::Parser::Sonic.new("domain.so")
       whois_output = file_fixture("whois/domain.so.txt").read
       whois_output.gsub!("2010-10-31T00:00:00.0Z", "not a date")
 

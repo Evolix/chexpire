@@ -2,17 +2,14 @@
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
 require "test_helper"
-require "whois/parser/neustar"
-require "whois/response"
-require "whois/errors"
 
 module Whois
   class NeustarTest < ActiveSupport::TestCase
     test "should parse a whois response for .us" do
-      parser = Parser::Neustar.new("domain.us")
+      parser = Whois::Parser::Neustar.new("domain.us")
       whois_output = file_fixture("whois/domain.us.txt").read
       response = parser.parse(whois_output)
-      assert_kind_of Response, response
+      assert_kind_of Whois::Response, response
 
       assert_equal Time.new(2002, 4, 18, 15, 36, 40, 0), response.created_at
       assert response.created_at.utc?
@@ -22,7 +19,7 @@ module Whois
     end
 
     test "should raises DomainNotFoundError for .us when domain is not registered" do
-      parser = Parser::Neustar.new("willneverexist.us")
+      parser = Whois::Parser::Neustar.new("willneverexist.us")
       not_found = file_fixture("whois/willneverexist.us.txt").read
 
       assert_raises DomainNotFoundError do
@@ -31,7 +28,7 @@ module Whois
     end
 
     test "should raises InvalidDateError for .us when a date is not parsable" do
-      parser = Parser::Neustar.new("domain.us")
+      parser = Whois::Parser::Neustar.new("domain.us")
       whois_output = file_fixture("whois/domain.us.txt").read
       whois_output.gsub!("2018-06-02T00:05:41Z", "not a date")
 

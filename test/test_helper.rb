@@ -23,6 +23,9 @@ require_relative "test_mocks_helper"
 require_relative "chexpire_assertions"
 
 class ActiveSupport::TestCase
+  # Run tests in parallel with specified workers
+  parallelize(workers: :number_of_processors)
+
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
@@ -36,23 +39,10 @@ class ActiveSupport::TestCase
   include ChexpireAssertions
 end
 
-# Capybara configuration
-Capybara.register_driver :headless_chrome do |app|
-  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    "chromeOptions" => { args: %w[headless disable-gpu] + ["window-size=1280,800"] },
-  )
-  Capybara::Selenium::Driver.new app, browser: :chrome, desired_capabilities: capabilities
-end
-Capybara.save_path = Rails.root.join("tmp/capybara")
-Capybara.javascript_driver = :headless_chrome
-Capybara.default_driver = :headless_chrome
-
 # Disable Open4 real system calls
-require "open4"
-require "errors"
 module Open4
   def popen4(*)
-    fail SystemCommandNotAllowedError,
+    fail SystemCommand::NotAllowedError,
       "Real Open4 calls are disabled in test env. Use mock_system_command helper instead."
   end
   alias open4 popen4

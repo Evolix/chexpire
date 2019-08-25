@@ -14,7 +14,7 @@ class ChecksTest < ApplicationSystemTestCase
 
     choose "domain"
 
-    fill_and_valid_new_check
+    create_new_check
   end
 
   test "create a predefined domain check" do
@@ -22,7 +22,7 @@ class ChecksTest < ApplicationSystemTestCase
 
     refute page.has_css? "domain[kind]"
 
-    fill_and_valid_new_check
+    create_new_check
   end
 
   test "create a manual domain check" do
@@ -49,7 +49,7 @@ class ChecksTest < ApplicationSystemTestCase
 
     refute page.has_css? "domain[kind]"
 
-    fill_and_valid_new_check
+    create_new_check
   end
 
   test "dettach a notification from a check" do
@@ -277,7 +277,7 @@ class ChecksTest < ApplicationSystemTestCase
 
   # rubocop:disable Metrics/AbcSize
   # rubocop:disable Metrics/MethodLength
-  def fill_and_valid_new_check
+  def create_new_check
     domain = "domain-test.fr"
     fill_in("check[domain]", with: domain)
 
@@ -287,7 +287,7 @@ class ChecksTest < ApplicationSystemTestCase
     fill_in("check[notifications_attributes][0][recipient]", with: recipient)
     fill_in("check[notifications_attributes][0][interval]", with: 30)
 
-    click_button
+    click_button I18n.t("helpers.submit.check.create")
 
     assert_equal checks_path, page.current_path
 

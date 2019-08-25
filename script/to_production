@@ -34,6 +34,7 @@ if [ "${confirmed}" != "y" ]; then
   exit 1
 fi
 
+echo "🚀 Deploying master to production !"
 bundle exec cap production deploy
 
 echo "😎 Done !"

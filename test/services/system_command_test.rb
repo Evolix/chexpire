@@ -2,14 +2,13 @@
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
 require "test_helper"
-require "system_command"
 
 class SystemCommandTest < ActiveSupport::TestCase
   test "should execute and log a command" do
     mock_logger = Minitest::Mock.new
     expected_cmd = 'whois "example.org"'
 
-    expected_result = SystemCommandResult.new(
+    expected_result = SystemCommand::Result.new(
       expected_cmd,
       0,
       "my result",

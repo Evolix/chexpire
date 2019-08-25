@@ -1,0 +1,21 @@
+[Unit]
+Description=Puma Server for Chexpire (%i)
+After=network.target
+
+[Service]
+Type=forking
+User=chexpire_%i
+EnvironmentFile=/home/chexpire_%i/www/current/.rbenv-vars
+Environment=RAILS_ENV=%i
+WorkingDirectory=/home/chexpire_%i/www/current/
+PIDFile=/home/chexpire_%i/www/shared/tmp/pids/puma.pid
+
+ExecStart=/home/chexpire_%i/.rbenv/bin/rbenv exec bundle exec puma -C /home/chexpire_%i/www/current/config/puma.rb --daemon
+ExecStop=/home/chexpire_%i/.rbenv/bin/rbenv exec bundle exec pumactl -F /home/chexpire_%i/www/current/config/puma.rb stop
+ExecReload=/home/chexpire_%i/.rbenv/bin/rbenv exec bundle exec pumactl -F /home/chexpire_%i/www/current/config/puma.rb phased-restart
+
+Restart=no
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

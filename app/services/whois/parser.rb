@@ -1,16 +1,6 @@
 # Copyright (C) 2018 Colin Darie <colin@darie.eu>, 2018 Evolix <info@evolix.fr>
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
-require "null_logger"
-require "whois/errors"
-require "whois/parser/afilias"
-require "whois/parser/afnic"
-require "whois/parser/cira"
-require "whois/parser/io"
-require "whois/parser/neustar"
-require "whois/parser/sonic"
-require "whois/parser/verisign"
-
 module Whois
   module Parser
     PARSERS = [

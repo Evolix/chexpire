@@ -13,4 +13,7 @@
 # These inflection rules are supported but not enabled by default:
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym 'SSL'
+  inflect.acronym 'AFNIC'
+  inflect.acronym 'CIRA'
+  inflect.acronym 'IO'
 end

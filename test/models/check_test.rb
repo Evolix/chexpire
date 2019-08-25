@@ -117,10 +117,28 @@ class CheckTest < ActiveSupport::TestCase
   test "set mode before saving" do
     check = build(:check, domain: "domain.fr")
     check.save!
+
     assert check.auto?
 
     check.domain = "domain.xyz"
     check.save!
+
     assert check.mode?
+  end
+
+  test "expiration in days (future)" do
+    check = create(:check, domain_expires_at: 1.week.from_now)
+    expected = 7
+    actual = check.domain_expires_in_days
+
+    assert_equal expected, actual
+  end
+
+  test "expiration in days (past)" do
+    check = create(:check, domain_expires_at: 1.week.ago)
+    expected = -7
+    actual = check.domain_expires_in_days
+
+    assert_equal expected, actual
   end
 end

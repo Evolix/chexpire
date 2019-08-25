@@ -2,17 +2,14 @@
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
 require "test_helper"
-require "whois/parser/cira"
-require "whois/response"
-require "whois/errors"
 
 module Whois
   class CIRATest < ActiveSupport::TestCase
     test "should parse a whois response for .ca" do
-      parser = Parser::CIRA.new("domain.ca")
+      parser = Whois::Parser::CIRA.new("domain.ca")
       whois_output = file_fixture("whois/domain.ca.txt").read
       response = parser.parse(whois_output)
-      assert_kind_of Response, response
+      assert_kind_of Whois::Response, response
 
       assert_equal Time.new(2015, 3, 24, 9, 10, 16, 0), response.created_at
       assert response.created_at.utc?
@@ -22,7 +19,7 @@ module Whois
     end
 
     test "should raises DomainNotFoundError for .ca when domain is not registered" do
-      parser = Parser::CIRA.new("willneverexist.ca")
+      parser = Whois::Parser::CIRA.new("willneverexist.ca")
       not_found = file_fixture("whois/willneverexist.ca.txt").read
 
       assert_raises DomainNotFoundError do
@@ -31,7 +28,7 @@ module Whois
     end
 
     test "should raises InvalidDateError for .ca when a date is not parsable" do
-      parser = Parser::CIRA.new("domain.ca")
+      parser = Whois::Parser::CIRA.new("domain.ca")
       whois_output = file_fixture("whois/domain.ca.txt").read
       whois_output.gsub!("2015-03-24T09:10:16Z", "not a date")
 

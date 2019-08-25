@@ -2,8 +2,6 @@
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
 require "test_helper"
-require "whois"
-require "system_command"
 
 module Whois
   class ServiceTest < ActiveSupport::TestCase
@@ -11,7 +9,7 @@ module Whois
       result = OpenStruct.new(exit_status: 0)
 
       mock_system_klass("whois", "example.org", result) do |system_klass|
-        service = Service.new("example.org", system_klass: system_klass)
+        service = Whois::Service.new("example.org", system_klass: system_klass)
         assert_equal result, service.run_command
       end
     end
@@ -20,9 +18,9 @@ module Whois
       result = OpenStruct.new(exit_status: 1)
 
       mock_system_klass("whois", "example.org", result) do |system_klass|
-        service = Service.new("example.org", system_klass: system_klass)
+        service = Whois::Service.new("example.org", system_klass: system_klass)
 
-        assert_raises WhoisCommandError do
+        assert_raises Whois::CommandError do
           service.run_command
         end
       end
@@ -34,8 +32,8 @@ module Whois
         stdout: file_fixture("whois/domain.fr.txt").read,
       )
 
-      service = Service.new("domain.fr")
-      assert_kind_of Response, service.parse(result)
+      service = Whois::Service.new("domain.fr")
+      assert_kind_of Whois::Response, service.parse(result)
     end
 
     def mock_system_klass(program, command_args, result)

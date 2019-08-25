@@ -44,6 +44,8 @@ class Check < ApplicationRecord
   enum kind: [:domain, :ssl]
   enum mode: [:auto, :manual]
 
+  # Those dates are written as UTC,
+  # but not converted back when read from the database
   self.skip_time_zone_conversion_for_attributes = [
     :domain_created_at,
     :domain_updated_at,
@@ -82,7 +84,8 @@ class Check < ApplicationRecord
   def days_from_last_success
     return unless last_success_at.present?
 
-    (Date.today - last_success_at.to_date).to_i
+    # return the number of whole days
+    ((Time.now - last_success_at) / (24 * 3600)).to_i
   end
 
   def increment_consecutive_failures!
@@ -102,6 +105,10 @@ class Check < ApplicationRecord
     rescue StandardError
       false
     end
+  end
+
+  def domain_expires_in_days
+    Integer(domain_expires_at.to_date - Time.now.utc.to_date)
   end
 
   private

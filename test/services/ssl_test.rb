@@ -2,8 +2,6 @@
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
 require "test_helper"
-require "ssl"
-require "system_command"
 
 module SSL
   class ServiceTest < ActiveSupport::TestCase
@@ -11,7 +9,7 @@ module SSL
       result = OpenStruct.new(exit_status: 0)
 
       mock_system_klass("check_http", standard_args, result) do |system_klass|
-        service = Service.new("example.org", system_klass: system_klass)
+        service = SSL::Service.new("example.org", system_klass: system_klass)
         assert_equal result, service.run_command
       end
     end
@@ -20,9 +18,9 @@ module SSL
       result = OpenStruct.new(exit_status: 1)
 
       mock_system_klass("check_http", standard_args, result) do |system_klass|
-        service = Service.new("example.org", system_klass: system_klass)
+        service = SSL::Service.new("example.org", system_klass: system_klass)
 
-        assert_raises SSLCommandError do
+        assert_raises SSL::CommandError do
           service.run_command
         end
       end
@@ -34,8 +32,8 @@ module SSL
         stdout: file_fixture("ssl/ssl0.domain.org.txt").read,
       )
 
-      service = Service.new("ssl0.domain.org")
-      assert_kind_of Response, service.parse(result)
+      service = SSL::Service.new("ssl0.domain.org")
+      assert_kind_of SSL::Response, service.parse(result)
     end
 
     test "should uses the command line arguments of the configuration" do
@@ -44,7 +42,7 @@ module SSL
 
       expected_args = standard_args.concat ["-f", "-I 127.0.0.1"]
       mock_system_klass("check_http", expected_args, result) do |system_klass|
-        service = Service.new("example.org", configuration: config, system_klass: system_klass)
+        service = SSL::Service.new("example.org", configuration: config, system_klass: system_klass)
         assert_equal result, service.run_command
       end
     end
@@ -53,8 +51,8 @@ module SSL
       black_hole = Naught.build(&:black_hole)
       config = OpenStruct.new(check_http_args: "-f")
 
-      assert_raises SSLConfigurationError do
-        service = Service.new("example.org", configuration: config, system_klass: black_hole)
+      assert_raises SSL::ConfigurationError do
+        service = SSL::Service.new("example.org", configuration: config, system_klass: black_hole)
         service.run_command
       end
     end
@@ -64,7 +62,7 @@ module SSL
       config = OpenStruct.new(check_http_path: "/usr/local/custom/path")
 
       mock_system_klass("/usr/local/custom/path", standard_args, result) do |sys|
-        service = Service.new("example.org", configuration: config, system_klass: sys)
+        service = SSL::Service.new("example.org", configuration: config, system_klass: sys)
         assert_equal result, service.run_command
       end
     end

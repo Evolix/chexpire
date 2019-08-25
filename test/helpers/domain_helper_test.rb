@@ -2,7 +2,6 @@
 # License: GNU AGPL-3+ (see full text in LICENSE file)
 
 require "test_helper"
-require "domain_helper"
 
 class DomainHelperTest < ActiveSupport::TestCase
   include DomainHelper
