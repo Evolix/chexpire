@@ -79,7 +79,7 @@ fr:
   flashes:
     user_not_authorized: "Vous n'êtes pas autorisé•e à accéder à cette ressouce."
     checks:
-      create: La vérification est enregistrée.
+      created: La vérification est enregistrée.
       updated: La vérification est mise à jour.
       invalid: Veuillez vérifier le formulaire.
       destroyed: La vérification est supprimée.
