@@ -1,0 +1,149 @@
+% IANA WHOIS server
+% for more information on IANA, visit http://www.iana.org
+% This query returned 1 object
+
+refer:        whois.nic.fr
+
+domain:       FR
+
+organisation: Association Française pour le Nommage Internet en Coopération (A.F.N.I.C.)
+address:      Immeuble Le Stephenson
+address:      1 rue Stephenson
+address:      78180 Montigny-le-Bretonneux
+address:      France
+
+contact:      administrative
+name:         TLD Admin Contact
+organisation: Association Française pour le Nommage Internet en Coopération (A.F.N.I.C.)
+address:      Immeuble Le Stephenson
+address:      1 rue Stephenson
+address:      78180 Montigny-le-Bretonneux
+address:      France
+phone:        +33 1 39 30 83 05
+fax-no:       +33 1 39 30 83 01
+e-mail:       tld-admin@nic.fr
+
+contact:      technical
+name:         TLD Tech Contact
+organisation: Association Française pour le Nommage Internet en Coopération (A.F.N.I.C.)
+address:      Immeuble Le Stephenson
+address:      1 rue Stephenson
+address:      78180 Montigny-le-Bretonneux
+address:      France
+phone:        +33 1 39 30 83 81
+fax-no:       +33 1 39 30 83 01
+e-mail:       tld-tech@nic.fr
+
+nserver:      D.EXT.NIC.FR 192.5.4.2 2001:500:2e:0:0:0:0:2
+nserver:      D.NIC.FR 194.0.9.1 2001:678:c:0:0:0:0:1
+nserver:      E.EXT.NIC.FR 193.176.144.22 2a00:d78:0:102:193:176:144:22
+nserver:      F.EXT.NIC.FR 194.146.106.46 2001:67c:1010:11:0:0:0:53
+nserver:      G.EXT.NIC.FR 194.0.36.1 2001:678:4c:0:0:0:0:1
+ds-rdata:     35095 8 2 23c6caadc9927ee98061f2b52c9b8da6b53f3f648f814a4a86a0faf9854bfa8e
+ds-rdata:     42104 8 2 8D913A49C3FA2A39BA0065B4E18BA793E3AD128F7C6C8AA008AEFE0A17985DF5
+
+whois:        whois.nic.fr
+
+status:       ACTIVE
+remarks:      Registration information: http://www.nic.fr/
+
+created:      1986-09-02
+changed:      2018-01-22
+source:       IANA
+
+%%
+%% This is the AFNIC Whois server.
+%%
+%% complete date format : DD/MM/YYYY
+%% short date format    : DD/MM
+%% version              : FRNIC-2.5
+%%
+%% Rights restricted by copyright.
+%% See https://www.afnic.fr/en/products-and-services/services/whois/whois-special-notice/
+%%
+%% Use '-h' option to obtain more information about this service.
+%%
+%% [5ca0:1e73:fedf:ed4:2af1:f4a6:56e6:8308 REQUEST] >> domain.fr
+%%
+%% RL Net [##########] - RL IP [#########.]
+%%
+
+domain:      domain.fr
+status:      ACTIVE
+hold:        NO
+holder-c:    E1768-FRNIC
+admin-c:     GC647-FRNIC
+tech-c:      OVH5-FRNIC
+zone-c:      NFC1-FRNIC
+nsl-id:      NSL60350-FRNIC
+registrar:   OVH
+Expiry Date: 17/02/2005
+created:     18/02/2004
+source:      FRNIC
+
+ns-list:     NSL60350-FRNIC
+nserver:     ns4.dnsserver.fr
+nserver:     ns0.dnsserver.com
+source:      FRNIC
+
+registrar:   OVH
+type:        Isp Option 1
+address:     2 Rue Kellermann
+address:     59100 ROUBAIX
+country:     FR
+phone:       +33 8 99 88 77 66
+fax-no:      +33 3 20 20 20 20
+e-mail:      support@registrar.fr
+website:     http://www.registrar.fr
+anonymous:   NO
+registered:  21/10/1999
+source:      FRNIC
+
+nic-hdl:     SB999-FRNIC
+type:        PERSON
+contact:     Rex Lorne
+address:     Chexpire
+address:     Impasse Pastourelle
+address:     13001 Marseille
+country:     FR
+phone:       +33 1 23 45 67 89
+registrar:   OVH
+changed:     18/02/2004 frnic-dbm-updates@nic.fr
+anonymous:   NO
+obsoleted:   NO
+source:      FRNIC
+
+nic-hdl:     OVH5-FRNIC
+type:        ROLE
+contact:     OVH NET
+address:     OVH
+address:     140, quai du Sartel
+address:     59100 Roubaix
+country:     FR
+phone:       +33 8 99 88 77 66
+e-mail:      tech@registrar.fr
+trouble:     Information: http://www.registrar.fr
+trouble:     Questions:  mailto:tech@registrar.fr
+trouble:     Spam: mailto:abuse@registrar.fr
+admin-c:     OK217-FRNIC
+tech-c:      OK217-FRNIC
+notify:      tech@registrar.fr
+registrar:   OVH
+changed:     11/10/2006 tech@registrar.fr
+anonymous:   NO
+obsoleted:   NO
+source:      FRNIC
+
+nic-hdl:     E9999-FRNIC
+type:        ORGANIZATION
+contact:     Chexpire
+address:     Impasse Pastourelle
+address:     13001 Marseille
+country:     FR
+phone:       +33 1 23 45 67 89
+e-mail:      info@domain.fr
+registrar:   OVH
+changed:     11/03/2012 nic@nic.fr
+anonymous:   NO
+obsoleted:   NO
+source:      FRNIC

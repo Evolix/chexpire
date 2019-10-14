@@ -43,7 +43,8 @@ module Whois
         expire_date = get_value!("Expiry Date", after: domain_index)
         response.expire_at = parse_date(expire_date)
 
-        updated_date = get_value!("last-update", after: domain_index)
+        # Sometimes there is no "last-update" field, so we use the creation date
+        updated_date = get_value("last-update", after: domain_index).presence || created_date
         response.updated_at = parse_date(updated_date)
       end
 

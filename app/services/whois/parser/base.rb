@@ -44,6 +44,10 @@ module Whois
         }
       end
 
+      def get_value(name, after: -1)
+        get_field(name, after: after).try(:value)
+      end
+
       def get_field!(name, after: -1, value: nil)
         get_field(name, after: after, value: value) \
           || fail(FieldNotFoundError, "Field `#{name}` not found, after index #{after}")
