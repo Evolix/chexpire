@@ -202,7 +202,7 @@ fr:
       title: "Liste de vos notifications"
       no_notification_yet_html: |
         Vous n'avez pas encore créé de notification.
-        <a href="%{new_domain_path}">Créez votre première notification</a>.
+        <a href="%{new_path}">Créez votre première notification</a>.
       explanation: |
         Pour chacune de vos vérifications,
         vous pouvez associer une ou plusieurs notifications que vous recevrez
