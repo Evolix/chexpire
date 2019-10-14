@@ -13,7 +13,7 @@ gem 'puma', '~> 4.0'
 
 gem 'devise', '~> 4.7'
 gem 'devise-i18n', '~> 1.8'
-gem 'simple_form', '~> 4.0'
+gem 'simple_form', '~> 5.0'
 gem 'pundit', '~> 1.1'
 
 # Use SCSS for stylesheets

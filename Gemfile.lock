@@ -308,7 +308,7 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     shellany (0.0.1)
-    simple_form (4.1.0)
+    simple_form (5.0.1)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
     simplecov (0.17.1)
@@ -408,7 +408,7 @@ DEPENDENCIES
   rubocop (~> 0.56.0)
   sass-rails (~> 5)
   selenium-webdriver
-  simple_form (~> 4.0)
+  simple_form (~> 5.0)
   simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
