@@ -4,11 +4,11 @@
 
 Chexpire requires :
 * Ruby > 2.5.4 and Bundler
-* NodeJS and Yarn
+* NodeJS >= 10.13 and Yarn
 * MySQL or MariaDB
 
 We are usually running Chexpire on typical POSIX servers like :
-- Linux Debian 9, Ruby 2.5.4, NodeJS 8.11 and MariaDB 10.1
+- Linux Debian 9, Ruby 2.5.4, NodeJS 10.13 and MariaDB 10.1
 - macOS High Sierra, Ruby 2.5.4, NodeJS 10.2.1 and MariaDB 10.2
 
 It probably works on any system that supports Ruby >= 2.5.4, NodeJS >= 6 and MySQL >= 5.5. Feel free to report any unexpected incompatibilities.

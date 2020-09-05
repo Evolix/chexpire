@@ -8,12 +8,13 @@ rvm:
   ### cf. https://github.com/Evolix/chexpire/pull/104
   - 2.5
   - 2.6
+  - 2.7
 
 cache:
   - bundler
   - yarn
 
-node_js: 9
+node_js: 12
 
 sudo: required # required with chrome addon
 addons:
