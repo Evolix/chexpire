@@ -48,3 +48,6 @@ yarn-debug.log*
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+# local version of check_http
+/bin/check_http
