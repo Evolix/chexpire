@@ -16,7 +16,7 @@ end
 set :deploy_to, config.fetch("deploy_to")
 set :branch, "staging"
 
-if config.has_key?(:keep_releases)
+if config.has_key?("keep_releases")
   set :keep_releases, config.fetch("keep_releases").to_i
 end
 
