@@ -34,7 +34,18 @@ if [ "${confirmed}" != "y" ]; then
   exit 1
 fi
 
-echo "🚀 Deploying master to production !"
+echo "🚀 Deploying ${CURRENT_BRANCH} to production !"
+
+# une branche "production" est (re)initialisée sur le commit courant
+git branch -f production
+# … et poussée sur le mote "origin"
+git push --force origin production
+
+# et le déploiement a lieu
 bundle exec cap production deploy
+
+# création du tag
+TAG="prod-${TIMESTAMP}-$(logname)"
+git tag ${TAG} && git push origin tag ${TAG}
 
 echo "😎 Done !"
