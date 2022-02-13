@@ -1784,9 +1784,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000981, caniuse-lite@^1.0.30001109, caniuse-lite@^1.0.30001111:
-  version "1.0.30001123"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001123.tgz#7b981d81382ab2c8fd062f3e6439215e8c503c22"
-  integrity sha512-03dJDoa4YC4332jq0rqwiM+Hw6tA5RJtrnZKvOQy7ASoIUv8CinkcmGhYpCvCjedvkBQrrKnkcELxrUSW/XwNQ==
+  version "1.0.30001312"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001312.tgz"
+  integrity sha512-Wiz1Psk2MEK0pX3rUzWaunLTZzqS2JYZFzNKqAiJGiuxIjRPLgV6+VDPOg6lQOUxmDwhTlh198JsTTi8Hzw6aQ==
 
 case-sensitive-paths-webpack-plugin@^2.2.0:
   version "2.3.0"

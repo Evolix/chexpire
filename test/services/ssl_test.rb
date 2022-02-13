@@ -76,10 +76,10 @@ module SSL
     def mock_system_klass(program, command_args, result)
       system_klass = Minitest::Mock.new
       system_command = Minitest::Mock.new.expect(:execute, result)
-      system_klass.expect(:new, system_command) do |arg1, arg2, logger:|
+      system_klass.expect(:new, system_command) do |arg1, arg2, options|
         arg1 == program &&
-          arg2 == command_args &&
-          logger.class == NullLogger
+        arg2 == command_args &&
+        options.fetch(:logger).class == NullLogger
       end
 
       yield system_klass

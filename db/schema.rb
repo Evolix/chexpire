@@ -2,8 +2,8 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_08_16_223645) do
 
-  create_table "check_logs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "check_logs", charset: "utf8", force: :cascade do |t|
     t.bigint "check_id"
     t.text "raw_response"
     t.integer "exit_status"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2019_08_16_223645) do
     t.index ["check_id"], name: "index_check_logs_on_check_id"
   end
 
-  create_table "check_notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "check_notifications", charset: "utf8", force: :cascade do |t|
     t.bigint "check_id"
     t.bigint "notification_id"
     t.integer "status", limit: 1, default: 0, null: false
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2019_08_16_223645) do
     t.index ["notification_id"], name: "index_check_notifications_on_notification_id"
   end
 
-  create_table "checks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "checks", charset: "utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.integer "kind", null: false
     t.string "domain", null: false
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2019_08_16_223645) do
     t.index ["user_id"], name: "index_checks_on_user_id"
   end
 
-  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "notifications", charset: "utf8", force: :cascade do |t|
     t.bigint "check_id"
     t.integer "channel", default: 0, null: false
     t.string "recipient", null: false
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2019_08_16_223645) do
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

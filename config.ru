@@ -5,3 +5,4 @@ require_relative "config/environment"
 use Rack::Locale
 
 run Rails.application
+Rails.application.load_server
