@@ -3,10 +3,11 @@
 
 module SSL
   class Parser
-    DATE_REGEX = /will expire on (.+)\./
+    DATE_REGEX = /will expire (in (?<days>\d+) days )?on (?<date>.+)\./
     # Several date formats possible:
     # OK - Certificate 'domain.net' will expire on Sat 10 Jun 2028 09:14:18 AM GMT +0000.
     # OK - Certificate 'domain.net' will expire on 2018-08-06 02:57 +0200/CEST.
+    # SSL OK - Certificate 'domain.net' will expire in 52 days on 2022-04-07 00:33 +0200/CEST.
 
     attr_reader :logger
     attr_reader :domain
@@ -45,7 +46,7 @@ module SSL
 
     def build_response(match)
       Response.new(domain).tap do |response|
-        response.expire_at = parse_datetime(match[1])
+        response.expire_at = parse_datetime(match[:date])
       end
     end
 
