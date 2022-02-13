@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Copyright (C) 2018 Colin Darie <colin@darie.eu>, 2018 Evolix <info@evolix.fr>
 # License: GNU AGPL-3+ (see full text in LICENSE file)
@@ -9,7 +9,7 @@ set -e
 echo "👀 Fetching git repository information…"
 git fetch origin --quiet
 
-CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 echo "🚀 Deploying ${CURRENT_BRANCH} to staging !"
 git branch -f staging
