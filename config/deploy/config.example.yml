@@ -3,6 +3,7 @@
 
 staging:
   deploy_to: /var/www/my_app_name
+  keep_releases: 5
   servers:
     -
       host: staging.example.com
@@ -14,6 +15,7 @@ staging:
 
 production:
   deploy_to: /var/www/my_app_name
+  keep_releases: 5
   servers:
     -
       host: www.example.com

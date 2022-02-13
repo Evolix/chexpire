@@ -13,6 +13,11 @@ end
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, config.fetch("deploy_to")
+set :branch, "production"
+
+if config.has_key?(:keep_releases)
+  set :keep_releases, config.fetch("keep_releases").to_i
+end
 
 # role-based syntax
 # ==================
