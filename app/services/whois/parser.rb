@@ -7,6 +7,7 @@ module Whois
       Afilias,
       AFNIC,
       CIRA,
+      Icann,
       IO,
       Neustar,
       Sonic,

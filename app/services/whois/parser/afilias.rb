@@ -18,7 +18,6 @@ module Whois
         .mn
         .sc
         .vc
-        .org
         .aero
         .asia
         .xxx

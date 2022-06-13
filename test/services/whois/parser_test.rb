@@ -18,6 +18,10 @@ module Whois
       assert_kind_of Parser::Afilias, Parser.for("example.info")
     end
 
+    test "should instanciate a parser class matching Icann tlds" do
+      assert_kind_of Parser::Icann, Parser.for("example.org")
+    end
+
     test "should raises an exception when a domain is not supported" do
       assert_raises UnsupportedDomainError do
         Parser.for("example.xyz")
