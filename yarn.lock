@@ -956,7 +956,7 @@
   resolved "https://registry.yarnpkg.com/@rails/ujs/-/ujs-6.1.4.tgz#093d5341595a02089ed309dec40f3c37da7b1b10"
   integrity sha512-O3lEzL5DYbxppMdsFSw36e4BHIlfz/xusynwXGv3l2lhSlvah41qviRpsoAlKXxl37nZAqK+UUF5cnGGK45Mfw==
 
-"@rails/webpacker@^4.0.7":
+"@rails/webpacker@^4.3.0":
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/@rails/webpacker/-/webpacker-4.3.0.tgz#3793b3aed08ed0b661f1bed9de0739abacb6a834"
   integrity sha512-DmKGjKugLeeytT1TO9fUBBjdA3YwQ19zoWK5JDL8V1rM0bf6WRf1n9DZTiVmuf0WO1gp5ej5pJ9b3NjZwfAz4Q==
@@ -2983,13 +2983,12 @@ expand-tilde@^2.0.0, expand-tilde@^2.0.2:
   dependencies:
     homedir-polyfill "^1.0.1"
 
-exports-loader@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/exports-loader/-/exports-loader-0.7.0.tgz#84881c784dea6036b8e1cd1dac3da9b6409e21a5"
-  integrity sha512-RKwCrO4A6IiKm0pG3c9V46JxIHcDplwwGJn6+JJ1RcVnh/WSGJa0xkmk5cRVtgOPzCAtTMGj2F7nluh9L0vpSA==
+exports-loader@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/exports-loader/-/exports-loader-4.0.0.tgz#af34fe80a18f12fb0f42f435edd7df0fe9db49bb"
+  integrity sha512-4iqFFIAnlVAbkAUMHhWceyxK6N6dMDWpQFbSHLmiayGEPMXl2bgWD4D11GYi1VNuEQwJaHGdATcPYTnXpwzSmw==
   dependencies:
-    loader-utils "^1.1.0"
-    source-map "0.5.0"
+    source-map "^0.6.1"
 
 express@^4.17.1:
   version "4.17.2"
@@ -6829,11 +6828,6 @@ source-map-url@^0.4.0:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/source-map-url/-/source-map-url-0.4.1.tgz#0af66605a745a5a2f91cf1bbf8a7afbc283dec56"
   integrity sha512-cPiFOTLUKvJFIg4SKVScy4ilPPW6rFgMgfuZJPNoDuMs3nC1HbMUycBoJw77xFIp6z1UJQJOfx6C9GMH80DiTw==
-
-source-map@0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.0.tgz#0fe96503ac86a5adb5de63f4e412ae4872cdbe86"
-  integrity sha1-D+llA6yGpa213mP05BKuSHLNvoY=
 
 source-map@^0.4.2:
   version "0.4.4"
